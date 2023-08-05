@@ -1,0 +1,96 @@
+PODS:
+  - Alamofire (5.6.4)
+  - Dto (0.2.0):
+    - ValidatedPropertyKit (~> 0.0.4)
+  - ESPullToRefresh (2.9.3)
+  - MBProgressHUD (1.2.0)
+  - MGAPIService (3.0.0):
+    - ObjectMapper (~> 4.2)
+    - RxAlamofire (~> 5.6)
+    - RxSwift (~> 5.1)
+  - MGArchitecture (2.0.2):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - MGLoadMore (3.0.2):
+    - ESPullToRefresh (~> 2.9)
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - ObjectMapper (4.2.0)
+  - Reusable (4.1.2):
+    - Reusable/Storyboard (= 4.1.2)
+    - Reusable/View (= 4.1.2)
+  - Reusable/Storyboard (4.1.2)
+  - Reusable/View (4.1.2)
+  - RxAlamofire (5.7.1):
+    - RxAlamofire/Core (= 5.7.1)
+  - RxAlamofire/Core (5.7.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 5.1)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
+  - RxViewController (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - Then (2.7.0)
+  - ValidatedPropertyKit (0.0.4)
+
+DEPENDENCIES:
+  - Dto
+  - MBProgressHUD (~> 1.2)
+  - MGAPIService (~> 3.0.0)
+  - MGArchitecture (~> 2.0.1)
+  - MGLoadMore (~> 3.0.2)
+  - Reusable (~> 4.1)
+  - RxViewController
+  - SDWebImage (~> 5.8.3)
+  - Then (~> 2.7)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Dto
+    - ESPullToRefresh
+    - MBProgressHUD
+    - MGAPIService
+    - MGArchitecture
+    - MGLoadMore
+    - ObjectMapper
+    - Reusable
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxViewController
+    - SDWebImage
+    - Then
+    - ValidatedPropertyKit
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  Dto: 0346adb2a98017204d384e981352c7f864296a1f
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MGAPIService: 83684387a742af98b944f5badfa566cc2e146318
+  MGArchitecture: 122eacece9de8cbb3576af1329aa7c76118e47b7
+  MGLoadMore: c43a39da03c2ac7697f6c3fa1812681f7f751f25
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
+
+PODFILE CHECKSUM: 2003ee1837bee190375c6f42347b5125092b509a
+
+COCOAPODS: 1.11.3
