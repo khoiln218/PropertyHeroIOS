@@ -7,7 +7,7 @@
 
 protocol Assembler: AnyObject,
                     MainAssembler,
-                    AppAssembler,
+                    SplashAssembler,
                     GatewaysAssembler {
     
 }

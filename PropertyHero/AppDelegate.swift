@@ -24,8 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func bindViewModel(window: UIWindow) {
-        let vm: AppViewModel = assembler.resolve(window: window)
-        let input = AppViewModel.Input(load: Driver.just(()))
-        let output = vm.transform(input, disposeBag: disposeBag)
+        let nav = UINavigationController()
+        let vc: SplashViewController = assembler.resolve(window: window)
+        nav.viewControllers.append(vc)
+        
+        window.rootViewController = nav
+        window.makeKeyAndVisible()
     }
 }

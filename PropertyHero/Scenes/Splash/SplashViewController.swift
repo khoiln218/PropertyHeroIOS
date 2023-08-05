@@ -1,8 +1,8 @@
 //
 //  MainViewController.swift
-//  PropertyHero
+//  BaoDongThap
 //
-//  Created by KHOI LE on 8/5/23.
+//  Created by KHOI LE on 9/20/22.
 //
 
 import UIKit
@@ -12,13 +12,13 @@ import RxSwift
 import RxCocoa
 import MGArchitecture
 
-final class MainViewController: UIViewController, Bindable {
+final class SplashViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
     
     // MARK: - Properties
 
-    var viewModel: MainViewModel!
+    var viewModel: SplashViewModel!
     var disposeBag = DisposeBag()
     
     // MARK: - Life Cycle
@@ -47,19 +47,16 @@ final class MainViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        title = "Main"
+        
     }
     
     func bindViewModel() {
-        let input = MainViewModel.Input(
-            load: Driver.just(())
-        )
-        
+        let input = SplashViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
     }
 }
 
 // MARK: - StoryboardSceneBased
-extension MainViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.main
+extension SplashViewController: StoryboardSceneBased {
+    static var sceneStoryboard = Storyboards.splash
 }

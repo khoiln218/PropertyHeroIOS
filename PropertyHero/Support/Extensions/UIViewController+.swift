@@ -1,8 +1,8 @@
 //
 //  UIViewController+.swift
-//  PropertyHero
+//  BaoDongThap
 //
-//  Created by KHOI LE on 8/5/23.
+//  Created by KHOI LE on 9/20/22.
 //
 
 import UIKit
@@ -49,5 +49,18 @@ extension UIViewController {
             
             present(ac, animated: true, completion: nil)
         }
+    }
+    
+    func removeBackButtonTitle() {
+        if let topItem = self.navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    func getStatusBarHeight() -> CGFloat {
+        var statusBarHeight: CGFloat = 0
+        statusBarHeight = UIApplication.keyWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        return statusBarHeight
     }
 }

@@ -1,26 +1,26 @@
 //
-//  AppNavigator.swift
-//  PropertyHero
+//  MainNavigator.swift
+//  BaoDongThap
 //
-//  Created by KHOI LE on 8/5/23.
+//  Created by KHOI LE on 9/20/22.
 //
 
 import UIKit
 
-protocol AppNavigatorType {
+protocol SplashNavigatorType {
     func toMain()
 }
 
-struct AppNavigator: AppNavigatorType {
+struct SplashNavigator: SplashNavigatorType {
     unowned let assembler: Assembler
     unowned let window: UIWindow
     
     func toMain() {
         let nav = UINavigationController()
-        let vc: MainViewController = assembler.resolve(navigationController: nav)
-        nav.viewControllers.append(vc)
+        let _: MainViewController = assembler.resolve(navigationController: nav)
         
         window.rootViewController = nav
         window.makeKeyAndVisible()
     }
 }
+
