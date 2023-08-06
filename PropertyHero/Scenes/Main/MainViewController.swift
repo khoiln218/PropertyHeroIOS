@@ -11,10 +11,13 @@ import SDWebImage
 import RxSwift
 import RxCocoa
 import MGArchitecture
+import Then
 
 final class MainViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var tabLayout: TabLayout!
+    @IBOutlet weak var viewpager: UIView!
     
     // MARK: - Properties
 
@@ -47,15 +50,31 @@ final class MainViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        title = "Main"
+        tabLayout.do {
+            $0.tabLayoutDelegate = self
+            $0.indicatorSize = 0.0
+            $0.fixedMode = true
+        }
+        
+        var tabs = [(title: String?, image: UIImage?)]()
+        tabs.append((title: "", UIImage(named: "ic_action_home")))
+        tabs.append((title: "", UIImage(named: "ic_action_search")))
+        tabs.append((title: "", UIImage(named: "ic_action_collection")))
+        tabs.append((title: "", UIImage(named: "ic_action_notification")))
+        tabs.append((title: "", UIImage(named: "ic_action_more")))
+        tabLayout.addTabs(tabs: tabs)
     }
     
     func bindViewModel() {
-        let input = MainViewModel.Input(
-            load: Driver.just(())
-        )
-        
+        let input = MainViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
+        self.viewModel.navigator.initMain()
+    }
+}
+
+extension MainViewController: TabLayoutDelegate {
+    func tabLayout(tabLayout: TabLayout, index: Int) {
+        self.viewModel.navigator.toMenu(index)
     }
 }
 

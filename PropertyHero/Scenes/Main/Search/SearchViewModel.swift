@@ -1,32 +1,31 @@
 //
-//  MainViewModel.swift
+//  SearchViewModel.swift
 //  PropertyHero
 //
-//  Created by KHOI LE on 8/5/23.
+//  Created by KHOI LE on 8/6/23.
 //
 
+import MGArchitecture
 import RxSwift
 import RxCocoa
-import MGArchitecture
 
-struct MainViewModel {
-    let navigator: MainNavigatorType
-    let useCase: MainUseCaseType
+struct SearchViewModel {
+    let navigator: SearchNavigatorType
+    let useCase: SearchUseCaseType
 }
 
 // MARK: - ViewModel
-extension MainViewModel: ViewModel {
+extension SearchViewModel: ViewModel {
     struct Input {
-
+        
     }
     
     struct Output {
-
+        
     }
-
+    
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
-
         return output
     }
 }

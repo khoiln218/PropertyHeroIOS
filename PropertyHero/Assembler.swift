@@ -6,6 +6,11 @@
 //
 
 protocol Assembler: AnyObject,
+                    HomeAssembler,
+                    SearchAssembler,
+                    CollectionAssembler,
+                    NotificationAssembler,
+                    MoreAssembler,
                     MainAssembler,
                     SplashAssembler,
                     GatewaysAssembler {
