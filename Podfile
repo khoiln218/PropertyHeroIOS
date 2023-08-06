@@ -17,6 +17,10 @@ def pods
     # Others
     pod 'MBProgressHUD', '~> 1.2'
     pod 'SDWebImage', '~> 5.8.3'
+
+    #ImageSlideshow
+    pod "ImageSlideshow", '~> 1.9.2'
+    pod "ImageSlideshow/SDWebImage"
 end
 
 def test_pods

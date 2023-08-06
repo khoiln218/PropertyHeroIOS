@@ -7,6 +7,10 @@
 
 extension API {
     enum Urls {
-
+        static let BaseUrl = "https://hellorentapi.gomimall.vn/"
+        
+        // EndPoint Utilities
+        static let apiUtil = BaseUrl + "api/Utilities/"
+        static let getBanner = apiUtil + "ListMainBanner"
     }
 }

@@ -8,9 +8,13 @@
 import RxSwift
 
 protocol HomeUseCaseType {
-    
+    func getBanner() -> Observable<[Banner]>
 }
 
-struct HomeUseCase: HomeUseCaseType {
+struct HomeUseCase: HomeUseCaseType, GetCategory {
+    var categoryGateway: CategoryGatewayType
     
+    func getBanner() -> Observable<[Banner]> {
+        return categoryGateway.getBanner()
+    }
 }

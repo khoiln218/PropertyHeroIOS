@@ -3,6 +3,12 @@ PODS:
   - Dto (0.2.0):
     - ValidatedPropertyKit (~> 0.0.4)
   - ESPullToRefresh (2.9.3)
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
+  - ImageSlideshow/SDWebImage (1.9.2):
+    - ImageSlideshow/Core
+    - SDWebImage (>= 3.7)
   - MBProgressHUD (1.2.0)
   - MGAPIService (3.0.0):
     - ObjectMapper (~> 4.2)
@@ -43,6 +49,8 @@ PODS:
 
 DEPENDENCIES:
   - Dto
+  - ImageSlideshow (~> 1.9.2)
+  - ImageSlideshow/SDWebImage
   - MBProgressHUD (~> 1.2)
   - MGAPIService (~> 3.0.0)
   - MGArchitecture (~> 2.0.1)
@@ -57,6 +65,7 @@ SPEC REPOS:
     - Alamofire
     - Dto
     - ESPullToRefresh
+    - ImageSlideshow
     - MBProgressHUD
     - MGAPIService
     - MGArchitecture
@@ -76,6 +85,7 @@ SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Dto: 0346adb2a98017204d384e981352c7f864296a1f
   ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MGAPIService: 83684387a742af98b944f5badfa566cc2e146318
   MGArchitecture: 122eacece9de8cbb3576af1329aa7c76118e47b7
@@ -91,6 +101,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: 2003ee1837bee190375c6f42347b5125092b509a
+PODFILE CHECKSUM: ab066c0bd7af121789af8d045ca1418e6a9068dc
 
 COCOAPODS: 1.11.3
