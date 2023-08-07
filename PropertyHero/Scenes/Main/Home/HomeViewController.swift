@@ -116,14 +116,7 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             
             $0.selectOption = { option in
-                switch(option) {
-                case .all:
-                    print("all clicked")
-                case .apartment:
-                    print("apartment clicked")
-                case .room:
-                    print("room clicked")
-                }
+                self.viewModel.navigator.toMapView(option: option)
             }
         }
     }

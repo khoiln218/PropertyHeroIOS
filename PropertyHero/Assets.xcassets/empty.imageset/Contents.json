@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Hero_app_logo_grey.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Hero_app_logo_grey.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

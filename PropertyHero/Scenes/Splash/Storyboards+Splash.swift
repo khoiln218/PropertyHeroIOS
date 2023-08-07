@@ -10,4 +10,3 @@ import UIKit
 extension Storyboards {
     static let splash = UIStoryboard(name: "Splash", bundle: nil)
 }
-

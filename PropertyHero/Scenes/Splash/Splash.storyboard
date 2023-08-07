@@ -19,18 +19,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdY-LI-ucn">
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_splash" translatesAutoresizingMaskIntoConstraints="NO" id="aNe-YJ-yvz">
-                                        <rect key="frame" x="0.0" y="53.5" width="414" height="707"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash" translatesAutoresizingMaskIntoConstraints="NO" id="lQ6-Z9-6SC">
+                                        <rect key="frame" x="111" y="311" width="192" height="192"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="aNe-YJ-yvz" secondAttribute="height" multiplier="600:1024" id="J1p-mR-yah"/>
+                                            <constraint firstAttribute="width" secondItem="lQ6-Z9-6SC" secondAttribute="height" multiplier="1:1" id="co2-0r-U6G"/>
+                                            <constraint firstAttribute="width" constant="192" id="k44-eQ-tOc"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.10588235294117647" green="0.12549019607843137" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="aNe-YJ-yvz" firstAttribute="centerY" secondItem="wdY-LI-ucn" secondAttribute="centerY" id="JHx-Jj-yMf"/>
-                                    <constraint firstItem="aNe-YJ-yvz" firstAttribute="width" secondItem="wdY-LI-ucn" secondAttribute="width" id="VEn-C9-fFK"/>
-                                    <constraint firstItem="aNe-YJ-yvz" firstAttribute="centerX" secondItem="wdY-LI-ucn" secondAttribute="centerX" id="cuX-YJ-wlA"/>
+                                    <constraint firstItem="lQ6-Z9-6SC" firstAttribute="centerY" secondItem="wdY-LI-ucn" secondAttribute="centerY" id="4Nr-eB-fQG"/>
+                                    <constraint firstItem="lQ6-Z9-6SC" firstAttribute="centerX" secondItem="wdY-LI-ucn" secondAttribute="centerX" id="O4W-x1-gHF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -50,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img_splash" width="300" height="512"/>
+        <image name="ic_splash" width="90" height="90"/>
     </resources>
 </document>

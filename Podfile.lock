@@ -3,6 +3,30 @@ PODS:
   - Dto (0.2.0):
     - ValidatedPropertyKit (~> 0.0.4)
   - ESPullToRefresh (2.9.3)
+  - Google-Maps-iOS-Utils (4.2.2):
+    - Google-Maps-iOS-Utils/Clustering (= 4.2.2)
+    - Google-Maps-iOS-Utils/Geometry (= 4.2.2)
+    - Google-Maps-iOS-Utils/GeometryUtils (= 4.2.2)
+    - Google-Maps-iOS-Utils/Heatmap (= 4.2.2)
+    - Google-Maps-iOS-Utils/QuadTree (= 4.2.2)
+    - GoogleMaps (~> 7.3)
+  - Google-Maps-iOS-Utils/Clustering (4.2.2):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps (~> 7.3)
+  - Google-Maps-iOS-Utils/Geometry (4.2.2):
+    - GoogleMaps (~> 7.3)
+  - Google-Maps-iOS-Utils/GeometryUtils (4.2.2):
+    - GoogleMaps (~> 7.3)
+  - Google-Maps-iOS-Utils/Heatmap (4.2.2):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps (~> 7.3)
+  - Google-Maps-iOS-Utils/QuadTree (4.2.2):
+    - GoogleMaps (~> 7.3)
+  - GoogleMaps (7.3.0):
+    - GoogleMaps/Maps (= 7.3.0)
+  - GoogleMaps/Base (7.3.0)
+  - GoogleMaps/Maps (7.3.0):
+    - GoogleMaps/Base
   - ImageSlideshow (1.9.2):
     - ImageSlideshow/Core (= 1.9.2)
   - ImageSlideshow/Core (1.9.2)
@@ -49,6 +73,8 @@ PODS:
 
 DEPENDENCIES:
   - Dto
+  - Google-Maps-iOS-Utils (~> 4.2.2)
+  - GoogleMaps (~> 7.3.0)
   - ImageSlideshow (~> 1.9.2)
   - ImageSlideshow/SDWebImage
   - MBProgressHUD (~> 1.2)
@@ -65,6 +91,8 @@ SPEC REPOS:
     - Alamofire
     - Dto
     - ESPullToRefresh
+    - Google-Maps-iOS-Utils
+    - GoogleMaps
     - ImageSlideshow
     - MBProgressHUD
     - MGAPIService
@@ -85,6 +113,8 @@ SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Dto: 0346adb2a98017204d384e981352c7f864296a1f
   ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
+  GoogleMaps: a146f275ee429d14822178c7a841c03366ec92a1
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MGAPIService: 83684387a742af98b944f5badfa566cc2e146318
@@ -101,6 +131,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: ab066c0bd7af121789af8d045ca1418e6a9068dc
+PODFILE CHECKSUM: ccc6e16b88fa169f72c57fa98f8326290508045a
 
 COCOAPODS: 1.11.3

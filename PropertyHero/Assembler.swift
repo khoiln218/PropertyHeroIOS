@@ -6,6 +6,7 @@
 //
 
 protocol Assembler: AnyObject,
+                    MapViewAssembler,
                     HomeAssembler,
                     SearchAssembler,
                     CollectionAssembler,

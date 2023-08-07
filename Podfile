@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '14.0'
 
 def pods
     # Clean Architecture
@@ -21,10 +21,10 @@ def pods
     #ImageSlideshow
     pod "ImageSlideshow", '~> 1.9.2'
     pod "ImageSlideshow/SDWebImage"
-end
-
-def test_pods
-    pod 'RxTest', '~> 5.1'
+    
+    # Google Maps
+    pod 'GoogleMaps', '~>7.3.0'
+    pod 'Google-Maps-iOS-Utils', '~>4.2.2'
 end
 
 target 'PropertyHero' do
@@ -36,8 +36,13 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 10.0
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 14.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+      end
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
       end
     end
   end
