@@ -7,27 +7,29 @@
 
 import UIKit
 import Reusable
+import CoreLocation
 
 protocol MapViewAssembler {
-    func resolve(navigationController: UINavigationController, option: OptionChoice) -> MapViewViewController
-    func resolve(navigationController: UINavigationController, option: OptionChoice) -> MapViewViewModel
+    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewController
+    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewModel
     func resolve(navigationController: UINavigationController) -> MapViewNavigatorType
     func resolve() -> MapViewUseCaseType
 }
 
 extension MapViewAssembler {
-    func resolve(navigationController: UINavigationController, option: OptionChoice) -> MapViewViewController {
+    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewController {
         let vc = MapViewViewController.instantiate()
-        let vm: MapViewViewModel = resolve(navigationController: navigationController, option: option)
+        let vm: MapViewViewModel = resolve(navigationController: navigationController, option: option, latlng: latlng)
         vc.bindViewModel(to: vm)
         return vc
     }
     
-    func resolve(navigationController: UINavigationController, option: OptionChoice) -> MapViewViewModel {
+    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewModel {
         return MapViewViewModel(
             navigator: resolve(navigationController: navigationController),
             useCase: resolve(),
-            option: option
+            option: option,
+            latlng: latlng
         )
     }
 }

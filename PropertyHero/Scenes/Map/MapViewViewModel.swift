@@ -8,11 +8,13 @@
 import MGArchitecture
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 struct MapViewViewModel {
     let navigator: MapViewNavigatorType
     let useCase: MapViewUseCaseType
     let option: OptionChoice
+    let latlng: CLLocationCoordinate2D
 }
 
 // MARK: - ViewModel
@@ -22,14 +24,15 @@ extension MapViewViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var option: OptionChoice = .all
+        @Property var option: OptionChoice?
+        @Property var latlng: CLLocationCoordinate2D?
         @Property var products: [Product] = []
         @Property var error: Error?
         @Property var isLoading = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output(option: option)
+        let output = Output(option: option, latlng: latlng)
         
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()

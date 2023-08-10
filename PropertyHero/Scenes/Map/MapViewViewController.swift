@@ -21,19 +21,18 @@ final class MapViewViewController: UIViewController, Bindable {
     @IBOutlet weak var findBtn: UIView!
     @IBOutlet weak var viewAllBtn: UIButton!
     @IBOutlet weak var myLocation: UIView!
+    @IBOutlet weak var numItems: UILabel!
     
     // MARK: - Properties
     
     var viewModel: MapViewViewModel!
     var disposeBag = DisposeBag()
     
-    let kCameraLatitude = 10.771513
-    let kCameraLongitude = 106.698387
-    
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
     private let geocoder = GMSGeocoder()
     private let manager = CLLocationManager()
+    private var propertyType: PropertyType = .all;
     
     var cameraChanged = PublishSubject<SearchInfo>()
     
@@ -60,18 +59,6 @@ final class MapViewViewController: UIViewController, Bindable {
         myLocation.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
         myLocation.layer.cornerRadius = 3
         myLocation.layer.masksToBounds = true
-        
-        let camera = GMSCameraPosition.camera(withLatitude: kCameraLatitude, longitude: kCameraLongitude, zoom: 17.0)
-        self.mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
-        self.mapView.isMyLocationEnabled = true
-        self.container.insertSubview(mapView, at: 0)
-        
-        let iconGenerator = GMUDefaultClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
-        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
-        
-        clusterManager.setMapDelegate(self)
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -105,17 +92,31 @@ final class MapViewViewController: UIViewController, Bindable {
                 switch(option) {
                 case .all:
                     title = "Tất cả"
+                    propertyType = .all
                 case .apartment:
                     title = "Căn hộ"
+                    propertyType = .apartment
                 case .room:
                     title = "Phòng trọ"
+                    propertyType = .room
+                case .none:
+                    title = "Tất cả"
+                    propertyType = .all
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        output.$latlng
+            .asDriver()
+            .drive(onNext: { [unowned self] latlng in
+                self.setupMap(latlng!)
             })
             .disposed(by: disposeBag)
         
         output.$products
             .asDriver()
             .drive(onNext: { [unowned self] products in
+                self.numItems.text = "\(products.count)\("unit_item".localized())";
                 self.createClusterItems(products)
             })
             .disposed(by: disposeBag)
@@ -130,6 +131,21 @@ final class MapViewViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    private func setupMap(_ latlng: CLLocationCoordinate2D) {
+        let camera = GMSCameraPosition.camera(withLatitude: latlng.latitude, longitude: latlng.longitude, zoom: DefaultStorage().getMapZoom())
+        
+        self.mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
+        self.mapView.isMyLocationEnabled = true
+        self.container.insertSubview(mapView, at: 0)
+        
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+        
+        clusterManager.setMapDelegate(self)
     }
     
     private func createClusterItems(_ products: [Product]) {
@@ -150,19 +166,14 @@ extension MapViewViewController: GMSMapViewDelegate {
         mapView.clear()
     }
     
-    func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
-        geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
-            guard error == nil else {
-                return
-            }
-            
-            if mapView.camera.zoom <= 7 { return }
-            
-            let camView = mapView.projection.visibleRegion()
-            let bounds = GMSCoordinateBounds(region: camView)
-            let searchInfo = SearchInfo(startLat: "\(bounds.southWest.latitude)", startLng: "\(bounds.southWest.longitude)", endLat: "\(bounds.northEast.latitude)", endLng: "\(bounds.northEast.longitude)", distance: "0.0", propertyType: "254", status: "254")
-            self.cameraChanged.onNext(searchInfo)
-        }
+    func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) { 
+        if mapView.camera.zoom <= 7 { return }
+        
+        let camView = mapView.projection.visibleRegion()
+        let bounds = GMSCoordinateBounds(region: camView)
+        DefaultStorage().setLastLatLng(cameraPosition.target.latitude, lng: cameraPosition.target.longitude, zoom: cameraPosition.zoom)
+        let searchInfo = SearchInfo(startLat: "\(bounds.southWest.latitude)", startLng: "\(bounds.southWest.longitude)", endLat: "\(bounds.northEast.latitude)", endLng: "\(bounds.northEast.longitude)", distance: "0.0", propertyType: "\(self.propertyType.rawValue)", status: "\(Constants.undefined.rawValue)")
+        self.cameraChanged.onNext(searchInfo)
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -181,12 +192,11 @@ extension MapViewViewController: GMSMapViewDelegate {
 // MARK: - CLLocationManagerDelegate
 extension MapViewViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 17.0)
-        self.mapView.animate(to: camera)
-        
         self.manager.stopUpdatingLocation()
+        
+        let location = locations.last
+        let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: DefaultStorage().getMapZoom())
+        self.mapView.animate(to: camera)
     }
 }
 

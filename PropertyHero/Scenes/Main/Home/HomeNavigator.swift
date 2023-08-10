@@ -9,7 +9,7 @@ import UIKit
 import GoogleMaps
 
 protocol HomeNavigatorType {
-    func toMapView(option: OptionChoice)
+    func toMapView(_ option: OptionChoice, latlng: CLLocationCoordinate2D)
     
 }
 
@@ -17,8 +17,8 @@ struct HomeNavigator: HomeNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
     
-    func toMapView(option: OptionChoice) {
-        let vc: MapViewViewController = assembler.resolve(navigationController: navigationController, option: option)
+    func toMapView(_ option: OptionChoice, latlng: CLLocationCoordinate2D) {
+        let vc: MapViewViewController = assembler.resolve(navigationController: navigationController, option: option, latlng: latlng)
         navigationController.pushViewController(vc, animated: true)
     }
 }

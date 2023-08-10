@@ -8,6 +8,7 @@
 import RxSwift
 import RxCocoa
 import MGArchitecture
+import CoreLocation
 
 struct SplashViewModel {
     let navigator: SplashNavigatorType
@@ -17,7 +18,7 @@ struct SplashViewModel {
 // MARK: - ViewModel
 extension SplashViewModel: ViewModel {
     struct Input {
-        
+        let load: Driver<CLLocationCoordinate2D>
     }
     
     struct Output {
@@ -27,9 +28,12 @@ extension SplashViewModel: ViewModel {
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
         
-        after(interval: 1.0) {
-            navigator.toMain()
-        }
+        input.load
+            .drive(onNext: { latlng in
+                print(latlng)
+                self.navigator.toMain()
+            })
+            .disposed(by: disposeBag)
 
         return output
     }

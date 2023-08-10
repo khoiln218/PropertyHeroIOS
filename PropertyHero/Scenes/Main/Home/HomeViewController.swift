@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Reusable
 import Then
+import CoreLocation
 
 final class HomeViewController: UIViewController, Bindable {
     
@@ -21,6 +22,9 @@ final class HomeViewController: UIViewController, Bindable {
     
     var viewModel: HomeViewModel!
     var disposeBag = DisposeBag()
+    
+    private let manager = CLLocationManager()
+    private var latlng: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: DefaultStorage().getLastLat(), longitude: DefaultStorage().getLastLng())
     
     var sections = [Int: Any]()
     
@@ -45,6 +49,11 @@ final class HomeViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        manager.stopUpdatingLocation()
+    }
+    
     deinit {
         logDeinit()
     }
@@ -61,6 +70,11 @@ final class HomeViewController: UIViewController, Bindable {
             $0.delegate = self
             $0.dataSource = self
         }
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
     }
     
     func bindViewModel() {
@@ -93,6 +107,16 @@ final class HomeViewController: UIViewController, Bindable {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        guard let latlng = location?.coordinate else { return }
+        if latlng.latitude == self.latlng.latitude && latlng.longitude == self.latlng.longitude { return }
+        self.latlng = latlng
+        print(latlng)
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
@@ -115,8 +139,8 @@ extension HomeViewController: UICollectionViewDataSource {
                 print(banner)
             }
             
-            $0.selectOption = { option in
-                self.viewModel.navigator.toMapView(option: option)
+            $0.selectOption = { [unowned self] option in
+                self.viewModel.navigator.toMapView(option, latlng: self.latlng)
             }
         }
     }

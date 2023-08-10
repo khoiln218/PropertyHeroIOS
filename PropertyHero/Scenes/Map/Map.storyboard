@@ -145,6 +145,7 @@
                         <outlet property="container" destination="YEO-nL-ivu" id="maL-Xm-P8p"/>
                         <outlet property="findBtn" destination="nHk-0H-lm7" id="XIf-h3-6Wo"/>
                         <outlet property="myLocation" destination="Wi4-cF-Ufe" id="Bh9-jL-6tF"/>
+                        <outlet property="numItems" destination="BCU-RZ-wRV" id="vfI-lp-a2y"/>
                         <outlet property="viewAllBtn" destination="Jxn-Gw-Usg" id="buF-93-pGe"/>
                     </connections>
                 </viewController>
