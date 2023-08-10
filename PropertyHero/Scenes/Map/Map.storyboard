@@ -142,8 +142,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="container" destination="YEO-nL-ivu" id="maL-Xm-P8p"/>
                         <outlet property="findBtn" destination="nHk-0H-lm7" id="XIf-h3-6Wo"/>
-                        <outlet property="mapview" destination="YEO-nL-ivu" id="Ylv-gy-Mtt"/>
                         <outlet property="myLocation" destination="Wi4-cF-Ufe" id="Bh9-jL-6tF"/>
                         <outlet property="viewAllBtn" destination="Jxn-Gw-Usg" id="buF-93-pGe"/>
                     </connections>

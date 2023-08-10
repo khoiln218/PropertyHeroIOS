@@ -5,7 +5,6 @@
 //  Created by KHOI LE on 8/6/23.
 //
 
-import UIKit
 import RxSwift
 import MGArchitecture
 

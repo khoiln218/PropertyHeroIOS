@@ -24,7 +24,6 @@ extension HomeViewModel: ViewModel {
         @Property var sections = [Int: Any]()
         @Property var error: Error?
         @Property var isLoading = false
-        @Property var isReloading = false
         @Property var isEmpty = false
     }
     
@@ -59,11 +58,6 @@ extension HomeViewModel: ViewModel {
         activityIndicator
             .asDriver()
             .drive(output.$isLoading)
-            .disposed(by: disposeBag)
-        
-        activityIndicator
-            .asDriver()
-            .drive(output.$isReloading)
             .disposed(by: disposeBag)
         
         errorTracker

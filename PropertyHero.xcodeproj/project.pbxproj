@@ -58,6 +58,11 @@
 		6EB5B0962A7FFA54004AAB38 /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B0912A7FFA54004AAB38 /* MapViewViewModel.swift */; };
 		6EB5B0982A7FFAA6004AAB38 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EB5B0972A7FFAA6004AAB38 /* Map.storyboard */; };
 		6EB5B09A2A7FFAC7004AAB38 /* Storyboards+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B0992A7FFAC7004AAB38 /* Storyboards+Map.swift */; };
+		6EB8EAFE2A8441600055BEFD /* API+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB8EAFD2A84415F0055BEFD /* API+Product.swift */; };
+		6EB8EB002A84442C0055BEFD /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB8EAFF2A84442C0055BEFD /* Product.swift */; };
+		6EB8EB022A84451C0055BEFD /* GetProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB8EB012A84451C0055BEFD /* GetProduct.swift */; };
+		6EB8EB042A8445880055BEFD /* ProductGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB8EB032A8445880055BEFD /* ProductGateway.swift */; };
+		6EB8EB062A8446CB0055BEFD /* SearchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB8EB052A8446CB0055BEFD /* SearchInfo.swift */; };
 		6EBC244A2A7EB8C900E58B2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC24232A7EB8C900E58B2E /* Assets.xcassets */; };
 		6EBC24502A7EB8C900E58B2E /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC242F2A7EB8C900E58B2E /* Assembler.swift */; };
 		6EBC245E2A7EB8CA00E58B2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC24412A7EB8C900E58B2E /* AppDelegate.swift */; };
@@ -151,6 +156,11 @@
 		6EB5B0912A7FFA54004AAB38 /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		6EB5B0972A7FFAA6004AAB38 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		6EB5B0992A7FFAC7004AAB38 /* Storyboards+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboards+Map.swift"; sourceTree = "<group>"; };
+		6EB8EAFD2A84415F0055BEFD /* API+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Product.swift"; sourceTree = "<group>"; };
+		6EB8EAFF2A84442C0055BEFD /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6EB8EB012A84451C0055BEFD /* GetProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProduct.swift; sourceTree = "<group>"; };
+		6EB8EB032A8445880055BEFD /* ProductGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGateway.swift; sourceTree = "<group>"; };
+		6EB8EB052A8446CB0055BEFD /* SearchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInfo.swift; sourceTree = "<group>"; };
 		6EBC24232A7EB8C900E58B2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EBC242F2A7EB8C900E58B2E /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		6EBC24412A7EB8C900E58B2E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -271,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				6ECC2A552A7F7D660053130A /* Banner.swift */,
+				6EB8EAFF2A84442C0055BEFD /* Product.swift */,
+				6EB8EB052A8446CB0055BEFD /* SearchInfo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -279,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECC2A692A7F89360053130A /* GetCategory.swift */,
+				6EB8EB012A84451C0055BEFD /* GetProduct.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -300,6 +313,7 @@
 				6E08B3122A7EAC8000C3EE35 /* APIOutput.swift */,
 				6E08B3142A7EAC8000C3EE35 /* APIService.swift */,
 				6ECC2A6D2A7F8A480053130A /* API+Category.swift */,
+				6EB8EAFD2A84415F0055BEFD /* API+Product.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -309,6 +323,7 @@
 			children = (
 				6E08B3172A7EAC8000C3EE35 /* GatewaysAssembler.swift */,
 				6ECC2A6B2A7F89C10053130A /* CategoryGateway.swift */,
+				6EB8EB032A8445880055BEFD /* ProductGateway.swift */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -659,12 +674,14 @@
 				6E83F43B2A7F6AF6002D9BD8 /* MoreAssembler.swift in Sources */,
 				6EBC24852A7EBD9000E58B2E /* SplashViewModel.swift in Sources */,
 				6E83F40F2A7F6A2F002D9BD8 /* HomeAssembler.swift in Sources */,
+				6EB8EB062A8446CB0055BEFD /* SearchInfo.swift in Sources */,
 				6ECC2A512A7F7B470053130A /* HeaderPageItemCell.swift in Sources */,
 				6E83F41F2A7F6AA4002D9BD8 /* SearchUseCase.swift in Sources */,
 				6EBC24842A7EBD9000E58B2E /* SplashViewController.swift in Sources */,
 				6ECC2A5F2A7F7E6C0053130A /* SectionLayout.swift in Sources */,
 				6ECC2A562A7F7D660053130A /* Banner.swift in Sources */,
 				6E83F4482A7F6EFF002D9BD8 /* NotificationViewController.swift in Sources */,
+				6EB8EB042A8445880055BEFD /* ProductGateway.swift in Sources */,
 				6E08B3292A7EAC8000C3EE35 /* Storyboards+Main.swift in Sources */,
 				6E83F43C2A7F6AF6002D9BD8 /* MoreNavigator.swift in Sources */,
 				6EBC248A2A7EBD9000E58B2E /* SplashNavigator.swift in Sources */,
@@ -704,10 +721,12 @@
 				6EBC24892A7EBD9000E58B2E /* SplashUseCase.swift in Sources */,
 				6E83F4202A7F6AA4002D9BD8 /* SearchViewController.swift in Sources */,
 				6E08B31B2A7EAC8000C3EE35 /* Storyboards.swift in Sources */,
+				6EB8EB022A84451C0055BEFD /* GetProduct.swift in Sources */,
 				6ECC2A542A7F7B470053130A /* HeaderSectionLayout.swift in Sources */,
 				6EBC24872A7EBD9000E58B2E /* Storyboards+Splash.swift in Sources */,
 				6E08B30F2A7EAC8000C3EE35 /* APIError.swift in Sources */,
 				6EBC24882A7EBD9000E58B2E /* SplashAssembler.swift in Sources */,
+				6EB8EB002A84442C0055BEFD /* Product.swift in Sources */,
 				6E83F4282A7F6AC8002D9BD8 /* CollectionNavigator.swift in Sources */,
 				6E83F4112A7F6A2F002D9BD8 /* HomeUseCase.swift in Sources */,
 				6E83F4472A7F6EFF002D9BD8 /* NotificationUseCase.swift in Sources */,
@@ -724,6 +743,7 @@
 				6E83F4082A7F5A5B002D9BD8 /* TabLayout.swift in Sources */,
 				6ECC2A5E2A7F7E6C0053130A /* PageItemCell.swift in Sources */,
 				6E83F41E2A7F6AA4002D9BD8 /* SearchNavigator.swift in Sources */,
+				6EB8EAFE2A8441600055BEFD /* API+Product.swift in Sources */,
 				6EB5B0932A7FFA54004AAB38 /* MapViewNavigator.swift in Sources */,
 				6ECC2A6A2A7F89360053130A /* GetCategory.swift in Sources */,
 				6E83F4492A7F6EFF002D9BD8 /* NotificationViewModel.swift in Sources */,

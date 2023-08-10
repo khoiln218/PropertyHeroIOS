@@ -8,9 +8,13 @@
 import RxSwift
 
 protocol MapViewUseCaseType {
-    
+    func search(_ seachInfo: SearchInfo) -> Observable<[Product]>
 }
 
-struct MapViewUseCase: MapViewUseCaseType {
+struct MapViewUseCase: MapViewUseCaseType, GetProduct {
+    var productGateway: ProductGatewayType
     
+    func search(_ seachInfo: SearchInfo) -> Observable<[Product]> {
+        return productGateway.search(seachInfo)
+    }
 }

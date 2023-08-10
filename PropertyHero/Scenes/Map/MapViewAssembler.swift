@@ -38,6 +38,6 @@ extension MapViewAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> MapViewUseCaseType {
-        return MapViewUseCase()
+        return MapViewUseCase(productGateway: resolve())
     }
 }

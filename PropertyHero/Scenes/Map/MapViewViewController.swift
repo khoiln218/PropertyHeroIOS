@@ -17,7 +17,7 @@ import GoogleMapsUtils
 final class MapViewViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var mapview: UIView!
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var findBtn: UIView!
     @IBOutlet weak var viewAllBtn: UIButton!
     @IBOutlet weak var myLocation: UIView!
@@ -27,13 +27,15 @@ final class MapViewViewController: UIViewController, Bindable {
     var viewModel: MapViewViewModel!
     var disposeBag = DisposeBag()
     
-    let kClusterItemCount = 10000
     let kCameraLatitude = 10.771513
     let kCameraLongitude = 106.698387
     
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
+    private let geocoder = GMSGeocoder()
     private let manager = CLLocationManager()
+    
+    var cameraChanged = PublishSubject<SearchInfo>()
     
     // MARK: - Life Cycle
     
@@ -45,7 +47,6 @@ final class MapViewViewController: UIViewController, Bindable {
     deinit {
         logDeinit()
     }
-
     
     // MARK: - Methods
     
@@ -63,7 +64,7 @@ final class MapViewViewController: UIViewController, Bindable {
         let camera = GMSCameraPosition.camera(withLatitude: kCameraLatitude, longitude: kCameraLongitude, zoom: 17.0)
         self.mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         self.mapView.isMyLocationEnabled = true
-        self.mapview.insertSubview(mapView, at: 0)
+        self.container.insertSubview(mapView, at: 0)
         
         let iconGenerator = GMUDefaultClusterIconGenerator()
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
@@ -71,9 +72,6 @@ final class MapViewViewController: UIViewController, Bindable {
         clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
         
         clusterManager.setMapDelegate(self)
-        
-        generateClusterItems()
-        clusterManager.cluster()
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -96,7 +94,9 @@ final class MapViewViewController: UIViewController, Bindable {
     }
     
     func bindViewModel() {
-        let input = MapViewViewModel.Input()
+        let input = MapViewViewModel.Input(
+            cameraChaged: cameraChanged.asDriverOnErrorJustComplete()
+        )
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
         output.$option
@@ -112,38 +112,69 @@ final class MapViewViewController: UIViewController, Bindable {
                 }
             })
             .disposed(by: disposeBag)
+        
+        output.$products
+            .asDriver()
+            .drive(onNext: { [unowned self] products in
+                self.createClusterItems(products)
+            })
+            .disposed(by: disposeBag)
+        
+        output.$error
+            .asDriver()
+            .unwrap()
+            .drive(rx.error)
+            .disposed(by: disposeBag)
+        
+        output.$isLoading
+            .asDriver()
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
     }
     
-    private func generateClusterItems() {
-        let extent = 0.2
-        for _ in 1...kClusterItemCount {
-            let lat = kCameraLatitude + extent * randomScale()
-            let lng = kCameraLongitude + extent * randomScale()
-            let position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+    private func createClusterItems(_ products: [Product]) {
+        self.clusterManager.clearItems()
+        for product in products {
+            let position = CLLocationCoordinate2D(latitude: product.Latitude, longitude: product.Longitude)
             let marker = GMSMarker(position: position)
             marker.icon = UIImage(named: "ic_vector_product_item")
             clusterManager.add(marker)
         }
-    }
-    
-    /// Returns a random value between -1.0 and 1.0.
-    private func randomScale() -> Double {
-        return Double(arc4random()) / Double(UINT32_MAX) * 2.0 - 1.0
+        self.clusterManager.cluster()
     }
 }
 
 // MARK: - GMSMapViewDelegate
 extension MapViewViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        mapView.clear()
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
+        geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
+            guard error == nil else {
+                return
+            }
+            
+            if mapView.camera.zoom <= 7 { return }
+            
+            let camView = mapView.projection.visibleRegion()
+            let bounds = GMSCoordinateBounds(region: camView)
+            let searchInfo = SearchInfo(startLat: "\(bounds.southWest.latitude)", startLng: "\(bounds.southWest.longitude)", endLat: "\(bounds.northEast.latitude)", endLng: "\(bounds.northEast.longitude)", distance: "0.0", propertyType: "254", status: "254")
+            self.cameraChanged.onNext(searchInfo)
+        }
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-      mapView.animate(toLocation: marker.position)
-      if marker.userData is GMUCluster {
-        mapView.animate(toZoom: mapView.camera.zoom + 1)
-        print("Did tap cluster")
-        return true
-      }
-
+        mapView.animate(toLocation: marker.position)
+        if marker.userData is GMUCluster {
+            mapView.animate(toZoom: mapView.camera.zoom + 1)
+            print("Did tap cluster")
+            return true
+        }
+        
         print("Did tap a normal marker")
-      return false
+        return false
     }
 }
 
@@ -151,12 +182,11 @@ extension MapViewViewController: GMSMapViewDelegate {
 extension MapViewViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
-
-        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
-        self.mapView?.animate(to: camera)
-
+        
+        let camera = GMSCameraPosition.camera(withLatitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 17.0)
+        self.mapView.animate(to: camera)
+        
         self.manager.stopUpdatingLocation()
-
     }
 }
 
