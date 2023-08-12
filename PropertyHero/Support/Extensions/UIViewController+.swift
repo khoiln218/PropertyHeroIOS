@@ -64,3 +64,28 @@ extension UIViewController {
         return statusBarHeight
     }
 }
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension UIViewController {
+    func showCoomingSoon(_ container: UIView) {
+        after(interval: 1.5, completion: {
+            let frame = CGRect(x: 0,
+                               y: 0,
+                               width: container.frame.size.width,
+                               height: container.frame.size.height)
+            let coomingView = CoomingSoonView(frame: frame)
+            container.addSubview(coomingView)
+        })
+    }
+}

@@ -1,8 +1,8 @@
 //
-//  NotificationViewController.swift
+//  ProductViewViewController.swift
 //  PropertyHero
 //
-//  Created by KHOI LE on 8/6/23.
+//  Created by KHOI LE on 8/13/23.
 //
 
 import UIKit
@@ -12,14 +12,14 @@ import RxCocoa
 import Reusable
 import Then
 
-final class NotificationViewController: UIViewController, Bindable {
+final class ProductViewViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
     @IBOutlet weak var container: UIView!
     
     // MARK: - Properties
     
-    var viewModel: NotificationViewModel!
+    var viewModel: ProductViewViewModel!
     var disposeBag = DisposeBag()
     
     // MARK: - Life Cycle
@@ -46,17 +46,17 @@ final class NotificationViewController: UIViewController, Bindable {
     }
     
     func bindViewModel() {
-        let input = NotificationViewModel.Input()
+        let input = ProductViewViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
     }
 }
 
 // MARK: - Binders
-extension NotificationViewController {
+extension ProductViewViewController {
     
 }
 
 // MARK: - StoryboardSceneBased
-extension NotificationViewController: StoryboardSceneBased {
+extension ProductViewViewController: StoryboardSceneBased {
     static var sceneStoryboard = Storyboards.main
 }

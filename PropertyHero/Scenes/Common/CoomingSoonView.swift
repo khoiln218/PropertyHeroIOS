@@ -1,15 +1,14 @@
 //
-//  EmptyDataView.swift
-//  CleanArchitecture
+//  CoomingSoonView.swift
+//  PropertyHero
 //
-//  Created by Tuan Truong on 9/5/18.
-//  Copyright © 2018 Sun Asterisk. All rights reserved.
+//  Created by KHOI LE on 8/13/23.
 //
 
 import UIKit
 import Reusable
 
-final class EmptyDataView: UIView, NibOwnerLoadable {
+final class CoomingSoonView: UIView, NibOwnerLoadable {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

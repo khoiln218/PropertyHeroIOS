@@ -17,15 +17,19 @@ struct MainNavigator: MainNavigatorType {
     unowned let navigationController: UINavigationController
     
     func initMain(_ target: MainViewController) {
-        let vcHome: HomeViewController = assembler.resolve(navigationController: navigationController)
-        let vcSearch: SearchViewController = assembler.resolve(navigationController: navigationController)
-        let vcCollection: CollectionViewController = assembler.resolve(navigationController: navigationController)
-        let vcNotification: NotificationViewController = assembler.resolve(navigationController: navigationController)
         let vcMore: MoreViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToMain(target, vc: vcMore, tab: .more)
+        
+        let vcNotification: NotificationViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToMain(target, vc: vcNotification, tab: .notification)
+        
+        let vcCollection: CollectionViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToMain(target, vc: vcCollection, tab: .collection)
+        
+        let vcSearch: SearchViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToMain(target, vc: vcSearch, tab: .search)
+        
+        let vcHome: HomeViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToMain(target, vc: vcHome, tab: .home)
     }
     

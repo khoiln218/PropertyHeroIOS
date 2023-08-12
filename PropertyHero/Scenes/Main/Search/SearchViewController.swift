@@ -15,6 +15,7 @@ import Then
 final class SearchViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var tabLayout: TabLayout!
     @IBOutlet weak var viewpager: UIView!
     
@@ -22,6 +23,7 @@ final class SearchViewController: UIViewController, Bindable {
     
     var viewModel: SearchViewModel!
     var disposeBag = DisposeBag()
+    private var isInit = false
     
     // MARK: - Life Cycle
     
@@ -32,7 +34,11 @@ final class SearchViewController: UIViewController, Bindable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.viewModel.navigator.initSearch(self)
+        
+        if !isInit {
+            self.viewModel.navigator.initSearch(self)
+            self.isInit = true
+        }
     }
     
     deinit {
@@ -46,15 +52,15 @@ final class SearchViewController: UIViewController, Bindable {
             $0.tabLayoutDelegate = self
             $0.indicatorSize = 0.0
             $0.fixedMode = true
-            $0.font = .systemFont(ofSize: 14)
-            $0.currentFont = .systemFont(ofSize: 14)
+            $0.font = .boldSystemFont(ofSize: 14)
+            $0.currentFont = .boldSystemFont(ofSize: 14)
             $0.textColor = UIColor(hex: "#808080")!
             $0.currentTextColor = UIColor(hex: "#424242")!
         }
         
         var tabs = [(title: String?, image: UIImage?)]()
-        tabs.append((title: "Tỉnh thành", nil))
-        tabs.append((title: "Địa điểm", nil))
+        tabs.append((title: "Địa điểm".uppercased(), nil))
+        tabs.append((title: "Tỉnh thành".uppercased(), nil))
         tabLayout.addTabs(tabs: tabs)
     }
     

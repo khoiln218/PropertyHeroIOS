@@ -15,6 +15,7 @@ import Then
 final class SearchByLocationViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var container: UIView!
     
     // MARK: - Properties
     
@@ -26,6 +27,12 @@ final class SearchByLocationViewController: UIViewController, Bindable {
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showCoomingSoon(self.container)
     }
     
     deinit {
@@ -40,7 +47,7 @@ final class SearchByLocationViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = SearchByLocationViewModel.Input()
-        let output = viewModel.transform(input, disposeBag: disposeBag)
+        _ = viewModel.transform(input, disposeBag: disposeBag)
     }
 }
 
@@ -51,5 +58,5 @@ extension SearchByLocationViewController {
 
 // MARK: - StoryboardSceneBased
 extension SearchByLocationViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.search
+    static var sceneStoryboard = Storyboards.main
 }

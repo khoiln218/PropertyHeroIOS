@@ -11,6 +11,11 @@ enum Constants: Int {
     case undefined = 254
 }
 
+enum TabCollection: Int {
+    case favorite = 0
+    case view = 1
+}
+
 enum TabSearch: Int {
     case location = 0
     case marker = 1

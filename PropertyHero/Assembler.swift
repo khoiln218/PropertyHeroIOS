@@ -6,6 +6,8 @@
 //
 
 protocol Assembler: AnyObject,
+                    FavoriteAssembler,
+                    ProductViewAssembler,
                     SearchByMarkerAssembler,
                     SearchByLocationAssembler,
                     MapViewAssembler,

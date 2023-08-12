@@ -16,6 +16,7 @@ import CoreLocation
 final class HomeViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Properties

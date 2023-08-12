@@ -80,3 +80,19 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    func recursiveFindSubview(of name: String) -> UIView? {
+        for view in subviews {
+            if view.isKind(of: NSClassFromString(name)!) {
+                return view
+            }
+        }
+        for view in subviews {
+            if let tempView = view.recursiveFindSubview(of: name) {
+                return tempView
+            }
+        }
+        return nil
+    }
+}

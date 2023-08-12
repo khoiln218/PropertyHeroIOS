@@ -23,6 +23,7 @@ final class MainViewController: UIViewController, Bindable {
 
     var viewModel: MainViewModel!
     var disposeBag = DisposeBag()
+    private var isInit = false
     
     // MARK: - Life Cycle
     
@@ -35,6 +36,15 @@ final class MainViewController: UIViewController, Bindable {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !isInit {
+            self.viewModel.navigator.initMain(self)
+            self.isInit = true
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,7 +80,6 @@ final class MainViewController: UIViewController, Bindable {
     func bindViewModel() {
         let input = MainViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
-        self.viewModel.navigator.initMain(self)
     }
 }
 

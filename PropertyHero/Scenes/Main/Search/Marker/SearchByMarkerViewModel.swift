@@ -29,7 +29,7 @@ extension SearchByMarkerViewModel: ViewModel {
         @Property var markers: [Marker]?
         @Property var error: Error?
         @Property var isLoading = false
-        @Property var isEmpty = true
+        @Property var isEmpty = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {

@@ -15,6 +15,7 @@ import Then
 final class SearchByMarkerViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var filterBar: UIView!
     @IBOutlet weak var searchBar: DesignableUITextField!
     @IBOutlet weak var provinceBtn: UIView!
@@ -47,28 +48,30 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        tableView.do {
+        self.tableView.do {
             $0.dataSource = self
             $0.register(cellType: MarkerCell.self)
         }
         
-        filterBar.layer.borderWidth = 0.3
-        filterBar.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
-        filterBar.layer.masksToBounds = true
+        self.filterBar.layer.borderWidth = 0.3
+        self.filterBar.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
+        self.filterBar.layer.masksToBounds = true
         
-        searchBar.layer.borderWidth = 1
-        searchBar.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
-        searchBar.layer.cornerRadius = 3
-        searchBar.layer.masksToBounds = true
-        searchBar.returnKeyType = .search
-        searchBar.delegate = self
+        self.searchBar.layer.borderWidth = 1
+        self.searchBar.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
+        self.searchBar.layer.cornerRadius = 3
+        self.searchBar.layer.masksToBounds = true
+        self.searchBar.returnKeyType = .search
+        self.searchBar.delegate = self
         
-        provinceBtn.layer.borderWidth = 1
-        provinceBtn.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
-        provinceBtn.layer.cornerRadius = 3
-        provinceBtn.layer.masksToBounds = true
+        self.provinceBtn.layer.borderWidth = 1
+        self.provinceBtn.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
+        self.provinceBtn.layer.cornerRadius = 3
+        self.provinceBtn.layer.masksToBounds = true
         
-        provinceBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSelectedProvince(_:))))
+        self.provinceBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSelectedProvince(_:))))
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @objc func onSelectedProvince(_ sender: UITapGestureRecognizer) {
@@ -94,7 +97,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
         let input = SearchByMarkerViewModel.Input(
             trigger: Driver.just(()),
             province: provinceSubject.asDriverOnErrorJustComplete(),
-            keyword: keywordSubject.asDriverOnErrorJustComplete(),
+            keyword: Driver.merge(keywordSubject.asDriverOnErrorJustComplete(), searchBar.rx.text.orEmpty.asDriver().debounce(.milliseconds(880))),
             selectMarker: tableView.rx.itemSelected.asDriver()
         )
         
@@ -173,5 +176,5 @@ extension SearchByMarkerViewController: UITextFieldDelegate {
 
 // MARK: - StoryboardSceneBased
 extension SearchByMarkerViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.search
+    static var sceneStoryboard = Storyboards.main
 }
