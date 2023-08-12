@@ -170,32 +170,8 @@
                     <view key="view" contentMode="scaleToFill" id="hKR-cJ-pxP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-tL-cws">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bộ sưu tập" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqY-Uk-7aZ">
-                                        <rect key="frame" x="155.66666666666666" y="369" width="81.666666666666657" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <constraints>
-                                    <constraint firstItem="mqY-Uk-7aZ" firstAttribute="centerX" secondItem="b9h-tL-cws" secondAttribute="centerX" id="GfM-iR-y3T"/>
-                                    <constraint firstItem="mqY-Uk-7aZ" firstAttribute="centerY" secondItem="b9h-tL-cws" secondAttribute="centerY" id="sui-fW-68k"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="C11-1D-jxQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="b9h-tL-cws" firstAttribute="leading" secondItem="C11-1D-jxQ" secondAttribute="leading" id="7ew-KN-hcm"/>
-                            <constraint firstItem="C11-1D-jxQ" firstAttribute="trailing" secondItem="b9h-tL-cws" secondAttribute="trailing" id="PsJ-uO-zBd"/>
-                            <constraint firstItem="b9h-tL-cws" firstAttribute="top" secondItem="C11-1D-jxQ" secondAttribute="top" id="bjT-9u-LDa"/>
-                            <constraint firstItem="C11-1D-jxQ" firstAttribute="bottom" secondItem="b9h-tL-cws" secondAttribute="bottom" id="spv-1X-j94"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNX-Bd-ZbY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -209,32 +185,8 @@
                     <view key="view" contentMode="scaleToFill" id="w2l-C4-hML">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-XS-D1H">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông báo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xft-fI-ghR">
-                                        <rect key="frame" x="155.66666666666666" y="369" width="82" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
-                                <constraints>
-                                    <constraint firstItem="Xft-fI-ghR" firstAttribute="centerY" secondItem="4RK-XS-D1H" secondAttribute="centerY" id="H5B-71-d0f"/>
-                                    <constraint firstItem="Xft-fI-ghR" firstAttribute="centerX" secondItem="4RK-XS-D1H" secondAttribute="centerX" id="g3a-X9-1Uf"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dfI-vE-NbZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="dfI-vE-NbZ" firstAttribute="bottom" secondItem="4RK-XS-D1H" secondAttribute="bottom" id="M04-xD-92D"/>
-                            <constraint firstItem="dfI-vE-NbZ" firstAttribute="trailing" secondItem="4RK-XS-D1H" secondAttribute="trailing" id="sLN-yU-0aO"/>
-                            <constraint firstItem="4RK-XS-D1H" firstAttribute="top" secondItem="dfI-vE-NbZ" secondAttribute="top" id="v2m-EA-Sgg"/>
-                            <constraint firstItem="4RK-XS-D1H" firstAttribute="leading" secondItem="dfI-vE-NbZ" secondAttribute="leading" id="z9u-iR-oy3"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezX-JZ-taX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -287,12 +239,6 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -28,6 +28,17 @@ final class NotificationViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: self.view.frame.size.width,
+                           height: self.view.frame.size.height)
+        let emptyView = EmptyDataView(frame: frame)
+        self.view.addSubview(emptyView)
+    }
+    
     deinit {
         logDeinit()
     }
@@ -40,7 +51,7 @@ final class NotificationViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = NotificationViewModel.Input()
-        let output = viewModel.transform(input, disposeBag: disposeBag)
+        _ = viewModel.transform(input, disposeBag: disposeBag)
     }
 }
 

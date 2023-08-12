@@ -28,9 +28,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="pl8-D8-HS5"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="vector_search"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
@@ -81,7 +81,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="qgC-rj-nGq" firstAttribute="top" secondItem="2yy-Kh-jmo" secondAttribute="top" id="01v-Bo-ebi"/>
                                     <constraint firstAttribute="trailing" secondItem="9Hc-Qn-i7S" secondAttribute="trailing" id="Dmv-EV-9UJ"/>
