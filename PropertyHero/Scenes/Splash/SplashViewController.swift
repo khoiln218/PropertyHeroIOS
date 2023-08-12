@@ -88,8 +88,8 @@ extension SplashViewController: CLLocationManagerDelegate {
         self.manager.stopUpdatingLocation()
         
         let location = locations.last
-        guard let latlng = location?.coordinate else { load.onNext(lastLatlng); return }
-        load.onNext(latlng)
+        guard let latlng = location?.coordinate else { self.load.onNext(lastLatlng); return }
+        self.load.onNext(latlng)
     }
 }
 

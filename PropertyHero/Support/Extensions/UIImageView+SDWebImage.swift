@@ -11,10 +11,6 @@ import SDWebImage
 
 extension UIImageView {
     func setImage(with url: URL?, completion: SDExternalCompletionBlock? = nil) {
-        self.sd_setImage(with: url, placeholderImage: UIImage(named: "ic_placeholder"), completed: completion)
-    }
-    
-    func setCateImage(with url: URL?, completion: SDExternalCompletionBlock? = nil) {
-        self.sd_setImage(with: url, placeholderImage: UIImage(named: "AppIcon"), completed: completion)
+        self.sd_setImage(with: url, placeholderImage: UIImage(named: "empty"), completed: completion)
     }
 }

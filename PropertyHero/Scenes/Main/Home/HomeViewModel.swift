@@ -21,7 +21,7 @@ extension HomeViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var sections = [Int: Any]()
+        @Property var sections:[Int: Any]?
         @Property var error: Error?
         @Property var isLoading = false
         @Property var isEmpty = false

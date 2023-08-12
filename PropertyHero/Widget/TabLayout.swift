@@ -62,6 +62,14 @@ import UIKit
         didSet { reload() }
     }
     
+    @IBInspectable public var backgroundBtnColor: UIColor = UIColor(hex: "#E0E0E0")! {
+        didSet { reload() }
+    }
+    
+    @IBInspectable public var currentBackgroundBtnColor: UIColor = UIColor(hex: "#FAFAFA")! {
+        didSet { reload() }
+    }
+    
     @IBInspectable public var indicatorColor: UIColor = UIColor.black {
         didSet { indicator.backgroundColor = indicatorColor }
     }
@@ -121,7 +129,7 @@ import UIKit
             button.setTitleColor((i == index) ? currentTextColor : textColor, for: .normal)
             button.titleLabel?.font = (i == index) ? currentFont : font
             button.imageView?.tintColor = (i == index) ? currentImageColor : imageColor
-            button.backgroundColor = UIColor(hex: (i == index) ? "#2b50f6" : "#424242")
+            button.backgroundColor = (i == index) ? currentBackgroundBtnColor : backgroundBtnColor
         }
         
         contentSize = CGSize(width: currentWidth, height: height)

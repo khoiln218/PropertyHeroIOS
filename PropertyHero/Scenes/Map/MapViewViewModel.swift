@@ -13,8 +13,9 @@ import CoreLocation
 struct MapViewViewModel {
     let navigator: MapViewNavigatorType
     let useCase: MapViewUseCaseType
-    let option: OptionChoice
+    let title: String
     let latlng: CLLocationCoordinate2D
+    let type: PropertyType
 }
 
 // MARK: - ViewModel
@@ -24,38 +25,37 @@ extension MapViewViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var option: OptionChoice?
-        @Property var latlng: CLLocationCoordinate2D?
+        @Property var extraData: [String: Any]?
         @Property var products: [Product] = []
         @Property var error: Error?
         @Property var isLoading = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output(option: option, latlng: latlng)
+        let output = Output(extraData: ["Title": title, "Latlng": latlng, "Type": type])
         
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
+        let loading = activityIndicator.asDriver()
+        let error = errorTracker.asDriver()
         
         let products = input.cameraChaged
             .flatMapLatest { searchInfo -> Driver<[Product]> in
                 return self.useCase.search(searchInfo)
-                .trackError(errorTracker)
-                .trackActivity(activityIndicator)
-                .asDriverOnErrorJustComplete()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
             }
         
         products
             .drive(output.$products)
             .disposed(by: disposeBag)
         
-        activityIndicator
-            .asDriver()
+        loading
             .drive(output.$isLoading)
             .disposed(by: disposeBag)
         
-        errorTracker
-            .asDriver()
+        error
             .drive(output.$error)
             .disposed(by: disposeBag)
         

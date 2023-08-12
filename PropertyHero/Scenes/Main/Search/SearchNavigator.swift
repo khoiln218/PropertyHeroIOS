@@ -8,10 +8,22 @@
 import UIKit
 
 protocol SearchNavigatorType {
-    
+    func initSearch(_ target: SearchViewController)
+    func toSearchMenu(_ target: SearchViewController, tab: TabSearch)
 }
 
 struct SearchNavigator: SearchNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
+    
+    func initSearch(_ target: SearchViewController) {
+        let vcSearchByMarker: SearchByMarkerViewController = assembler.resolve(navigationController: navigationController)
+        let vcSearchByLocation: SearchByLocationViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.addFragmentToSearch(target, vc: vcSearchByLocation, tab: .location)
+        navigationController.addFragmentToSearch(target, vc: vcSearchByMarker, tab: .marker)
+    }
+    
+    func toSearchMenu(_ target: SearchViewController, tab: TabSearch) {
+        navigationController.showViewControllerInSearch(target, tab: tab)
+    }
 }

@@ -13,12 +13,12 @@ class SectionLayout {
     
     var sectionType: SectionType
     var layout: LayoutOptions
-    var cellType: PageItemCell.Type
+    var cellType: PageCollectionCell.Type
     var childLayout: LayoutOptions?
     
     init(sectionType: SectionType,
          layout: LayoutOptions,
-         cellType: PageItemCell.Type) {
+         cellType: PageCollectionCell.Type) {
         self.sectionType = sectionType
         self.layout = layout
         self.cellType = cellType

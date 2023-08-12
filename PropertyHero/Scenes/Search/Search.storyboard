@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search By Marker View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchByMarkerViewController" id="Y6W-OH-hqX" customClass="SearchByMarkerViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2yy-Kh-jmo">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgC-rj-nGq">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên tòa nhà, Trường đại học" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WsV-8Z-bio" customClass="DesignableUITextField" customModule="PropertyHero" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="265" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="pl8-D8-HS5"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="vector_search"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="iconWidth">
+                                                        <real key="value" value="18"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="iconHeight">
+                                                        <real key="value" value="18"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-70-GTz">
+                                                <rect key="frame" x="279" y="8" width="106" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quận Bình Thạnh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztc-82-jdH">
+                                                        <rect key="frame" x="6" y="11.666666666666671" width="94" height="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="WJB-An-ML2"/>
+                                                    <constraint firstAttribute="leading" secondItem="ztc-82-jdH" secondAttribute="leading" constant="-6" id="WOZ-aq-hKx"/>
+                                                    <constraint firstItem="ztc-82-jdH" firstAttribute="centerY" secondItem="NHC-70-GTz" secondAttribute="centerY" id="dyV-js-MWi"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ztc-82-jdH" secondAttribute="trailing" constant="6" id="ngj-E7-RmJ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="NHC-70-GTz" firstAttribute="leading" secondItem="WsV-8Z-bio" secondAttribute="trailing" constant="6" id="4uv-q9-6hN"/>
+                                            <constraint firstAttribute="height" constant="56" id="KHy-0G-W9N"/>
+                                            <constraint firstItem="WsV-8Z-bio" firstAttribute="width" secondItem="qgC-rj-nGq" secondAttribute="width" multiplier="0.7" constant="-10" id="NW9-Ib-aet"/>
+                                            <constraint firstAttribute="trailing" secondItem="NHC-70-GTz" secondAttribute="trailing" constant="8" id="fzX-9R-eS8"/>
+                                            <constraint firstItem="WsV-8Z-bio" firstAttribute="leading" secondItem="qgC-rj-nGq" secondAttribute="leading" constant="8" id="nZI-mB-0HR"/>
+                                            <constraint firstItem="WsV-8Z-bio" firstAttribute="centerY" secondItem="qgC-rj-nGq" secondAttribute="centerY" id="oJ5-yd-5tg"/>
+                                            <constraint firstItem="NHC-70-GTz" firstAttribute="centerY" secondItem="qgC-rj-nGq" secondAttribute="centerY" id="vOY-wV-sTP"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Hc-Qn-i7S">
+                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="qgC-rj-nGq" firstAttribute="top" secondItem="2yy-Kh-jmo" secondAttribute="top" id="01v-Bo-ebi"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Hc-Qn-i7S" secondAttribute="trailing" id="Dmv-EV-9UJ"/>
+                                    <constraint firstItem="9Hc-Qn-i7S" firstAttribute="top" secondItem="qgC-rj-nGq" secondAttribute="bottom" id="S2M-rm-MiP"/>
+                                    <constraint firstAttribute="trailing" secondItem="qgC-rj-nGq" secondAttribute="trailing" id="dj1-bb-dcl"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Hc-Qn-i7S" secondAttribute="bottom" id="jtD-Tc-Nbh"/>
+                                    <constraint firstItem="qgC-rj-nGq" firstAttribute="leading" secondItem="2yy-Kh-jmo" secondAttribute="leading" id="nsz-Y2-Myj"/>
+                                    <constraint firstItem="9Hc-Qn-i7S" firstAttribute="leading" secondItem="2yy-Kh-jmo" secondAttribute="leading" id="v39-Hj-z0f"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2yy-Kh-jmo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="VVu-0B-qXI"/>
+                            <constraint firstItem="2yy-Kh-jmo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="jXW-TT-hLl"/>
+                            <constraint firstItem="2yy-Kh-jmo" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="mPf-ce-E8a"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2yy-Kh-jmo" secondAttribute="bottom" id="mo9-A6-inD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterBar" destination="qgC-rj-nGq" id="iAL-ta-lAi"/>
+                        <outlet property="provinceBtn" destination="NHC-70-GTz" id="FMy-cZ-5cc"/>
+                        <outlet property="provinceLabel" destination="ztc-82-jdH" id="5cV-Hr-y68"/>
+                        <outlet property="searchBar" destination="WsV-8Z-bio" id="n1C-wJ-dSJ"/>
+                        <outlet property="tableView" destination="9Hc-Qn-i7S" id="ZLT-rB-mXC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104.58015267175573" y="-34.507042253521128"/>
+        </scene>
+        <!--Search By Location View Controller-->
+        <scene sceneID="fY3-sq-VAK">
+            <objects>
+                <viewController storyboardIdentifier="SearchByLocationViewController" id="1WS-wb-h5g" customClass="SearchByLocationViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XsE-7R-vos">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cs-1g-Bru">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tìm kiếm theo tỉnh thành" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X70-B5-3Ee">
+                                        <rect key="frame" x="102" y="369" width="189" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstItem="X70-B5-3Ee" firstAttribute="centerX" secondItem="1Cs-1g-Bru" secondAttribute="centerX" id="aSu-jx-R7w"/>
+                                    <constraint firstItem="X70-B5-3Ee" firstAttribute="centerY" secondItem="1Cs-1g-Bru" secondAttribute="centerY" id="mAV-I4-pr3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="797-hr-LWQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Cs-1g-Bru" firstAttribute="leading" secondItem="797-hr-LWQ" secondAttribute="leading" id="8tu-34-w5K"/>
+                            <constraint firstItem="797-hr-LWQ" firstAttribute="bottom" secondItem="1Cs-1g-Bru" secondAttribute="bottom" id="Hyp-Cl-2B0"/>
+                            <constraint firstItem="1Cs-1g-Bru" firstAttribute="trailing" secondItem="797-hr-LWQ" secondAttribute="trailing" id="NlS-cY-mW8"/>
+                            <constraint firstItem="1Cs-1g-Bru" firstAttribute="top" secondItem="797-hr-LWQ" secondAttribute="top" id="kPC-so-8x5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-av-dip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="842" y="-35"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="WsV-8Z-bio">
+            <size key="intrinsicContentSize" width="234.33333333333334" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="vector_search" width="30" height="30"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

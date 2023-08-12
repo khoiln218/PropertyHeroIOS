@@ -9,7 +9,7 @@
 import UIKit
 import ImageSlideshow
 
-class HeaderPageItemCell: PageItemCell {
+class HeaderCell: PageCollectionCell {
     
     @IBOutlet weak var banners: ImageSlideshow!
     @IBOutlet weak var findAll: UIView!
@@ -82,7 +82,7 @@ class HeaderPageItemCell: PageItemCell {
     }
 }
 
-extension HeaderPageItemCell: ImageSlideshowDelegate {
+extension HeaderCell: ImageSlideshowDelegate {
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
         self.position = page
     }

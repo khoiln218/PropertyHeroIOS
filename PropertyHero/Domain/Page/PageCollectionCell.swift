@@ -10,5 +10,5 @@ import UIKit
 import Reusable
 
 // swiftlint:disable:next final_class
-class PageItemCell: UICollectionViewCell, NibReusable {
+class PageCollectionCell: UICollectionViewCell, NibReusable {
 }

@@ -11,12 +11,17 @@ enum Constants: Int {
     case undefined = 254
 }
 
-enum Navigation: Int {
-    case home = 0
-    case search = 1
+enum TabSearch: Int {
+    case location = 0
+    case marker = 1
+}
+
+enum TabMenu: Int {
+    case more = 0
+    case notification = 1
     case collection = 2
-    case notification = 3
-    case more = 4
+    case search = 3
+    case home = 4
 }
 
 enum PropertyType: Int {
@@ -25,3 +30,21 @@ enum PropertyType: Int {
     case apartment = 1
     case room = 2
 }
+
+enum CountryId: Int {
+    case vietnam = 1
+}
+
+enum OptionChoice {
+    case all
+    case apartment
+    case room
+}
+
+enum SectionType {
+    case banner
+    case optionChoices
+    case findByArea
+    case university
+}
+

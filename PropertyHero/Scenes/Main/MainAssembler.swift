@@ -17,7 +17,6 @@ protocol MainAssembler {
 extension MainAssembler {
     func resolve(navigationController: UINavigationController) -> MainViewController {
         let vc = MainViewController.instantiate()
-        navigationController.viewControllers.append(vc)
         let vm: MainViewModel = resolve(navigationController: navigationController)
         vc.bindViewModel(to: vm)
         return vc

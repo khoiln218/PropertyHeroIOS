@@ -20,6 +20,6 @@ final class HeaderSectionLayout: SectionLayout {
             itemWidth: 0
         )
         
-        super.init(sectionType: .banner, layout: layout, cellType: HeaderPageItemCell.self)
+        super.init(sectionType: .banner, layout: layout, cellType: HeaderCell.self)
     }
 }

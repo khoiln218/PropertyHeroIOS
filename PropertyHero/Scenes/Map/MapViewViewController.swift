@@ -86,30 +86,14 @@ final class MapViewViewController: UIViewController, Bindable {
         )
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
-        output.$option
+        output.$extraData
             .asDriver()
-            .drive(onNext: { [unowned self] option in
-                switch(option) {
-                case .all:
-                    title = "Tất cả"
-                    propertyType = .all
-                case .apartment:
-                    title = "Căn hộ"
-                    propertyType = .apartment
-                case .room:
-                    title = "Phòng trọ"
-                    propertyType = .room
-                case .none:
-                    title = "Tất cả"
-                    propertyType = .all
+            .drive(onNext: { [unowned self] extraData in
+                if let extraData = extraData {
+                    self.title = extraData["Title"] as? String
+                    self.setupMap(extraData["Latlng"] as! CLLocationCoordinate2D)
+                    self.propertyType = extraData["Type"] as! PropertyType
                 }
-            })
-            .disposed(by: disposeBag)
-        
-        output.$latlng
-            .asDriver()
-            .drive(onNext: { [unowned self] latlng in
-                self.setupMap(latlng!)
             })
             .disposed(by: disposeBag)
         

@@ -27,11 +27,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func bindViewModel(window: UIWindow) {
-        let nav = UINavigationController()
         let vc: SplashViewController = assembler.resolve(window: window)
-        nav.viewControllers.append(vc)
         
-        window.rootViewController = nav
+        window.rootViewController = vc
         window.makeKeyAndVisible()
     }
 }

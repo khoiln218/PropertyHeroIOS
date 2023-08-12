@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash" translatesAutoresizingMaskIntoConstraints="NO" id="lQ6-Z9-6SC">
-                                        <rect key="frame" x="111" y="311" width="192" height="192"/>
+                                        <rect key="frame" x="111" y="287" width="192" height="192"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="lQ6-Z9-6SC" secondAttribute="height" multiplier="1:1" id="co2-0r-U6G"/>
                                             <constraint firstAttribute="width" constant="192" id="k44-eQ-tOc"/>
@@ -29,7 +29,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="lQ6-Z9-6SC" firstAttribute="centerY" secondItem="wdY-LI-ucn" secondAttribute="centerY" id="4Nr-eB-fQG"/>
+                                    <constraint firstItem="lQ6-Z9-6SC" firstAttribute="centerY" secondItem="wdY-LI-ucn" secondAttribute="centerY" constant="-24" id="4Nr-eB-fQG"/>
                                     <constraint firstItem="lQ6-Z9-6SC" firstAttribute="centerX" secondItem="wdY-LI-ucn" secondAttribute="centerX" id="O4W-x1-gHF"/>
                                 </constraints>
                             </view>

@@ -10,6 +10,7 @@ import UIKit
 protocol GatewaysAssembler {
     func resolve() -> CategoryGatewayType
     func resolve() -> ProductGateway
+    func resolve() -> LocationGateway
 }
 
 extension GatewaysAssembler where Self: DefaultAssembler {
@@ -19,5 +20,9 @@ extension GatewaysAssembler where Self: DefaultAssembler {
     
     func resolve() -> ProductGateway {
         return ProductGateway()
+    }
+    
+    func resolve() -> LocationGateway {
+        return LocationGateway()
     }
 }

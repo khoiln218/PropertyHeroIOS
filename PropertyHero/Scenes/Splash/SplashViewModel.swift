@@ -30,7 +30,6 @@ extension SplashViewModel: ViewModel {
         
         input.load
             .drive(onNext: { latlng in
-                print(latlng)
                 self.navigator.toMain()
             })
             .disposed(by: disposeBag)

@@ -84,8 +84,10 @@ final class HomeViewController: UIViewController, Bindable {
         output.$sections
             .asDriver()
             .drive(onNext: { [unowned self] sections in
-                self.sections = sections
-                self.collectionView.reloadData()
+                if let sections = sections {
+                    self.sections = sections
+                    self.collectionView.reloadData()
+                }
             })
             .disposed(by: disposeBag)
         
@@ -114,7 +116,6 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let latlng = location?.coordinate else { return }
         if latlng.latitude == self.latlng.latitude && latlng.longitude == self.latlng.longitude { return }
         self.latlng = latlng
-        print(latlng)
     }
 }
 
@@ -131,7 +132,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(
             for: indexPath,
-            cellType: HeaderPageItemCell.self
+            cellType: HeaderCell.self
         )
         .then {
             $0.bindViewModel(sections[indexPath.row] as! PageSectionViewModel<Banner>)
@@ -140,7 +141,14 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             
             $0.selectOption = { [unowned self] option in
-                self.viewModel.navigator.toMapView(option, latlng: self.latlng)
+                switch(option){
+                case .all:
+                    self.viewModel.navigator.toMapView("Tất cả", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .all)
+                case .apartment:
+                    self.viewModel.navigator.toMapView("Căn hộ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .apartment)
+                case .room:
+                    self.viewModel.navigator.toMapView("Phòng trọ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .room)
+                }
             }
         }
     }

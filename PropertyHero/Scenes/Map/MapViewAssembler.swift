@@ -10,26 +10,27 @@ import Reusable
 import CoreLocation
 
 protocol MapViewAssembler {
-    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewController
-    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewModel
+    func resolve(navigationController: UINavigationController, title: String, latlng: CLLocationCoordinate2D, type: PropertyType) -> MapViewViewController
+    func resolve(navigationController: UINavigationController, title: String, latlng: CLLocationCoordinate2D, type: PropertyType) -> MapViewViewModel
     func resolve(navigationController: UINavigationController) -> MapViewNavigatorType
     func resolve() -> MapViewUseCaseType
 }
 
 extension MapViewAssembler {
-    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewController {
+    func resolve(navigationController: UINavigationController, title: String, latlng: CLLocationCoordinate2D, type: PropertyType) -> MapViewViewController {
         let vc = MapViewViewController.instantiate()
-        let vm: MapViewViewModel = resolve(navigationController: navigationController, option: option, latlng: latlng)
+        let vm: MapViewViewModel = resolve(navigationController: navigationController, title: title, latlng: latlng, type: type)
         vc.bindViewModel(to: vm)
         return vc
     }
     
-    func resolve(navigationController: UINavigationController, option: OptionChoice, latlng: CLLocationCoordinate2D) -> MapViewViewModel {
+    func resolve(navigationController: UINavigationController, title: String, latlng: CLLocationCoordinate2D, type: PropertyType) -> MapViewViewModel {
         return MapViewViewModel(
             navigator: resolve(navigationController: navigationController),
             useCase: resolve(),
-            option: option,
-            latlng: latlng
+            title: title,
+            latlng: latlng,
+            type: type
         )
     }
 }

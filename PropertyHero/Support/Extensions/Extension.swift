@@ -35,44 +35,50 @@ extension UIColor {
 }
 
 extension UINavigationController {
-    func showViewController(_ index: Int) {
-        var mainViewController: MainViewController!
-        for viewController in viewControllers {
-            if viewController is MainViewController {
-                mainViewController = viewController as? MainViewController
-                break
-            }
-        }
-        
-        if mainViewController == nil { return }
-        
-        for subview in mainViewController.viewpager.subviews {
+    func showViewControllerInMain(_ tagert: MainViewController, tab: TabMenu) {
+        for subview in tagert.viewpager.subviews {
             subview.layer.zPosition = 1
             subview.isUserInteractionEnabled = false
         }
-        
-        mainViewController.viewpager.subviews[index].layer.zPosition = 99
-        mainViewController.viewpager.subviews[index].isUserInteractionEnabled = true
+        tagert.viewpager.subviews[tab.rawValue].layer.zPosition = 99
+        tagert.viewpager.subviews[tab.rawValue].isUserInteractionEnabled = true
     }
     
-    func addFragment(_ vc: UIViewController, position: Int) {
-        var mainViewController: MainViewController!
-        for viewController in viewControllers {
-            if viewController is MainViewController {
-                mainViewController = viewController as? MainViewController
-                break
-            }
-        }
-        if mainViewController == nil { return }
-        mainViewController.viewpager.insertSubview(vc.view, at: position)
-        mainViewController.addChild(vc)
+    func addFragmentToMain(_ tagert: MainViewController, vc: UIViewController, tab: TabMenu) {
+        tagert.viewpager.insertSubview(vc.view, at: tab.rawValue)
+        tagert.addChild(vc)
         DispatchQueue.main.async {
             vc.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                vc.view.leadingAnchor.constraint(equalTo: mainViewController.viewpager.leadingAnchor),
-                vc.view.topAnchor.constraint(equalTo: mainViewController.viewpager.topAnchor),
-                vc.view.bottomAnchor.constraint(equalTo: mainViewController.viewpager.bottomAnchor),
-                vc.view.trailingAnchor.constraint(equalTo: mainViewController.viewpager.trailingAnchor)
+                vc.view.leadingAnchor.constraint(equalTo: tagert.viewpager.leadingAnchor),
+                vc.view.topAnchor.constraint(equalTo: tagert.viewpager.topAnchor),
+                vc.view.bottomAnchor.constraint(equalTo: tagert.viewpager.bottomAnchor),
+                vc.view.trailingAnchor.constraint(equalTo: tagert.viewpager.trailingAnchor)
+            ])
+        }
+    }
+}
+
+extension UINavigationController {
+    func showViewControllerInSearch(_ tagert: SearchViewController, tab: TabSearch) {
+        for subview in tagert.viewpager.subviews {
+            subview.layer.zPosition = 1
+            subview.isUserInteractionEnabled = false
+        }
+        tagert.viewpager.subviews[tab.rawValue].layer.zPosition = 99
+        tagert.viewpager.subviews[tab.rawValue].isUserInteractionEnabled = true
+    }
+    
+    func addFragmentToSearch(_ tagert: SearchViewController, vc: UIViewController, tab: TabSearch) {
+        tagert.viewpager.insertSubview(vc.view, at: tab.rawValue)
+        DispatchQueue.main.async {
+            vc.view.translatesAutoresizingMaskIntoConstraints = false
+            tagert.addChild(vc)
+            NSLayoutConstraint.activate([
+                vc.view.leadingAnchor.constraint(equalTo: tagert.viewpager.leadingAnchor),
+                vc.view.topAnchor.constraint(equalTo: tagert.viewpager.topAnchor),
+                vc.view.bottomAnchor.constraint(equalTo: tagert.viewpager.bottomAnchor),
+                vc.view.trailingAnchor.constraint(equalTo: tagert.viewpager.trailingAnchor)
             ])
         }
     }

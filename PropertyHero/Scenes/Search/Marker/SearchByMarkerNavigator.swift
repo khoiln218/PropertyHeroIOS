@@ -1,19 +1,18 @@
 //
-//  HomeNavigator.swift
+//  SearchByMarkerNavigator.swift
 //  PropertyHero
 //
-//  Created by KHOI LE on 8/6/23.
+//  Created by KHOI LE on 8/11/23.
 //
 
 import UIKit
-import GoogleMaps
+import CoreLocation
 
-protocol HomeNavigatorType {
+protocol SearchByMarkerNavigatorType {
     func toMapView(_ title: String, latlng: CLLocationCoordinate2D, type: PropertyType)
-    
 }
 
-struct HomeNavigator: HomeNavigatorType {
+struct SearchByMarkerNavigator: SearchByMarkerNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
     

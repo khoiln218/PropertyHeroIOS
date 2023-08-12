@@ -54,6 +54,8 @@ final class MainViewController: UIViewController, Bindable {
             $0.tabLayoutDelegate = self
             $0.indicatorSize = 0.0
             $0.fixedMode = true
+            $0.backgroundBtnColor = UIColor(hex: "#424242")!
+            $0.currentBackgroundBtnColor = UIColor(hex: "#2b50f6")!
         }
         
         var tabs = [(title: String?, image: UIImage?)]()
@@ -68,13 +70,24 @@ final class MainViewController: UIViewController, Bindable {
     func bindViewModel() {
         let input = MainViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
-        self.viewModel.navigator.initMain()
+        self.viewModel.navigator.initMain(self)
     }
 }
 
 extension MainViewController: TabLayoutDelegate {
     func tabLayout(tabLayout: TabLayout, index: Int) {
-        self.viewModel.navigator.toMenu(index)
+        switch(index){
+        case 4:
+            self.viewModel.navigator.toTabMenu(self, tab: .more)
+        case 3:
+            self.viewModel.navigator.toTabMenu(self, tab: .notification)
+        case 2:
+            self.viewModel.navigator.toTabMenu(self, tab: .collection)
+        case 1:
+            self.viewModel.navigator.toTabMenu(self, tab: .search)
+        default:
+            self.viewModel.navigator.toTabMenu(self, tab: .home)
+        }
     }
 }
 

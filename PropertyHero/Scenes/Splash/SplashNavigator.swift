@@ -17,7 +17,8 @@ struct SplashNavigator: SplashNavigatorType {
     
     func toMain() {
         let nav = UINavigationController()
-        let _: MainViewController = assembler.resolve(navigationController: nav)
+        let vc: MainViewController = assembler.resolve(navigationController: nav)
+        nav.viewControllers.append(vc)
         
         window.rootViewController = nav
         window.makeKeyAndVisible()

@@ -6,6 +6,8 @@
 //
 
 protocol Assembler: AnyObject,
+                    SearchByMarkerAssembler,
+                    SearchByLocationAssembler,
                     MapViewAssembler,
                     HomeAssembler,
                     SearchAssembler,

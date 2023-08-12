@@ -14,23 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="314" height="372"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VXM-6u-5ar">
-                    <rect key="frame" x="47" y="64" width="220" height="244"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VXM-6u-5ar">
+                    <rect key="frame" x="67" y="60" width="180" height="200.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="vaD-AL-Uag">
-                            <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="220" id="EWc-mt-sgu"/>
+                                <constraint firstAttribute="width" constant="180" id="EWc-mt-sgu"/>
                                 <constraint firstAttribute="width" secondItem="vaD-AL-Uag" secondAttribute="height" multiplier="1:1" id="dvT-ny-7XL"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chưa có dữ liệu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVy-GG-Xlp">
-                            <rect key="frame" x="60.5" y="228" width="99" height="16"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <rect key="frame" x="28" y="180" width="124.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizeKey" value="list_empty"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizeKey" value="text_no_result"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -39,14 +39,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="VXM-6u-5ar" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="MWP-7i-g4c"/>
                 <constraint firstItem="VXM-6u-5ar" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="aPQ-Os-dyY"/>
+                <constraint firstItem="VXM-6u-5ar" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-26" id="rNN-9v-00v"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="1.6000000000000001" y="200.59970014992504"/>
         </view>
     </objects>
     <resources>
-        <image name="empty" width="300" height="300"/>
+        <image name="empty" width="150" height="150"/>
     </resources>
 </document>
