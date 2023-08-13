@@ -8,6 +8,7 @@
 import MGArchitecture
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 struct HomeViewModel {
     let navigator: HomeNavigatorType
@@ -17,7 +18,7 @@ struct HomeViewModel {
 // MARK: - ViewModel
 extension HomeViewModel: ViewModel {
     struct Input {
-        
+        let locationChanged: Driver<CLLocationCoordinate2D>
     }
     
     struct Output {
@@ -38,17 +39,43 @@ extension HomeViewModel: ViewModel {
             .trackActivity(activityIndicator)
             .asDriverOnErrorJustComplete()
         
-        let sectionsLoad = bannerList
-            .flatMapLatest { banners -> Driver<[Int: Any]> in
+        let markersUniversity = self.useCase.getMarkersByUniversity(3)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+        
+        let markersLocation = input.locationChanged
+            .flatMapLatest { latlng in
+                self.useCase.getMarkersByLocation(latlng, numItems: 3)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
+        
+        let markerList = Driver.zip(markersLocation, markersUniversity)
+        
+        let sectionsLoad = Driver.combineLatest(bannerList, markerList)
+            .map { banners, markers -> [Int: Any] in
                 var sections = [Int: Any]()
-                sections[0] = PageSectionViewModel(
+                sections[0] = PageSectionViewModel<Banner> (
                     index: 0,
                     type: .banner,
                     title: "Banner",
                     items: banners
                 )
                 
-                return Driver.just(sections)
+                sections[1] = PageSectionViewModel<Marker> (
+                    index: 1,
+                    type: .findByArea,
+                    title: "Việt Nam",
+                    items: markers.0
+                )
+                
+                sections[2] = PageSectionViewModel<Marker> (
+                    index: 2,
+                    type: .findByArea,
+                    title: "Hàn Quốc",
+                    items: markers.1
+                )
+                return sections
             }
         
         sectionsLoad

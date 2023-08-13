@@ -27,11 +27,14 @@ final class HomeViewController: UIViewController, Bindable {
     private let manager = CLLocationManager()
     private var latlng: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: DefaultStorage().getLastLat(), longitude: DefaultStorage().getLastLng())
     
+    private var locationChanged = PublishSubject<CLLocationCoordinate2D>()
+    
     var sections = [Int: Any]()
     
-    static let sectionLayoutDictionary: [SectionType: SectionLayout] = {
+    let sectionLayoutDictionary: [SectionType: SectionLayout] = {
         let sectionLayouts = [
             HeaderSectionLayout(),
+            AreaSectionLayout()
         ]
         
         var sectionLayoutDictionary = [SectionType: SectionLayout]()
@@ -62,8 +65,7 @@ final class HomeViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        // register cells
-        for layout in HomeViewController.sectionLayoutDictionary.values {
+        for layout in self.sectionLayoutDictionary.values {
             collectionView.register(cellType: layout.cellType.self)
         }
         
@@ -75,12 +77,29 @@ final class HomeViewController: UIViewController, Bindable {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
     }
     
     func bindViewModel() {
-        let input = HomeViewModel.Input()
+        let input = HomeViewModel.Input(
+            locationChanged: locationChanged.asDriverOnErrorJustComplete()
+        )
         let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        DispatchQueue.global().async { [unowned self] in
+            if CLLocationManager.locationServicesEnabled() {
+                switch self.manager.authorizationStatus {
+                case .notDetermined, .restricted, .denied:
+                    self.locationChanged.onNext(latlng)
+                case .authorizedAlways, .authorizedWhenInUse:
+                    self.manager.startUpdatingLocation()
+                @unknown default:
+                    self.locationChanged.onNext(latlng)
+                    break
+                }
+            } else {
+                self.locationChanged.onNext(latlng)
+            }
+        }
         
         output.$sections
             .asDriver()
@@ -117,6 +136,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let latlng = location?.coordinate else { return }
         if latlng.latitude == self.latlng.latitude && latlng.longitude == self.latlng.longitude { return }
         self.latlng = latlng
+        self.locationChanged.onNext(latlng)
     }
 }
 
@@ -131,24 +151,38 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(
-            for: indexPath,
-            cellType: HeaderCell.self
-        )
-        .then {
-            $0.bindViewModel(sections[indexPath.row] as! PageSectionViewModel<Banner>)
-            $0.selectBanner = { banner in
-                print(banner)
+        if let pageSectionBanner = sections[indexPath.row] as? PageSectionViewModel<Banner> {
+            return collectionView.dequeueReusableCell(
+                for: indexPath,
+                cellType: HeaderCell.self
+            )
+            .then {
+                $0.bindViewModel(pageSectionBanner)
+                $0.selectBanner = { banner in
+                    print(banner)
+                }
+                
+                $0.selectOption = { [unowned self] option in
+                    switch(option){
+                    case .all:
+                        self.viewModel.navigator.toMapView("Tất cả", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .all)
+                    case .apartment:
+                        self.viewModel.navigator.toMapView("Căn hộ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .apartment)
+                    case .room:
+                        self.viewModel.navigator.toMapView("Phòng trọ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .room)
+                    }
+                }
             }
-            
-            $0.selectOption = { [unowned self] option in
-                switch(option){
-                case .all:
-                    self.viewModel.navigator.toMapView("Tất cả", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .all)
-                case .apartment:
-                    self.viewModel.navigator.toMapView("Căn hộ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .apartment)
-                case .room:
-                    self.viewModel.navigator.toMapView("Phòng trọ", latlng: CLLocationCoordinate2D(latitude: latlng.latitude, longitude: latlng.longitude), type: .room)
+        } else {
+            let pageSectionMarker = sections[indexPath.row] as! PageSectionViewModel<Marker>
+            return collectionView.dequeueReusableCell(
+                for: indexPath,
+                cellType: AreaSectionCell.self
+            )
+            .then {
+                $0.bindViewModel(pageSectionMarker)
+                $0.selectMarker = { marker in
+                    print(marker)
                 }
             }
         }
@@ -161,8 +195,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let layout = HomeViewController.sectionLayoutDictionary[.banner]!.layout
-        return layout.itemSize
+        if sections[indexPath.row] is PageSectionViewModel<Banner> {
+            let layout = self.sectionLayoutDictionary[.banner]!.layout
+            return layout.itemSize
+        } else {
+            let layout = self.sectionLayoutDictionary[.findByArea]!.layout
+            return layout.itemSize
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,

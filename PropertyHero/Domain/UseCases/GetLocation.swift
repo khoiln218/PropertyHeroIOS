@@ -7,6 +7,7 @@
 
 import RxSwift
 import MGArchitecture
+import CoreLocation
 
 protocol GetLocation {
     var locationGateway: LocationGatewayType { get }
@@ -19,5 +20,13 @@ extension GetLocation {
     
     func searchMarkers(_ keyword: String, provinceID: Int, markerType: Int) -> Observable<[Marker]> {
         return locationGateway.searchMarkers(keyword, provinceID: provinceID, markerType: markerType)
+    }
+    
+    func getMarkersByLocation(_ latlng: CLLocationCoordinate2D, numItems: Int) -> Observable<[Marker]> {
+        return locationGateway.getMarkersByLocation(latlng, numItems: numItems)
+    }
+    
+    func getMarkersByUniversity(_ numItems: Int) -> Observable<[Marker]> {
+        return locationGateway.getMarkersByUniversity(numItems)
     }
 }

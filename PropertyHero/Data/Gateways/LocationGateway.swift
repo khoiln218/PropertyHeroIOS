@@ -8,11 +8,16 @@
 import UIKit
 import RxSwift
 import MGArchitecture
+import CoreLocation
 
 protocol LocationGatewayType {
     func getProvinces() -> Observable<[Province]>
     
     func searchMarkers(_ keyword: String, provinceID: Int, markerType: Int) -> Observable<[Marker]>
+    
+    func getMarkersByLocation(_ latlng: CLLocationCoordinate2D, numItems: Int) -> Observable<[Marker]>
+    
+    func getMarkersByUniversity(_ numItems: Int) -> Observable<[Marker]>
 }
 
 struct LocationGateway: LocationGatewayType {
@@ -29,6 +34,22 @@ struct LocationGateway: LocationGatewayType {
         let input = API.SearchMarkerInput(keyword, provinceID: provinceID, markerType: markerType)
         
         return API.shared.searchMarkers(input)
+            .map { $0.markers }
+            .unwrap()
+    }
+    
+    func getMarkersByLocation(_ latlng: CLLocationCoordinate2D, numItems: Int) -> Observable<[Marker]>{
+        let input = API.GetMarkersByLocationInput(latlng, numItems: numItems)
+        
+        return API.shared.getMarkersByLocation(input)
+            .map { $0.markers }
+            .unwrap()
+    }
+    
+    func getMarkersByUniversity(_ numItems: Int) -> Observable<[Marker]>{
+        let input = API.GetMarkersByUniversityInput(numItems)
+        
+        return API.shared.getMarkersByUniversity(input)
             .map { $0.markers }
             .unwrap()
     }

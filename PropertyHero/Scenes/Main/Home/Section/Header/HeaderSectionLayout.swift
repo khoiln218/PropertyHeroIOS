@@ -16,7 +16,7 @@ final class HeaderSectionLayout: SectionLayout {
             lineSpacing: 0,
             itemsPerRow: 1,
             sectionInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
-            itemHeight: screenSize.width / 2 + 112,
+            itemHeight: screenSize.width / 2 + 112 + 44,
             itemWidth: 0
         )
         

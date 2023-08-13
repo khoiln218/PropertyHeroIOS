@@ -48,8 +48,6 @@ enum OptionChoice {
 
 enum SectionType {
     case banner
-    case optionChoices
     case findByArea
-    case university
 }
 

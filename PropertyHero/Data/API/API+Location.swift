@@ -8,6 +8,7 @@
 import ObjectMapper
 import RxSwift
 import MGAPIService
+import CoreLocation
 
 extension API {
     func getProvince(_ input: GetProvinceListInput) -> Observable<GetProvinceListOutput> {
@@ -17,9 +18,56 @@ extension API {
     func searchMarkers(_ input: SearchMarkerInput) -> Observable<SearchMarkerOutput> {
         return request(input)
     }
+    
+    func getMarkersByLocation(_ input: GetMarkersByLocationInput) -> Observable<GetMarkersByLocationOutput> {
+        return request(input)
+    }
+    
+    func getMarkersByUniversity(_ input: GetMarkersByUniversityInput) -> Observable<GetMarkersByUniversityOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    
+    final class GetMarkersByUniversityInput: APIInput {
+        init(_ numItems: Int) {
+            let urlString = String(format: API.Urls.markerByUniversity, numItems, 0)
+            super.init(urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class GetMarkersByUniversityOutput: APIOutput {
+        private(set) var markers: [Marker]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            markers <- map["DataList"]
+        }
+    }
+    
+    final class GetMarkersByLocationInput: APIInput {
+        init(_ latlng: CLLocationCoordinate2D, numItems: Int) {
+            let urlString = String(format: API.Urls.markerByLocation, latlng.latitude, latlng.longitude, numItems, 0)
+            super.init(urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class GetMarkersByLocationOutput: APIOutput {
+        private(set) var markers: [Marker]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            markers <- map["DataList"]
+        }
+    }
+    
     final class GetProvinceListInput: APIInput {
         init() {
             let urlString = String(format: API.Urls.listProvince, CountryId.vietnam.rawValue)
