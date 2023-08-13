@@ -28,6 +28,7 @@ final class HomeViewController: UIViewController, Bindable {
     private var latlng: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: DefaultStorage().getLastLat(), longitude: DefaultStorage().getLastLng())
     
     private var locationChanged = PublishSubject<CLLocationCoordinate2D>()
+    private var selectedMarker = PublishSubject<Marker>()
     
     var sections = [Int: Any]()
     
@@ -81,7 +82,8 @@ final class HomeViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = HomeViewModel.Input(
-            locationChanged: locationChanged.asDriverOnErrorJustComplete()
+            locationChanged: locationChanged.asDriverOnErrorJustComplete(),
+            markerSelected: selectedMarker.asDriverOnErrorJustComplete()
         )
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
@@ -182,7 +184,7 @@ extension HomeViewController: UICollectionViewDataSource {
             .then {
                 $0.bindViewModel(pageSectionMarker)
                 $0.selectMarker = { marker in
-                    print(marker)
+                    self.selectedMarker.onNext(marker)
                 }
             }
         }

@@ -19,6 +19,7 @@ struct HomeViewModel {
 extension HomeViewModel: ViewModel {
     struct Input {
         let locationChanged: Driver<CLLocationCoordinate2D>
+        let markerSelected: Driver<Marker>
     }
     
     struct Output {
@@ -80,6 +81,12 @@ extension HomeViewModel: ViewModel {
         
         sectionsLoad
             .drive(output.$sections)
+            .disposed(by: disposeBag)
+        
+        input.markerSelected
+            .drive(onNext: { marker in
+                self.navigator.toProductList(SearchInfo(startLat: marker.Latitude, startLng: marker.Longitude, distance: 5.0, propertyType: Constants.undefined.rawValue), title: "\(marker.Name) 5km")
+            })
             .disposed(by: disposeBag)
         
         activityIndicator

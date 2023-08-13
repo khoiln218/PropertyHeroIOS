@@ -62,7 +62,6 @@
                 <constraints>
                     <constraint firstItem="TyQ-7P-hz2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="AVQ-pw-eyn"/>
                     <constraint firstItem="Ggg-p2-akd" firstAttribute="leading" secondItem="TyQ-7P-hz2" secondAttribute="trailing" constant="8" id="GaO-OD-kk8"/>
-                    <constraint firstAttribute="height" secondItem="TyQ-7P-hz2" secondAttribute="height" priority="750" id="Gt0-vY-50B"/>
                     <constraint firstAttribute="bottom" secondItem="Ggg-p2-akd" secondAttribute="bottom" constant="8" id="HbG-Oa-Udw"/>
                     <constraint firstItem="TyQ-7P-hz2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="U8j-7g-wJ4"/>
                     <constraint firstAttribute="trailing" secondItem="Ggg-p2-akd" secondAttribute="trailing" constant="8" id="e0Q-dp-pj9"/>

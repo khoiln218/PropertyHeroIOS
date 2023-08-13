@@ -13,7 +13,7 @@ protocol GetProduct {
 }
 
 extension GetProduct {
-    func search(_ searchInfo: SearchInfo) -> Observable<[Product]> {
+    func search(_ searchInfo: SearchInfo) -> Observable<PagingInfo<Product>> {
         return productGateway.search(searchInfo)
     }
 }

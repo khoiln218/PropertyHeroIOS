@@ -14,7 +14,7 @@ class AreaSectionCell: PageCollectionCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var viewmore: UILabel!
     
-    var selectMarker: ((_ indexPath: IndexPath) -> Void)?
+    var selectMarker: ((_ marker: Marker) -> Void)?
     
     var data: [Marker]?
     
@@ -72,7 +72,7 @@ extension AreaSectionCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectMarker?(indexPath)
+        selectMarker?(data![indexPath.row])
     }
 }
 

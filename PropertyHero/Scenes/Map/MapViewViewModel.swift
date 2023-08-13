@@ -22,6 +22,7 @@ struct MapViewViewModel {
 extension MapViewViewModel: ViewModel {
     struct Input {
         let cameraChaged: Driver<SearchInfo>
+        let viewmore: Driver<Void>
     }
     
     struct Output {
@@ -46,6 +47,13 @@ extension MapViewViewModel: ViewModel {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
+        
+        input.viewmore
+            .withLatestFrom(input.cameraChaged)
+            .drive(onNext: { searchInfo in
+                self.navigator.toProductList(searchInfo, title: title)
+            })
+            .disposed(by: disposeBag)
         
         products
             .drive(output.$products)

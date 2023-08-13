@@ -16,5 +16,8 @@ struct MapViewUseCase: MapViewUseCaseType, GetProduct {
     
     func search(_ seachInfo: SearchInfo) -> Observable<[Product]> {
         return productGateway.search(seachInfo)
+            .map {
+                $0.items
+            }
     }
 }

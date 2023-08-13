@@ -6,19 +6,19 @@
 //
 
 struct SearchInfo {
-    var startLat = ""
-    var startLng = ""
-    var endLat = ""
-    var endLng = ""
-    var distance = ""
-    var propertyType = ""
-    var propertyID = ""
-    var minPrice = ""
-    var maxPrice = ""
-    var minArea = ""
-    var maxArea = ""
-    var bed = ""
-    var bath = ""
-    var status = ""
-    var pageNo = ""
+    var startLat: Double = 0.0
+    var startLng: Double = 0.0
+    var endLat: Double = 0.0
+    var endLng: Double = 0.0
+    var distance: Double = 0.0
+    var propertyType: Int = PropertyType.all.rawValue
+    var propertyID: Int = 0
+    var minPrice: Double = 0.0
+    var maxPrice: Double = 0.0
+    var minArea: Double = 0.0
+    var maxArea: Double = 0.0
+    var bed: Int = 0
+    var bath: Int = 0
+    var status: Int = Constants.undefined.rawValue
+    var pageNo = 0
 }
