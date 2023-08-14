@@ -26,6 +26,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPg-LH-enO" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="196.66666666666666"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,7 +58,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="kVR-Ur-3sF" firstAttribute="centerX" secondItem="dHa-Kw-cy5" secondAttribute="centerX" id="1fg-HJ-0uC"/>
                                             <constraint firstAttribute="bottom" secondItem="kVR-Ur-3sF" secondAttribute="bottom" constant="8" id="fj5-vK-h5V"/>
@@ -83,7 +84,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="DBF-BX-KC7" firstAttribute="centerX" secondItem="o9S-dK-ujE" secondAttribute="centerX" id="2Np-eh-duy"/>
                                             <constraint firstAttribute="bottom" secondItem="DBF-BX-KC7" secondAttribute="bottom" constant="8" id="6YC-Z1-l8I"/>
@@ -109,7 +110,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="eQa-9x-5cj" firstAttribute="top" relation="lessThanOrEqual" secondItem="8I9-o5-3x6" secondAttribute="bottom" constant="8" id="61S-7X-VxI"/>
                                             <constraint firstItem="8I9-o5-3x6" firstAttribute="top" secondItem="gJt-Yf-cA6" secondAttribute="top" constant="16" id="OLt-eK-74n"/>

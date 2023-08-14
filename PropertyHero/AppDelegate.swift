@@ -23,6 +23,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyCweUKlL7MrYKl5qXC1YBL6U4y4DSZZTn4")
         
+        window.overrideUserInterfaceStyle = .light
+        
         bindViewModel(window: window)
     }
 

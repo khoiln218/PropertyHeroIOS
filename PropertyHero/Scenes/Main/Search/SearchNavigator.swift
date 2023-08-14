@@ -17,11 +17,11 @@ struct SearchNavigator: SearchNavigatorType {
     unowned let navigationController: UINavigationController
     
     func initSearch(_ target: SearchViewController) {
-        let vcSearchByLocation: SearchByLocationViewController = assembler.resolve(navigationController: navigationController)
-        navigationController.addFragmentToSearch(target, vc: vcSearchByLocation, tab: .location)
-        
         let vcSearchByMarker: SearchByMarkerViewController = assembler.resolve(navigationController: navigationController)
         navigationController.addFragmentToSearch(target, vc: vcSearchByMarker, tab: .marker)
+        
+        let vcSearchByLocation: SearchByLocationViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.addFragmentToSearch(target, vc: vcSearchByLocation, tab: .location)
     }
     
     func toSearchMenu(_ target: SearchViewController, tab: TabSearch) {

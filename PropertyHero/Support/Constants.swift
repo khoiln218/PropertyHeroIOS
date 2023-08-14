@@ -17,8 +17,8 @@ enum TabCollection: Int {
 }
 
 enum TabSearch: Int {
-    case location = 0
-    case marker = 1
+    case marker = 0
+    case location = 1
 }
 
 enum TabMenu: Int {

@@ -31,7 +31,8 @@ class AreaSectionCell: PageCollectionCell {
             $0.register(cellType: AreaCell.self)
         }
         
-        header.addBorders(edges: [.all], color: UIColor(hex: "#ECEFF1")!, width: 1 )
+        header.layer.borderWidth = 1
+        header.layer.borderColor = UIColor(hex: "#ECEFF1")?.cgColor
     }
     
     func bindViewModel(_ viewModel: PageSectionViewModel<Marker>) {
@@ -82,7 +83,7 @@ extension AreaSectionCell: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize: CGRect = UIScreen.main.bounds
-        let width = screenSize.width/3 - 4
+        let width = (screenSize.width - 8)/3
         let height = width/2 + 34;
         return CGSize(width: width, height: height)
     }

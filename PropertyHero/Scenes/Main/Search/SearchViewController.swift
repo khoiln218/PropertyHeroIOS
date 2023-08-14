@@ -59,8 +59,8 @@ final class SearchViewController: UIViewController, Bindable {
         }
         
         var tabs = [(title: String?, image: UIImage?)]()
-        tabs.append((title: "Địa điểm".uppercased(), nil))
         tabs.append((title: "Tỉnh thành".uppercased(), nil))
+        tabs.append((title: "Địa điểm".uppercased(), nil))
         tabLayout.addTabs(tabs: tabs)
     }
     
@@ -73,7 +73,7 @@ final class SearchViewController: UIViewController, Bindable {
 extension SearchViewController: TabLayoutDelegate {
     func tabLayout(tabLayout: TabLayout, index: Int) {
         switch(index) {
-        case 1:
+        case 0:
             self.viewModel.navigator.toSearchMenu(self, tab: .location)
         default:
             self.viewModel.navigator.toSearchMenu(self, tab: .marker)

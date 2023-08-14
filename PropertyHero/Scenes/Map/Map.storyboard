@@ -133,7 +133,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hY4-Z0-m45" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9OH-g1-UGN"/>
                             <constraint firstAttribute="bottom" secondItem="hY4-Z0-m45" secondAttribute="bottom" id="CGI-Sm-x4r"/>
@@ -157,6 +157,7 @@
             <point key="canvasLocation" x="104.58015267175573" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="vector_address" width="96" height="96"/>
         <image name="vector_my_location" width="24" height="24"/>
