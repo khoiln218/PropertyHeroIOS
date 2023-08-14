@@ -15,6 +15,10 @@ extension API {
         return request(input)
     }
     
+    func getDistrict(_ input: GetDistrictListInput) -> Observable<GetDistrictListOutput> {
+        return request(input)
+    }
+    
     func searchMarkers(_ input: SearchMarkerInput) -> Observable<SearchMarkerOutput> {
         return request(input)
     }
@@ -65,6 +69,25 @@ extension API {
         override func mapping(map: Map) {
             super.mapping(map: map)
             markers <- map["DataList"]
+        }
+    }
+    
+    final class GetDistrictListInput: APIInput {
+        init(_ provinceId: Int) {
+            let urlString = String(format: API.Urls.listDistrict, provinceId)
+            super.init(urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class GetDistrictListOutput: APIOutput {
+        private(set) var districts: [District]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            districts <- map["DataList"]
         }
     }
     

@@ -687,7 +687,74 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RvK-Hx-hbl">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chọn Tỉnh/Thành phố" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWH-be-LFu">
+                                        <rect key="frame" x="16" y="32" width="361" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="Qev-6h-DWt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_dropdown_corner" translatesAutoresizingMaskIntoConstraints="NO" id="t2J-7E-G78">
+                                        <rect key="frame" x="365" y="62" width="12" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="t2J-7E-G78" secondAttribute="height" multiplier="1:1" id="6nf-Ly-lo9"/>
+                                            <constraint firstAttribute="width" constant="12" id="7XI-MI-CvB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chọn Quận/Huyện" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-aL-3E8">
+                                        <rect key="frame" x="16" y="106" width="361" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="OdA-5d-nW2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_dropdown_corner" translatesAutoresizingMaskIntoConstraints="NO" id="jKn-T5-Dd7">
+                                        <rect key="frame" x="365" y="136" width="12" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="12" id="FUG-26-xcz"/>
+                                            <constraint firstAttribute="width" secondItem="jKn-T5-Dd7" secondAttribute="height" multiplier="1:1" id="Nc4-mY-ti3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYn-46-L4T">
+                                        <rect key="frame" x="16" y="180" width="361" height="42"/>
+                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="d5h-NW-MjH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="TÌM KIẾM">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="search:" destination="Psa-ic-937" eventType="touchUpInside" id="PDs-ly-TMb"/>
+                                            <action selector="searchDragOutside:" destination="Psa-ic-937" eventType="touchDragOutside" id="tQ1-7z-m5Y"/>
+                                            <action selector="searchPressed:" destination="Psa-ic-937" eventType="touchDown" id="TgX-F3-RDM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="jKn-T5-Dd7" firstAttribute="bottom" secondItem="gjE-aL-3E8" secondAttribute="bottom" id="F0X-h4-hcG"/>
+                                    <constraint firstItem="pWH-be-LFu" firstAttribute="leading" secondItem="RvK-Hx-hbl" secondAttribute="leading" constant="16" id="K4L-KP-sX0"/>
+                                    <constraint firstItem="jKn-T5-Dd7" firstAttribute="trailing" secondItem="gjE-aL-3E8" secondAttribute="trailing" id="LmH-dr-Tlq"/>
+                                    <constraint firstItem="t2J-7E-G78" firstAttribute="trailing" secondItem="pWH-be-LFu" secondAttribute="trailing" id="STs-NM-weA"/>
+                                    <constraint firstItem="gjE-aL-3E8" firstAttribute="top" secondItem="pWH-be-LFu" secondAttribute="bottom" constant="32" id="TGJ-Hg-UHP"/>
+                                    <constraint firstItem="pWH-be-LFu" firstAttribute="top" secondItem="RvK-Hx-hbl" secondAttribute="top" constant="32" id="VQi-cc-nXS"/>
+                                    <constraint firstItem="gjE-aL-3E8" firstAttribute="leading" secondItem="RvK-Hx-hbl" secondAttribute="leading" constant="16" id="VqX-Xh-Z0D"/>
+                                    <constraint firstAttribute="trailing" secondItem="gjE-aL-3E8" secondAttribute="trailing" constant="16" id="Zar-A0-iWp"/>
+                                    <constraint firstItem="t2J-7E-G78" firstAttribute="bottom" secondItem="pWH-be-LFu" secondAttribute="bottom" id="gn0-Zc-YQ0"/>
+                                    <constraint firstAttribute="trailing" secondItem="aYn-46-L4T" secondAttribute="trailing" constant="16" id="lF3-jH-oc4"/>
+                                    <constraint firstAttribute="trailing" secondItem="pWH-be-LFu" secondAttribute="trailing" constant="16" id="noz-fH-adZ"/>
+                                    <constraint firstItem="jKn-T5-Dd7" firstAttribute="width" secondItem="jKn-T5-Dd7" secondAttribute="height" multiplier="1:1" id="qBM-VE-zVX"/>
+                                    <constraint firstItem="aYn-46-L4T" firstAttribute="leading" secondItem="RvK-Hx-hbl" secondAttribute="leading" constant="16" id="rtt-Yn-if7"/>
+                                    <constraint firstItem="aYn-46-L4T" firstAttribute="top" secondItem="gjE-aL-3E8" secondAttribute="bottom" constant="32" id="wrE-Zr-rrB"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yLF-17-Wk0"/>
@@ -701,11 +768,14 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="RvK-Hx-hbl" id="PS6-EF-wfr"/>
+                        <outlet property="districtSpinner" destination="gjE-aL-3E8" id="KwQ-jJ-UkD"/>
+                        <outlet property="provinceSpinner" destination="pWH-be-LFu" id="39G-n9-oTW"/>
+                        <outlet property="searchBtn" destination="aYn-46-L4T" id="1sC-Bx-U1T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRP-v1-868" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1868" y="706"/>
+            <point key="canvasLocation" x="1867.9389312977098" y="705.63380281690149"/>
         </scene>
     </scenes>
     <designables>
@@ -720,6 +790,7 @@
         <image name="vector_action_rating" width="36" height="36"/>
         <image name="vector_action_settings" width="36" height="36"/>
         <image name="vector_arrow_right" width="792" height="792"/>
+        <image name="vector_dropdown_corner" width="512" height="512"/>
         <image name="vector_search" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

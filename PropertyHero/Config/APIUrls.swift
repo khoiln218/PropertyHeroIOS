@@ -20,6 +20,7 @@ extension API {
         // Location
         static let apiLocation = BaseUrl + "api/Location/"
         static let listProvince = apiLocation + "ListProvince/CountryID=%d/"
+        static let listDistrict = apiLocation + "ListDistrict/ProvinceID=%d/"
         static let markerByKeywords = apiLocation + "ListMarkerByKeyword"
         static let markerByLocation = apiLocation + "ListAttractionByLocation/Latitude=%f/Longitude=%f/NumItems=%d/Language=%d/"
         static let markerByUniversity = apiLocation + "ListUniversityInKorea/NumItems=%d/Language=%d/"

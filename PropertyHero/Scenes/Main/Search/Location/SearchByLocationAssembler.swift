@@ -37,6 +37,6 @@ extension SearchByLocationAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> SearchByLocationUseCaseType {
-        return SearchByLocationUseCase()
+        return SearchByLocationUseCase(locationGateway: resolve())
     }
 }

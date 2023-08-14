@@ -147,6 +147,7 @@
 		6ED1489C2A85349500763797 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED148972A85349500763797 /* Localize.swift */; };
 		6ED1489D2A85349500763797 /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED148982A85349500763797 /* String+LocalizeBundle.swift */; };
 		6ED1489E2A85349500763797 /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED148992A85349500763797 /* String+LocalizedBundleTableName.swift */; };
+		6ED362462A8A558300AAF5AF /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED362452A8A558300AAF5AF /* District.swift */; };
 		6ED497EE2A866DC3004885A5 /* SearchByMarkerAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED497E92A866DC3004885A5 /* SearchByMarkerAssembler.swift */; };
 		6ED497EF2A866DC3004885A5 /* SearchByMarkerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED497EA2A866DC3004885A5 /* SearchByMarkerNavigator.swift */; };
 		6ED497F02A866DC3004885A5 /* SearchByMarkerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED497EB2A866DC3004885A5 /* SearchByMarkerUseCase.swift */; };
@@ -303,6 +304,7 @@
 		6ED148972A85349500763797 /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		6ED148982A85349500763797 /* String+LocalizeBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeBundle.swift"; sourceTree = "<group>"; };
 		6ED148992A85349500763797 /* String+LocalizedBundleTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizedBundleTableName.swift"; sourceTree = "<group>"; };
+		6ED362452A8A558300AAF5AF /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		6ED497E92A866DC3004885A5 /* SearchByMarkerAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchByMarkerAssembler.swift; sourceTree = "<group>"; };
 		6ED497EA2A866DC3004885A5 /* SearchByMarkerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchByMarkerNavigator.swift; sourceTree = "<group>"; };
 		6ED497EB2A866DC3004885A5 /* SearchByMarkerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchByMarkerUseCase.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				6EB8EB052A8446CB0055BEFD /* SearchInfo.swift */,
 				6EA473DF2A8796A800D23143 /* Province.swift */,
 				6EA473E92A87A45A00D23143 /* Marker.swift */,
+				6ED362452A8A558300AAF5AF /* District.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				6E14D6AE2A88819A002E4900 /* ProductViewUseCase.swift in Sources */,
 				6ECC2A6E2A7F8A480053130A /* API+Category.swift in Sources */,
 				6E14D6D12A88B538002E4900 /* AreaSectionLayout.swift in Sources */,
+				6ED362462A8A558300AAF5AF /* District.swift in Sources */,
 				6E14D6B72A8881B0002E4900 /* FavoriteNavigator.swift in Sources */,
 				6EBC24792A7EBCD500E58B2E /* UIColor+.swift in Sources */,
 				6E83F43D2A7F6AF6002D9BD8 /* MoreUseCase.swift in Sources */,

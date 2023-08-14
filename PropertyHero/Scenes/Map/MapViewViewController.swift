@@ -61,6 +61,9 @@ final class MapViewViewController: UIViewController, Bindable {
         myLocation.layer.cornerRadius = 3
         myLocation.layer.masksToBounds = true
         
+        viewAllBtn.layer.cornerRadius = 3
+        viewAllBtn.layer.masksToBounds = true
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
@@ -68,7 +71,16 @@ final class MapViewViewController: UIViewController, Bindable {
         findBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(findByAreaButton(_:))))
     }
     
+    @IBAction func viewAllDragOutside(_ sender: Any) {
+        viewAllBtn.backgroundColor = UIColor(hex: "#2B50F6")!
+    }
+    
+    @IBAction func viewAllPressed(_ sender: Any) {
+        viewAllBtn.backgroundColor = UIColor(hex: "#FFA000")!
+    }
+    
     @IBAction func viewAll(_ sender: Any) {
+        viewAllBtn.backgroundColor = UIColor(hex: "#2B50F6")!
         self.viewmore.onNext(())
     }
     

@@ -13,6 +13,8 @@ import CoreLocation
 protocol LocationGatewayType {
     func getProvinces() -> Observable<[Province]>
     
+    func getDistricts(_ provinceId: Int) -> Observable<[District]>
+    
     func searchMarkers(_ keyword: String, provinceID: Int, markerType: Int) -> Observable<[Marker]>
     
     func getMarkersByLocation(_ latlng: CLLocationCoordinate2D, numItems: Int) -> Observable<[Marker]>
@@ -27,6 +29,14 @@ struct LocationGateway: LocationGatewayType {
         
         return API.shared.getProvince(input)
             .map { $0.provinces }
+            .unwrap()
+    }
+    
+    func getDistricts(_ provinceId: Int) -> Observable<[District]> {
+        let input = API.GetDistrictListInput(provinceId)
+        
+        return API.shared.getDistrict(input)
+            .map { $0.districts }
             .unwrap()
     }
     

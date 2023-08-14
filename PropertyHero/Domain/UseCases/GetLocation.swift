@@ -18,6 +18,10 @@ extension GetLocation {
         return locationGateway.getProvinces()
     }
     
+    func getDistricts(_ provinceId: Int) -> Observable<[District]> {
+        return locationGateway.getDistricts(provinceId)
+    }
+    
     func searchMarkers(_ keyword: String, provinceID: Int, markerType: Int) -> Observable<[Marker]> {
         return locationGateway.searchMarkers(keyword, provinceID: provinceID, markerType: markerType)
     }
