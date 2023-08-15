@@ -3,6 +3,7 @@ PODS:
   - Dto (0.2.0):
     - ValidatedPropertyKit (~> 0.0.4)
   - ESPullToRefresh (2.9.3)
+  - FlexibleTable (0.2.0)
   - Google-Maps-iOS-Utils (4.2.2):
     - Google-Maps-iOS-Utils/Clustering (= 4.2.2)
     - Google-Maps-iOS-Utils/Geometry (= 4.2.2)
@@ -73,6 +74,7 @@ PODS:
 
 DEPENDENCIES:
   - Dto
+  - FlexibleTable
   - Google-Maps-iOS-Utils (~> 4.2.2)
   - GoogleMaps (~> 7.3.0)
   - ImageSlideshow (~> 1.9.2)
@@ -91,6 +93,7 @@ SPEC REPOS:
     - Alamofire
     - Dto
     - ESPullToRefresh
+    - FlexibleTable
     - Google-Maps-iOS-Utils
     - GoogleMaps
     - ImageSlideshow
@@ -113,6 +116,7 @@ SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Dto: 0346adb2a98017204d384e981352c7f864296a1f
   ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  FlexibleTable: 9799aa65cc46cb977f92778d2a2f6dd94cceffa7
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
   GoogleMaps: a146f275ee429d14822178c7a841c03366ec92a1
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
@@ -131,6 +135,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: ccc6e16b88fa169f72c57fa98f8326290508045a
+PODFILE CHECKSUM: d23c1bd1aa35e6c9fa9fd386a45b40c0d5e5fe27
 
 COCOAPODS: 1.11.3

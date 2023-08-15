@@ -25,6 +25,8 @@ def pods
     # Google Maps
     pod 'GoogleMaps', '~>7.3.0'
     pod 'Google-Maps-iOS-Utils', '~>4.2.2'
+    
+    pod 'FlexibleTable'
 end
 
 target 'PropertyHero' do

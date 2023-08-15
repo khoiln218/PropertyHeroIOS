@@ -19,7 +19,7 @@ class ProductCell: PageCollectionCell {
     }
     
     func bindViewModel(_ viewModel: Product) {
-        let price = "\(viewModel.Price)"
+        let price = String(viewModel.Price.clean)
         let unit = "triệu / m\u{00B2}"
         let priceWithUnit = price + unit
         

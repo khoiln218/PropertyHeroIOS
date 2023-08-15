@@ -11,7 +11,8 @@ extension API {
         
         // Product
         static let apiProduct = BaseUrl + "api/Product/"
-        static let search = apiProduct + "Search"
+        static let productSearch = apiProduct + "Search"
+        static let productDetail = apiProduct + "GetByID"
         
         // Utilities
         static let apiUtil = BaseUrl + "api/Utilities/"

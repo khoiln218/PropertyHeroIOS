@@ -35,6 +35,9 @@ final class MainViewController: UIViewController, Bindable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let appearance = self.navigationController?.navigationBar.standardAppearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -49,6 +52,7 @@ final class MainViewController: UIViewController, Bindable {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        removeBackButtonTitle()
         
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }

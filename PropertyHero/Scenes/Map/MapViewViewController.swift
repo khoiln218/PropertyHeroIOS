@@ -44,6 +44,11 @@ final class MapViewViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        removeBackButtonTitle()
+    }
+    
     deinit {
         logDeinit()
     }
@@ -151,6 +156,7 @@ final class MapViewViewController: UIViewController, Bindable {
             let position = CLLocationCoordinate2D(latitude: product.Latitude, longitude: product.Longitude)
             let marker = GMSMarker(position: position)
             marker.icon = UIImage(named: "ic_vector_product_item")
+            marker.userData = product
             clusterManager.add(marker)
         }
         self.clusterManager.cluster()
@@ -181,7 +187,7 @@ extension MapViewViewController: GMSMapViewDelegate {
             return true
         }
         
-        print("Did tap a normal marker")
+        self.viewModel.navigator.toProductDetail((marker.userData as! Product).Id)
         return false
     }
 }

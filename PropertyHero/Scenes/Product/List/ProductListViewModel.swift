@@ -77,7 +77,7 @@ extension ProductListViewModel: ViewModel {
         
         select(trigger: input.selectProduct, items: productList)
             .drive(onNext: { product in
-                // self.navigator.toProductDetail(product)
+                self.navigator.toProductDetail(product.Id)
             })
             .disposed(by: disposeBag)
         
