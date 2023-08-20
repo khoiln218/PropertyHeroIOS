@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,46 +18,50 @@
                 <rect key="frame" x="0.0" y="0.0" width="392" height="201"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8u-lU-jw6" customClass="CardView" customModule="PropertyHero" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="392" height="201"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhC-F2-E60" customClass="CardView" customModule="PropertyHero" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="392" height="194"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="1yb-Ib-CyS">
-                                <rect key="frame" x="0.0" y="0.0" width="396" height="194"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBp-PD-ZPx">
+                                <rect key="frame" x="0.0" y="0.0" width="392" height="48"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBp-PD-ZPx">
-                                        <rect key="frame" x="0.0" y="0.0" width="396" height="48"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dịch vụ chuyển nhà" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnr-JH-Xcp">
-                                                <rect key="frame" x="16" y="14.333333333333334" width="150.33333333333334" height="19.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="vnr-JH-Xcp" firstAttribute="leading" secondItem="dBp-PD-ZPx" secondAttribute="leading" constant="16" id="KYi-Gh-I6b"/>
-                                            <constraint firstAttribute="height" constant="48" id="pJm-sv-fNT"/>
-                                            <constraint firstItem="vnr-JH-Xcp" firstAttribute="centerY" secondItem="dBp-PD-ZPx" secondAttribute="centerY" id="qiM-Dq-Bdh"/>
-                                        </constraints>
-                                    </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="y9v-SP-1ch">
-                                        <rect key="frame" x="0.0" y="48" width="396" height="146"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="146" id="E01-Om-cx9"/>
-                                        </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d8P-7c-RXc">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dịch vụ chuyển nhà" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnr-JH-Xcp">
+                                        <rect key="frame" x="16" y="14.333333333333334" width="150.33333333333334" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vnr-JH-Xcp" firstAttribute="leading" secondItem="dBp-PD-ZPx" secondAttribute="leading" constant="16" id="KYi-Gh-I6b"/>
+                                    <constraint firstAttribute="height" constant="48" id="pJm-sv-fNT"/>
+                                    <constraint firstItem="vnr-JH-Xcp" firstAttribute="centerY" secondItem="dBp-PD-ZPx" secondAttribute="centerY" id="qiM-Dq-Bdh"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="y9v-SP-1ch">
+                                <rect key="frame" x="0.0" y="48" width="392" height="146"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="146" id="E01-Om-cx9"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d8P-7c-RXc">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dBp-PD-ZPx" firstAttribute="leading" secondItem="fhC-F2-E60" secondAttribute="leading" id="CMp-tq-S1m"/>
+                            <constraint firstAttribute="bottom" secondItem="y9v-SP-1ch" secondAttribute="bottom" id="IxN-iC-3mn"/>
+                            <constraint firstItem="y9v-SP-1ch" firstAttribute="top" secondItem="dBp-PD-ZPx" secondAttribute="bottom" id="bRn-f2-MO9"/>
+                            <constraint firstItem="y9v-SP-1ch" firstAttribute="leading" secondItem="fhC-F2-E60" secondAttribute="leading" id="dQJ-xM-MpH"/>
+                            <constraint firstItem="dBp-PD-ZPx" firstAttribute="top" secondItem="fhC-F2-E60" secondAttribute="top" id="fb7-gB-KdQ"/>
+                            <constraint firstAttribute="trailing" secondItem="y9v-SP-1ch" secondAttribute="trailing" id="fqL-8Q-V75"/>
+                            <constraint firstAttribute="trailing" secondItem="dBp-PD-ZPx" secondAttribute="trailing" id="xGi-2h-oRo"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
                                 <integer key="value" value="0"/>
@@ -64,14 +69,17 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
                                 <integer key="value" value="0"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="a8u-lU-jw6" secondAttribute="trailing" id="eQ0-bf-ssS"/>
-                    <constraint firstItem="a8u-lU-jw6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ojj-YC-C5h"/>
-                    <constraint firstAttribute="bottom" secondItem="a8u-lU-jw6" secondAttribute="bottom" id="oxW-nI-yfH"/>
-                    <constraint firstItem="a8u-lU-jw6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uyE-6T-Bag"/>
+                    <constraint firstAttribute="trailing" secondItem="fhC-F2-E60" secondAttribute="trailing" id="8je-el-7Ea"/>
+                    <constraint firstItem="fhC-F2-E60" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oEI-Rw-YDd"/>
+                    <constraint firstItem="fhC-F2-E60" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="t5s-Mz-LsD"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fhC-F2-E60" secondAttribute="bottom" id="ufg-gZ-PVw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -81,4 +89,9 @@
             <point key="canvasLocation" x="155.72519083969465" y="43.309859154929576"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

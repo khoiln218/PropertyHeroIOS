@@ -136,7 +136,7 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.size.width
-        let height = 72.0 + 16.0
+        let height = 90.0 + 16.0
         return CGSize(width: width, height: height)
     }
     

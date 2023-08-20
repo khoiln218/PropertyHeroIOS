@@ -63,7 +63,7 @@ extension FeaturePageCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 108, height: 146)
+        return CGSize(width: 108, height: 146 + 48)
     }
     
     func collectionView(_ collectionView: UICollectionView,

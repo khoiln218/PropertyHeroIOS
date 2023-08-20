@@ -10,7 +10,7 @@ extension API {
         static let BaseUrl = "https://hellorentapi.gomimall.vn/"
         
         // Product
-        static let apiProduct = BaseUrl + "api/Product/"
+        static let apiProduct = BaseUrl + "api/v2.0/Product/"
         static let productSearch = apiProduct + "Search"
         static let productDetail = apiProduct + "GetByID"
         

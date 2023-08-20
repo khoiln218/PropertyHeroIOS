@@ -29,11 +29,11 @@ class SummaryProductCell: PageTableCell {
     }
     
     func bindViewModel(_ viewModel: Product) {
-        title.text = viewModel.Title
         let priceText:NSMutableAttributedString = NSMutableAttributedString(string: viewModel.PropertyName + "  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor(hex: "#607D8B")!])
         priceText.append(NSMutableAttributedString(string: String(viewModel.Price) + " ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor(hex: "#2b50f6")!]))
         priceText.append(NSMutableAttributedString(string: "tr/thg", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor(hex: "#2b50f6")!]))
         price.attributedText = priceText
+        title.text = viewModel.Title
         
         let gvText:NSMutableAttributedString = NSMutableAttributedString(string: String(viewModel.GrossFloorArea), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor(hex: "#01A0B9")!])
         gvText.append(NSMutableAttributedString(string: " m\u{00B2}", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor(hex: "#01A0B9")!]))
