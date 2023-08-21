@@ -25,5 +25,9 @@ extension API {
         static let markerByKeywords = apiLocation + "ListMarkerByKeyword"
         static let markerByLocation = apiLocation + "ListAttractionByLocation/Latitude=%f/Longitude=%f/NumItems=%d/Language=%d/"
         static let markerByUniversity = apiLocation + "ListUniversityInKorea/NumItems=%d/Language=%d/"
+        
+        //Auth
+        static let apiAuth = BaseUrl + "api/Account/"
+        static let login = apiAuth + "AccountLogin"
     }
 }

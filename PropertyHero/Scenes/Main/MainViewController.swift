@@ -64,6 +64,10 @@ final class MainViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onLogout(_:)),
+                                               name: NSNotification.Name.logout,
+                                               object: nil)
         tabLayout.do {
             $0.tabLayoutDelegate = self
             $0.indicatorSize = 0.0
@@ -79,6 +83,11 @@ final class MainViewController: UIViewController, Bindable {
         tabs.append((title: "", UIImage(named: "ic_action_notification")))
         tabs.append((title: "", UIImage(named: "ic_action_more")))
         tabLayout.addTabs(tabs: tabs)
+    }
+    
+    @objc func onLogout(_ sender: UITapGestureRecognizer) {
+        self.tabLayout.setIndex(index: 0, animated: true, scroll: true)
+        self.viewModel.navigator.toTabMenu(self, tab: .home)
     }
     
     func bindViewModel() {

@@ -26,11 +26,14 @@ final class MoreViewController: UIViewController, Bindable {
     @IBOutlet weak var feedback: UIView!
     @IBOutlet weak var myProduct: UIView!
     @IBOutlet weak var setting: UIView!
+    @IBOutlet weak var logout: UIView!
     
     // MARK: - Properties
     
     var viewModel: MoreViewModel!
     var disposeBag = DisposeBag()
+    var accountAction: UITapGestureRecognizer!
+    var logoutAction: UITapGestureRecognizer!
     
     // MARK: - Life Cycle
     
@@ -46,53 +49,101 @@ final class MoreViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(loginSuccess(_:)),
+                                               name: NSNotification.Name.loginSuccess,
+                                               object: nil)
+        
         self.account.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.rating.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.feedback.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.myProduct.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.setting.addBorders(edges: [.top,.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         
+        self.accountAction = UITapGestureRecognizer(target: self, action: #selector(onAccount(_:)))
+        self.logoutAction = UITapGestureRecognizer(target: self, action: #selector(onLogout(_:)))
+        let isLogin = AccountStorage().isLogin()
+        if isLogin {
+            let account = AccountStorage().getAccount()
+            loginLabel.hidden()
+            accountInfo.visible()
+            accountAvatar.setImage(with: URL(string: account.Avatar))
+            fullname.text = account.FullName
+            username.text = account.UserName
+            logout.visible()
+            self.logout.addGestureRecognizer(logoutAction)
+        } else {
+            self.account.addGestureRecognizer(accountAction)
+            logout.hidden()
+        }
         
-        self.account.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccount(_:))))
         self.rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onRating(_:))))
         self.feedback.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFeedback(_:))))
         self.myProduct.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMyProduct(_:))))
         self.setting.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSetting(_:))))
+        
+        self.accountAvatar.layer.borderWidth = 1.0
+        self.accountAvatar.layer.masksToBounds = false
+        self.accountAvatar.layer.borderColor = UIColor.white.cgColor
+        self.accountAvatar.layer.cornerRadius = accountAvatar.frame.size.width / 2
+        self.accountAvatar.clipsToBounds = true
     }
     
     @objc func onAccount(_ sender: UITapGestureRecognizer) {
-        coomingSoon()
-        print(#function)
+        self.viewModel.navigator.toLogin()
     }
     
     @objc func onRating(_ sender: UITapGestureRecognizer) {
-        if let url = URL(string: "https://apps.apple.com/app/id1574177729") {
+        if let url = URL(string: "https://apps.apple.com/app/id6461215254") {
             UIApplication.shared.open(url)
         }
     }
     
     @objc func onFeedback(_ sender: UITapGestureRecognizer) {
-        coomingSoon()
         print(#function)
     }
     
     @objc func onMyProduct(_ sender: UITapGestureRecognizer) {
-        coomingSoon()
         print(#function)
     }
     
     @objc func onSetting(_ sender: UITapGestureRecognizer) {
-        coomingSoon()
         print(#function)
     }
     
-    func coomingSoon() {
-        self.showAutoCloseMessage(image: nil, title: nil, message: "Sắp mở")
+    @objc func onLogout(_ sender: UITapGestureRecognizer) {
+        accountAvatar.image = UIImage(named: "vector_action_login")
+        loginLabel.visible()
+        accountInfo.hidden()
+        logout.hidden()
+        AccountStorage().logout()
+        self.account.addGestureRecognizer(accountAction)
+        self.logout.removeGestureRecognizer(logoutAction)
+        NotificationCenter.default.post(
+            name: Notification.Name.logout,
+            object: nil)
     }
     
     func bindViewModel() {
         let input = MoreViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
+    }
+    
+    @objc func loginSuccess(_ notification: NSNotification) {
+        if notification.name == Notification.Name.loginSuccess {
+            if notification.userInfo != nil {
+                guard let userInfo = notification.userInfo as? [String: Account] else { return }
+                let account = userInfo["account"]!
+                loginLabel.hidden()
+                accountInfo.visible()
+                accountAvatar.setImage(with: URL(string: account.Avatar))
+                fullname.text = account.FullName
+                username.text = account.UserName
+                logout.visible()
+                self.account.removeGestureRecognizer(accountAction)
+                self.logout.addGestureRecognizer(logoutAction)
+            }
+        }
     }
 }
 

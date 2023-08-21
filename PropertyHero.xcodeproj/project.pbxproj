@@ -81,6 +81,20 @@
 		6EA4D2892A87E0C600DDCDCD /* PageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4D2882A87E0C600DDCDCD /* PageTableCell.swift */; };
 		6EA5AE1D2A8D82A2008C0D95 /* UINavigationBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA5AE1C2A8D82A2008C0D95 /* UINavigationBar+.swift */; };
 		6EA8B0592A920AF20000EB42 /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0582A920AF20000EB42 /* CustomFlowLayout.swift */; };
+		6EA8B05C2A921E910000EB42 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA8B05B2A921E910000EB42 /* Auth.storyboard */; };
+		6EA8B05E2A921F100000EB42 /* Storyboards+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B05D2A921F100000EB42 /* Storyboards+Auth.swift */; };
+		6EA8B0652A921F4B0000EB42 /* LoginAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0602A921F4B0000EB42 /* LoginAssembler.swift */; };
+		6EA8B0662A921F4C0000EB42 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0612A921F4B0000EB42 /* LoginNavigator.swift */; };
+		6EA8B0672A921F4C0000EB42 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0622A921F4B0000EB42 /* LoginUseCase.swift */; };
+		6EA8B0682A921F4C0000EB42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0632A921F4B0000EB42 /* LoginViewController.swift */; };
+		6EA8B0692A921F4C0000EB42 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0642A921F4B0000EB42 /* LoginViewModel.swift */; };
+		6EA8B06B2A9229590000EB42 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B06A2A9229590000EB42 /* Account.swift */; };
+		6EA8B06D2A922B140000EB42 /* API+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B06C2A922B140000EB42 /* API+Auth.swift */; };
+		6EA8B06F2A922CA50000EB42 /* LoginGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B06E2A922CA50000EB42 /* LoginGateway.swift */; };
+		6EA8B0712A922D4A0000EB42 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0702A922D4A0000EB42 /* Login.swift */; };
+		6EA8B0732A922EA90000EB42 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0722A922EA90000EB42 /* Notification.swift */; };
+		6EA8B0752A92329A0000EB42 /* ValidationResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA8B0742A92329A0000EB42 /* ValidationResultViewModel.swift */; };
+		6EAA485F2A924EBC00C95518 /* AccountStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAA485E2A924EBC00C95518 /* AccountStorage.swift */; };
 		6EB5B0892A7FF5F6004AAB38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EB5B0882A7FF5F6004AAB38 /* GoogleService-Info.plist */; };
 		6EB5B0922A7FFA54004AAB38 /* MapViewAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B08D2A7FFA54004AAB38 /* MapViewAssembler.swift */; };
 		6EB5B0932A7FFA54004AAB38 /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B08E2A7FFA54004AAB38 /* MapViewNavigator.swift */; };
@@ -261,6 +275,20 @@
 		6EA4D2882A87E0C600DDCDCD /* PageTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableCell.swift; sourceTree = "<group>"; };
 		6EA5AE1C2A8D82A2008C0D95 /* UINavigationBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+.swift"; sourceTree = "<group>"; };
 		6EA8B0582A920AF20000EB42 /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		6EA8B05B2A921E910000EB42 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		6EA8B05D2A921F100000EB42 /* Storyboards+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboards+Auth.swift"; sourceTree = "<group>"; };
+		6EA8B0602A921F4B0000EB42 /* LoginAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembler.swift; sourceTree = "<group>"; };
+		6EA8B0612A921F4B0000EB42 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		6EA8B0622A921F4B0000EB42 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		6EA8B0632A921F4B0000EB42 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6EA8B0642A921F4B0000EB42 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		6EA8B06A2A9229590000EB42 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		6EA8B06C2A922B140000EB42 /* API+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Auth.swift"; sourceTree = "<group>"; };
+		6EA8B06E2A922CA50000EB42 /* LoginGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginGateway.swift; sourceTree = "<group>"; };
+		6EA8B0702A922D4A0000EB42 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		6EA8B0722A922EA90000EB42 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		6EA8B0742A92329A0000EB42 /* ValidationResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationResultViewModel.swift; sourceTree = "<group>"; };
+		6EAA485E2A924EBC00C95518 /* AccountStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStorage.swift; sourceTree = "<group>"; };
 		6EB5B0882A7FF5F6004AAB38 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EB5B08D2A7FFA54004AAB38 /* MapViewAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAssembler.swift; sourceTree = "<group>"; };
 		6EB5B08E2A7FFA54004AAB38 /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
@@ -428,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				6E08B3032A7EAC8000C3EE35 /* APIUrls.swift */,
+				6EA8B0722A922EA90000EB42 /* Notification.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -451,6 +480,7 @@
 				6EA473DF2A8796A800D23143 /* Province.swift */,
 				6EA473E92A87A45A00D23143 /* Marker.swift */,
 				6ED362452A8A558300AAF5AF /* District.swift */,
+				6EA8B06A2A9229590000EB42 /* Account.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -461,6 +491,7 @@
 				6ECC2A692A7F89360053130A /* GetCategory.swift */,
 				6EB8EB012A84451C0055BEFD /* GetProduct.swift */,
 				6EA473E52A8798D700D23143 /* GetLocation.swift */,
+				6EA8B0702A922D4A0000EB42 /* Login.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -485,6 +516,7 @@
 				6ECC2A6D2A7F8A480053130A /* API+Category.swift */,
 				6EB8EAFD2A84415F0055BEFD /* API+Product.swift */,
 				6EA473E12A8796DA00D23143 /* API+Location.swift */,
+				6EA8B06C2A922B140000EB42 /* API+Auth.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -496,6 +528,7 @@
 				6ECC2A6B2A7F89C10053130A /* CategoryGateway.swift */,
 				6EB8EB032A8445880055BEFD /* ProductGateway.swift */,
 				6EA473E32A87983800D23143 /* LocationGateway.swift */,
+				6EA8B06E2A922CA50000EB42 /* LoginGateway.swift */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -503,6 +536,7 @@
 		6E08B3192A7EAC8000C3EE35 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6EA8B05A2A921E7F0000EB42 /* Auth */,
 				6EBE4AD32A8905AB0005B23F /* Product */,
 				6EB5B08A2A7FF9D3004AAB38 /* Map */,
 				6E08B3252A7EAC8000C3EE35 /* Main */,
@@ -671,6 +705,29 @@
 			path = Page;
 			sourceTree = "<group>";
 		};
+		6EA8B05A2A921E7F0000EB42 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6EA8B05B2A921E910000EB42 /* Auth.storyboard */,
+				6EA8B05D2A921F100000EB42 /* Storyboards+Auth.swift */,
+				6EA8B05F2A921F310000EB42 /* Login */,
+				6EA8B0742A92329A0000EB42 /* ValidationResultViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6EA8B05F2A921F310000EB42 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6EA8B0602A921F4B0000EB42 /* LoginAssembler.swift */,
+				6EA8B0612A921F4B0000EB42 /* LoginNavigator.swift */,
+				6EA8B0622A921F4B0000EB42 /* LoginUseCase.swift */,
+				6EA8B0632A921F4B0000EB42 /* LoginViewController.swift */,
+				6EA8B0642A921F4B0000EB42 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		6EB5B08A2A7FF9D3004AAB38 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +883,7 @@
 			isa = PBXGroup;
 			children = (
 				6ED148912A85347C00763797 /* DefaultStorage.swift */,
+				6EAA485E2A924EBC00C95518 /* AccountStorage.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -976,6 +1034,7 @@
 			files = (
 				6E14D6D52A88CA1E002E4900 /* AreaSectionCell.xib in Resources */,
 				6EBE4ADF2A8905EE0005B23F /* Product.storyboard in Resources */,
+				6EA8B05C2A921E910000EB42 /* Auth.storyboard in Resources */,
 				6ED362852A8AF4B000AAF5AF /* SummaryProductCell.xib in Resources */,
 				6ECC2A522A7F7B470053130A /* HeaderCell.xib in Resources */,
 				6EA4D2862A87E06D00DDCDCD /* MarkerCell.xib in Resources */,
@@ -1115,11 +1174,14 @@
 				6EBE4AF02A8914CF0005B23F /* ProductCell.swift in Sources */,
 				6E83F4132A7F6A2F002D9BD8 /* HomeViewModel.swift in Sources */,
 				6E14D6CC2A88AC82002E4900 /* PageIndicator.swift in Sources */,
+				6EA8B0692A921F4C0000EB42 /* LoginViewModel.swift in Sources */,
 				6EBC245E2A7EB8CA00E58B2E /* AppDelegate.swift in Sources */,
 				6ED362902A8AF4B000AAF5AF /* FeaturePageCell.swift in Sources */,
 				6E83F43F2A7F6AF6002D9BD8 /* MoreViewModel.swift in Sources */,
 				6EBE4AE82A8906800005B23F /* ProductListAssembler.swift in Sources */,
+				6EA8B06B2A9229590000EB42 /* Account.swift in Sources */,
 				6E83F41D2A7F6AA4002D9BD8 /* SearchAssembler.swift in Sources */,
+				6EA8B0672A921F4C0000EB42 /* LoginUseCase.swift in Sources */,
 				6EA473E22A8796DA00D23143 /* API+Location.swift in Sources */,
 				6ED497F82A866DDF004885A5 /* SearchByLocationAssembler.swift in Sources */,
 				6ECC2A6C2A7F89C10053130A /* CategoryGateway.swift in Sources */,
@@ -1127,6 +1189,7 @@
 				6E08B32F2A7EAC8000C3EE35 /* MainUseCase.swift in Sources */,
 				6ECC2A672A7F847C0053130A /* EmptyDataView.swift in Sources */,
 				6E53E6C12A8E808700AC5CEC /* FooterProductCell.swift in Sources */,
+				6EAA485F2A924EBC00C95518 /* AccountStorage.swift in Sources */,
 				6E14D6BE2A8894C4002E4900 /* UINavigationController+.swift in Sources */,
 				6EB5B0952A7FFA54004AAB38 /* MapViewViewController.swift in Sources */,
 				6ED3629F2A8AF4B000AAF5AF /* ProductDetailViewController.swift in Sources */,
@@ -1139,12 +1202,14 @@
 				6ED362A62A8AF4B000AAF5AF /* ProductDetailNavigator.swift in Sources */,
 				6EA473E02A8796A800D23143 /* Province.swift in Sources */,
 				6EBC24772A7EBCD500E58B2E /* UIImage.swift in Sources */,
+				6EA8B06D2A922B140000EB42 /* API+Auth.swift in Sources */,
 				6ECB455F2A88CBCA005D1B33 /* AreaCell.swift in Sources */,
 				6ECC2A632A7F84110053130A /* UICollectionView+.swift in Sources */,
 				6ED497FA2A866DDF004885A5 /* SearchByLocationUseCase.swift in Sources */,
 				6EBC24762A7EBCD500E58B2E /* UIViewController+Rx.swift in Sources */,
 				6E08B3132A7EAC8000C3EE35 /* APIOutput.swift in Sources */,
 				6EBC24752A7EBCD500E58B2E /* UILabel+.swift in Sources */,
+				6EA8B06F2A922CA50000EB42 /* LoginGateway.swift in Sources */,
 				6E14D6B02A88819A002E4900 /* ProductViewViewModel.swift in Sources */,
 				6EA473E82A879B1E00D23143 /* UITableView+.swift in Sources */,
 				6ECC2A4B2A7F775A0053130A /* Constants.swift in Sources */,
@@ -1164,11 +1229,13 @@
 				6E14D6CE2A88ACA2002E4900 /* DesignableUITextField.swift in Sources */,
 				6E83F4462A7F6EFF002D9BD8 /* NotificationNavigator.swift in Sources */,
 				6E14D6BA2A8881B0002E4900 /* FavoriteViewModel.swift in Sources */,
+				6EA8B0682A921F4C0000EB42 /* LoginViewController.swift in Sources */,
 				6E08B3332A7EAC8000C3EE35 /* MainViewModel.swift in Sources */,
 				6E14D6B92A8881B0002E4900 /* FavoriteViewController.swift in Sources */,
 				6EBC24892A7EBD9000E58B2E /* SplashUseCase.swift in Sources */,
 				6EBE4AE12A8906090005B23F /* Storyboards+Product.swift in Sources */,
 				6ED497EE2A866DC3004885A5 /* SearchByMarkerAssembler.swift in Sources */,
+				6EA8B05E2A921F100000EB42 /* Storyboards+Auth.swift in Sources */,
 				6E83F4202A7F6AA4002D9BD8 /* SearchViewController.swift in Sources */,
 				6E14D6B82A8881B0002E4900 /* FavoriteUseCase.swift in Sources */,
 				6E08B31B2A7EAC8000C3EE35 /* Storyboards.swift in Sources */,
@@ -1176,11 +1243,14 @@
 				6ECC2A542A7F7B470053130A /* HeaderSectionLayout.swift in Sources */,
 				6EA4D2892A87E0C600DDCDCD /* PageTableCell.swift in Sources */,
 				6EBC24872A7EBD9000E58B2E /* Storyboards+Splash.swift in Sources */,
+				6EA8B0732A922EA90000EB42 /* Notification.swift in Sources */,
 				6E08B30F2A7EAC8000C3EE35 /* APIError.swift in Sources */,
 				6EBDFA742A8D051700292F7F /* Duoble+.swift in Sources */,
 				6ED3629A2A8AF4B000AAF5AF /* CoverProductCell.swift in Sources */,
 				6EBC24882A7EBD9000E58B2E /* SplashAssembler.swift in Sources */,
+				6EA8B0752A92329A0000EB42 /* ValidationResultViewModel.swift in Sources */,
 				6EB8EB002A84442C0055BEFD /* Product.swift in Sources */,
+				6EA8B0652A921F4B0000EB42 /* LoginAssembler.swift in Sources */,
 				6ECB0E162A8BC9420065557E /* RelocationCell.swift in Sources */,
 				6ED362892A8AF4B000AAF5AF /* AttributeProductCell.swift in Sources */,
 				6E83F4282A7F6AC8002D9BD8 /* CollectionNavigator.swift in Sources */,
@@ -1188,8 +1258,10 @@
 				6E83F4472A7F6EFF002D9BD8 /* NotificationUseCase.swift in Sources */,
 				6E83F4452A7F6EFF002D9BD8 /* NotificationAssembler.swift in Sources */,
 				6ED1489E2A85349500763797 /* String+LocalizedBundleTableName.swift in Sources */,
+				6EA8B0662A921F4C0000EB42 /* LoginNavigator.swift in Sources */,
 				6E83F42B2A7F6AC8002D9BD8 /* CollectionViewModel.swift in Sources */,
 				6E08B3152A7EAC8000C3EE35 /* APIService.swift in Sources */,
+				6EA8B0712A922D4A0000EB42 /* Login.swift in Sources */,
 				6E83F4212A7F6AA4002D9BD8 /* SearchViewModel.swift in Sources */,
 				6EBC24722A7EBCD500E58B2E /* UIView+.swift in Sources */,
 				6ED3629C2A8AF4B000AAF5AF /* ProductDetailUseCase.swift in Sources */,

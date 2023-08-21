@@ -82,7 +82,7 @@ struct Product {
     var Status = 0
     var NumView = 0
     var NumLike = 0
-    var CreateDate = Date()
+    var CreateDate = ""
     var PropertyName = ""
     var DirectionName = ""
     var BuildingName: String?
@@ -131,7 +131,7 @@ extension Product: Mappable {
         Status <- map["Status"]
         NumView <- map["NumView"]
         NumLike <- map["NumLike"]
-        CreateDate <- (map["CreateDate"], DateTransform())
+        CreateDate <- map["CreateDate"]
         PropertyName <- map["PropertyName"]
         DirectionName <- map["DirectionName"]
         BuildingName <- map["BuildingName"]
