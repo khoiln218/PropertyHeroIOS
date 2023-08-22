@@ -16,23 +16,21 @@ final class ProductViewViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
     
     var viewModel: ProductViewViewModel!
     var disposeBag = DisposeBag()
+    var products = [Product]()
+    
+    var reload = PublishSubject<Void>()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.showCoomingSoon(self.container)
     }
     
     deinit {
@@ -42,18 +40,77 @@ final class ProductViewViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(productViewChanged(_:)),
+                                               name: NSNotification.Name.productChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(productViewChanged(_:)),
+                                               name: NSNotification.Name.logout,
+                                               object: nil)
+        tableView.do {
+            $0.dataSource = self
+            $0.register(cellType: ProductTableCell.self)
+        }
     }
     
     func bindViewModel() {
-        let input = ProductViewViewModel.Input()
-        _ = viewModel.transform(input, disposeBag: disposeBag)
+        let input = ProductViewViewModel.Input(
+            trigger: Driver.merge(Driver.just(()) , reload.asDriverOnErrorJustComplete()),
+            selected: tableView.rx.itemSelected.asDriver()
+        )
+        
+        let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$products
+            .asDriver()
+            .drive(onNext: { [unowned self] products in
+                if let products = products {
+                    self.products = products
+                    self.tableView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        output.$error
+            .asDriver()
+            .unwrap()
+            .drive(rx.error)
+            .disposed(by: disposeBag)
+        
+        output.$isLoading
+            .asDriver()
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
+        
+        output.$isEmpty
+            .asDriver()
+            .drive(tableView.isEmpty)
+            .disposed(by: disposeBag)
+    }
+    
+    @objc func productViewChanged(_ notification: NSNotification) {
+        reload.onNext(())
     }
 }
 
-// MARK: - Binders
-extension ProductViewViewController {
+extension ProductViewViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return products.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let product = self.products[indexPath.row]
+        return tableView.dequeueReusableCell(
+            for: indexPath,
+            cellType: ProductTableCell.self
+        )
+        .then {
+            $0.selectionStyle = .none
+            $0.separatorInset = UIEdgeInsets.zero
+            $0.bindViewModel(product)
+        }
+    }
 }
 
 // MARK: - StoryboardSceneBased

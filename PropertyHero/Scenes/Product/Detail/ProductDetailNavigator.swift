@@ -12,6 +12,7 @@ import RxSwift
 
 protocol ProductDetailNavigatorType {
     func homeBack()
+    func toLogin()
 }
 
 struct ProductDetailNavigator: ProductDetailNavigatorType {
@@ -26,5 +27,10 @@ struct ProductDetailNavigator: ProductDetailNavigatorType {
                 break
             }
         }
+    }
+    
+    func toLogin() {
+        let vc: LoginViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
     }
 }

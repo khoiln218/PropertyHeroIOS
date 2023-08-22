@@ -8,7 +8,7 @@
 import ObjectMapper
 import Then
 
-struct Feature {
+struct Feature: Codable {
     var Id = 0
     var Name = ""
     var Thumbnail = ""
@@ -28,7 +28,7 @@ extension Feature: Mappable {
     }
 }
 
-struct Furniture {
+struct Furniture: Codable {
     var Id = 0
     var Name = ""
     var Thumbnail = ""
@@ -48,7 +48,7 @@ extension Furniture: Mappable {
     }
 }
 
-struct Product {
+struct Product: Codable {
     var Id = 0
     var Address = ""
     var Latitude = 0.0

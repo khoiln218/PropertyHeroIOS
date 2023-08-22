@@ -30,7 +30,7 @@ struct MapViewNavigator: MapViewNavigatorType {
     func toSearchByMarker() {
         navigationController.popViewController(animated: false)
         
-        var mainViewController: MainViewController? = navigationController.viewControllers.first(where:{ $0 is MainViewController}) as? MainViewController
+        let mainViewController: MainViewController? = navigationController.viewControllers.first(where:{ $0 is MainViewController}) as? MainViewController
         if mainViewController == nil { return }
         DispatchQueue.main.async {
             mainViewController!.tabLayout.setIndex(index: 1, animated: false, scroll: false)

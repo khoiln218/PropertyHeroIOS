@@ -57,7 +57,7 @@
                                                     <color key="titleColor" red="0.99999994039999995" green="0.99999994039999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buyClick:" destination="atZ-VZ-2jV" eventType="touchUpInside" id="gX2-jS-gsP"/>
+                                                    <action selector="callClick:" destination="atZ-VZ-2jV" eventType="touchUpInside" id="iX1-Hd-6ks"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -96,7 +96,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buyButton" destination="Mk3-sc-Te5" id="qwD-13-2tv"/>
+                        <outlet property="callButton" destination="Mk3-sc-Te5" id="qwD-13-2tv"/>
                         <outlet property="contactName" destination="Seu-ea-36r" id="eZf-Yc-IX7"/>
                         <outlet property="phoneNumber" destination="Ozj-bd-l7J" id="s4Y-FV-EL3"/>
                         <outlet property="tableView" destination="QEW-Sg-Le7" id="S2Q-3Y-SIl"/>

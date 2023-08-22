@@ -38,7 +38,6 @@ class CoverProductCell: PageTableCell {
         var sdWebImageSource = [SDWebImageSource]()
         let images = viewModel.components(separatedBy: ", ")
         pagingLabel.text = "\(images.count) Hình ảnh"
-        print(images)
         for image in images {
             sdWebImageSource.append(SDWebImageSource(url: URL(string: image)!, placeholder: UIImage(named: "empty")))
         }

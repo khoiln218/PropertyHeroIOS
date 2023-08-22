@@ -48,6 +48,8 @@ struct AccountStorage {
     func logout() {
         clearAccount()
         clearIsLogin()
+        FavoriteStorage().clearFavorites()
+        SeenStorage().clearSeens()
     }
 }
 

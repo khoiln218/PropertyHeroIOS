@@ -20,6 +20,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
+        UINavigationBar.appearance().tintColor = UIColor(hex: "#424242")
         
         GMSServices.provideAPIKey("AIzaSyCweUKlL7MrYKl5qXC1YBL6U4y4DSZZTn4")
         

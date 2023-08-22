@@ -23,13 +23,14 @@ extension ProductDetailViewModel: ViewModel {
     }
     
     struct Output {
+        @Property var productId: Int
         @Property var product: Product?
         @Property var error: Error?
         @Property var isLoading = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output()
+        let output = Output(productId: productId)
         
         let error = ErrorTracker()
         let activityIndicator = ActivityIndicator()

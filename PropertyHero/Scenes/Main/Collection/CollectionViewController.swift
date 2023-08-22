@@ -74,7 +74,7 @@ final class CollectionViewController: UIViewController, Bindable {
 extension CollectionViewController: TabLayoutDelegate {
     func tabLayout(tabLayout: TabLayout, index: Int) {
         switch(index) {
-        case 1:
+        case 0:
             self.viewModel.navigator.toCollectionMenu(self, tab: .view)
         default:
             self.viewModel.navigator.toCollectionMenu(self, tab: .favorite)

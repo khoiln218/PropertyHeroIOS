@@ -19,7 +19,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var phoneNumber: UILabel!
-    @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var contactName: UILabel!
     private var favoriteBtn: UIButton!
     
@@ -94,6 +94,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
         self.navigationController?.navigationBar.standardAppearance = newAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = newAppearance
         self.navigationController?.navigationBar.setGradientBackground(colors: [.lightGray, .clear])
+        self.navigationController?.navigationBar.tintColor = .white
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         titleLabel.textColor = .white
@@ -101,12 +102,22 @@ final class ProductDetailViewController: UIViewController, Bindable {
     }
     
     @objc func favoriteClick(sender: UIButton) {
+        if !AccountStorage().isLogin() {
+            viewModel.navigator.toLogin()
+            return
+        }
+        
         if product.IsMeLikeThis == 0 {
             product.IsMeLikeThis = 1
+            FavoriteStorage().insertFavorite(product)
         } else {
             product.IsMeLikeThis = 0
+            FavoriteStorage().deleteFavorite(product)
         }
         favoriteBtn.isSelected = product.IsMeLikeThis == 1
+        NotificationCenter.default.post(
+            name: Notification.Name.favoriteChanged,
+            object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -114,6 +125,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.removeGradientBackground()
+        self.navigationController?.navigationBar.tintColor = UIColor(hex: "#424242")
     }
     
     deinit {
@@ -123,13 +135,12 @@ final class ProductDetailViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        buyButton.layer.borderWidth = 1
-        buyButton.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
-        buyButton.layer.cornerRadius = 3
-        buyButton.layer.masksToBounds = true
+        callButton.layer.borderWidth = 1
+        callButton.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
+        callButton.layer.cornerRadius = 3
+        callButton.layer.masksToBounds = true
         
         tableView.do {
-            $0.delegate = self
             $0.dataSource = self
             $0.separatorColor = .clear
             $0.register(cellType: CoverProductCell.self)
@@ -147,7 +158,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
         }
     }
     
-    @IBAction func buyClick(_ sender: Any) {
+    @IBAction func callClick(_ sender: Any) {
         let callCenter = product.ContactPhone.isEmpty ? "0971027021" : product.ContactPhone
         guard let number = URL(string: "tel://" + callCenter) else { return }
         UIApplication.shared.open(number)
@@ -160,32 +171,46 @@ final class ProductDetailViewController: UIViewController, Bindable {
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
+        output.$productId
+            .asDriver()
+            .drive(onNext: { [unowned self] productId in
+                self.titleLabel.text = "Mã tin: \(productId)"
+            })
+            .disposed(by: disposeBag)
+        
         output.$product
             .asDriver()
             .drive(onNext: { [unowned self] product in
                 if let product = product {
                     if product.Id == 0 { return }
-                    
                     self.product = product
                     
+                    self.product.IsMeLikeThis = FavoriteStorage().isFavorite(product.Id) ? 1 : 0
+                    
+                    SeenStorage().addOrUpdateSeen(self.product)
+                    FavoriteStorage().updateFavorite(self.product)
+                    NotificationCenter.default.post(
+                        name: Notification.Name.productChanged,
+                        object: nil)
+                    
                     (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
-                    if product.ContactPhone.isEmpty {
+                    
+                    if self.product.ContactPhone.isEmpty {
                         self.phoneNumber.text = "0971-027-021"
                     } else {
-                        self.phoneNumber.text = product.ContactPhone.substring(to: 4) + "-" + product.ContactPhone.substring(with: 4..<7) + "-" + product.ContactPhone.substring(from: 7)
+                        self.phoneNumber.text = self.product.ContactPhone.substring(to: 4) + "-" + self.product.ContactPhone.substring(with: 4..<7) + "-" + self.product.ContactPhone.substring(from: 7)
                     }
-                    contactName.text = product.ContactName
+                    self.contactName.text = self.product.ContactName.isEmpty ? "Property Hero" : self.product.ContactName
                     
-                    self.favoriteBtn.isSelected = product.IsMeLikeThis == 1
-                    self.titleLabel.text = "Mã tin: \(product.Id)"
+                    self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
                     self.cell.append(.header)
                     //self.cell.append(.map)
                     self.cell.append(.attribute)
-                    if !product.FeatureList.isEmpty {
+                    if !self.product.FeatureList.isEmpty {
                         self.cell.append(.feature)
                     }
                     // self.cell.append(.advs)
-                    if !product.FurnitureList.isEmpty {
+                    if !self.product.FurnitureList.isEmpty {
                         self.cell.append(.furniture)
                     }
                     self.cell.append(.footer)
@@ -239,7 +264,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             )
             .then {
                 $0.selectionStyle = .none
-                $0.bindViewModel(product)
+                $0.bindViewModel(self.product)
             }
         case .feature:
             return tableView.dequeueReusableCell(
@@ -248,7 +273,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             )
             .then {
                 $0.selectionStyle = .none
-                $0.bindViewModel(product.FeatureList)
+                $0.bindViewModel(self.product.FeatureList)
             }
         case .advs:
             return tableView.dequeueReusableCell(
@@ -265,7 +290,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             )
             .then {
                 $0.selectionStyle = .none
-                $0.bindViewModel(product.FurnitureList)
+                $0.bindViewModel(self.product.FurnitureList)
             }
         case .footer:
             return tableView.dequeueReusableCell(
@@ -274,15 +299,9 @@ extension ProductDetailViewController: UITableViewDataSource {
             )
             .then {
                 $0.selectionStyle = .none
-                $0.bindViewModel(product)
+                $0.bindViewModel(self.product)
             }
         }
-    }
-}
-
-extension ProductDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }
 
