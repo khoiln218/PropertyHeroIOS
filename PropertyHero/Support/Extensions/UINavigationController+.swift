@@ -21,6 +21,7 @@ extension UINavigationController {
         print("addFragmentToMain", tab)
         let container = vc.view!
         tagert.addChild(vc)
+        vc.didMove(toParent: tagert)
         tagert.viewpager.insertSubview(vc.view, at: tab.rawValue)
         DispatchQueue.main.async {
             container.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +49,7 @@ extension UINavigationController {
         print("addFragmentToSearch", tab)
         let container = vc.view!
         tagert.addChild(vc)
+        vc.didMove(toParent: tagert)
         tagert.viewpager.insertSubview(container, at: tab.rawValue)
         DispatchQueue.main.async {
             container.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +77,7 @@ extension UINavigationController {
         print("addFragmentToCollection", tab)
         let container = vc.view!
         tagert.addChild(vc)
+        vc.didMove(toParent: tagert)
         tagert.viewpager.insertSubview(container, at: tab.rawValue)
         DispatchQueue.main.async {
             container.translatesAutoresizingMaskIntoConstraints = false

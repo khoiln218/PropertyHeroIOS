@@ -10,6 +10,7 @@ import UIKit
 protocol MapViewNavigatorType {
     func toProductDetail(_ productId: Int)
     func toProductList(_ searchInfo: SearchInfo, title: String)
+    func toSearchByMarker()
 }
 
 struct MapViewNavigator: MapViewNavigatorType {
@@ -24,5 +25,23 @@ struct MapViewNavigator: MapViewNavigatorType {
     func toProductList(_ searchInfo: SearchInfo, title: String) {
         let vc: ProductListViewController = assembler.resolve(navigationController: navigationController, searchInfo: searchInfo, title: title)
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func toSearchByMarker() {
+        navigationController.popViewController(animated: false)
+        
+        var mainViewController: MainViewController? = navigationController.viewControllers.first(where:{ $0 is MainViewController}) as? MainViewController
+        if mainViewController == nil { return }
+        DispatchQueue.main.async {
+            mainViewController!.tabLayout.setIndex(index: 1, animated: false, scroll: false)
+            mainViewController!.viewModel.navigator.toTabMenu(mainViewController!, tab: .search)
+        }
+        
+        let searchViewController: SearchViewController? = mainViewController!.children.first(where:{ $0 is SearchViewController}) as? SearchViewController
+        if searchViewController == nil { return }
+        DispatchQueue.main.async {
+            searchViewController!.tabLayout.setIndex(index: 1, animated: false, scroll: false)
+            searchViewController!.viewModel.navigator.toSearchMenu(searchViewController!, tab: .marker)
+        }
     }
 }

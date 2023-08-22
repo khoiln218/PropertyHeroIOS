@@ -73,7 +73,7 @@ final class MapViewViewController: UIViewController, Bindable {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         myLocation.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(myLocationButton(_:))))
-        findBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(findByAreaButton(_:))))
+        findBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(findByMarkerButton(_:))))
     }
     
     @IBAction func viewAllDragOutside(_ sender: Any) {
@@ -93,8 +93,8 @@ final class MapViewViewController: UIViewController, Bindable {
         manager.startUpdatingLocation()
     }
     
-    @objc func findByAreaButton(_ sender: UITapGestureRecognizer) {
-        print("findByAreaButton")
+    @objc func findByMarkerButton(_ sender: UITapGestureRecognizer) {
+        self.viewModel.navigator.toSearchByMarker()
     }
     
     func bindViewModel() {
