@@ -21,6 +21,7 @@ final class LoginViewController: UIViewController, Bindable {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var usernameError: UILabel!
     @IBOutlet weak var passwordError: UILabel!
+    @IBOutlet weak var registerBtn: UIButton!
     
     // MARK: - Properties
     
@@ -45,6 +46,10 @@ final class LoginViewController: UIViewController, Bindable {
         loginBtn.layer.masksToBounds = true
         
         title = "Đăng nhập"
+    }
+    
+    @IBAction func registerMember(_ sender: Any) {
+        self.viewModel.navigator.toRegister()
     }
     
     func bindViewModel() {

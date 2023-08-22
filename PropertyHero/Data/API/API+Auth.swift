@@ -14,9 +14,51 @@ extension API {
     func login(_ input: LoginInput) -> Observable<LoginOutput> {
         return request(input)
     }
+    
+    func verify(_ input: VerifyInput) -> Observable<LoginOutput> {
+        return request(input)
+    }
+    
+    func register(_ input: RegisterInput) -> Observable<RegisterOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    
+    final class RegisterInput: APIUploadInputBase {
+        init(_ username: String, password: String, fullname: String, phoneNumber: String) {
+            let params: JSONDictionary = [
+                "UserName": username,
+                "Password": password,
+                "FullName": fullname,
+                "PhoneNumber": phoneNumber
+            ]
+            super.init(data: [], urlString: API.Urls.register,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class RegisterOutput: APIOutput {
+        private(set) var success: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            success <- map["DataList"]
+        }
+    }
+    
+    final class VerifyInput: APIInput {
+        init(_ username: String) {
+            let urlString = String(format: API.Urls.verify, username)
+            super.init( urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
     
     final class LoginInput: APIUploadInputBase {
         init(_ username: String, password: String) {

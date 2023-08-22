@@ -84,7 +84,7 @@ extension UIViewController {
                                y: 0,
                                width: container.frame.size.width,
                                height: container.frame.size.height)
-            let coomingView = CoomingSoonView(frame: frame)
+            let coomingView = EmptyDataView(frame: frame)
             container.addSubview(coomingView)
         })
     }

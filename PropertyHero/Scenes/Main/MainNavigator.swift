@@ -9,7 +9,8 @@ import UIKit
 
 protocol MainNavigatorType {
     func initMain(_ target: MainViewController)
-    func toTabMenu(_ target: MainViewController, tab: TabMenu);
+    func toTabMenu(_ target: MainViewController, tab: TabMenu)
+    func toLogin()
 }
 
 struct MainNavigator: MainNavigatorType {
@@ -35,6 +36,11 @@ struct MainNavigator: MainNavigatorType {
     
     func toTabMenu(_ target: MainViewController, tab: TabMenu) {
         navigationController.showViewControllerInMain(target, tab: tab)
+    }
+    
+    func toLogin() {
+        let vc: LoginViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
     }
 }
 

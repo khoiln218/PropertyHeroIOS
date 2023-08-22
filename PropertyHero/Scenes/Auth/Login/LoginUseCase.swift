@@ -10,7 +10,7 @@ import Dto
 import ValidatedPropertyKit
 
 protocol LoginUseCaseType {
-    func login(_ email: String, password: String) -> Observable<[Account]>
+    func login(_ username: String, password: String) -> Observable<[Account]>
     func validateUsername(_ username: String) -> ValidationResult
     func validatePassword(_ password: String) -> ValidationResult
 }
@@ -18,8 +18,8 @@ protocol LoginUseCaseType {
 struct LoginUseCase: LoginUseCaseType, Login {
     var loginGateway: LoginGatewayType
     
-    func login(_ email: String, password: String) -> Observable<[Account]> {
-        return loginGateway.login(email, password: password)
+    func login(_ username: String, password: String) -> Observable<[Account]> {
+        loginGateway.login(username, password: password)
     }
     
     func validateUsername(_ username: String) -> ValidationResult {

@@ -9,6 +9,7 @@ import UIKit
 
 protocol LoginNavigatorType {
     func goBack()
+    func toRegister()
 }
 
 struct LoginNavigator: LoginNavigatorType {
@@ -17,5 +18,11 @@ struct LoginNavigator: LoginNavigatorType {
     
     func goBack() {
         navigationController.popViewController(animated: false)
+    }
+    
+    func toRegister() {
+        goBack()
+        let vc: RegisterViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
     }
 }

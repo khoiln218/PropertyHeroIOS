@@ -103,8 +103,14 @@ extension MainViewController: TabLayoutDelegate {
             self.viewModel.navigator.toTabMenu(self, tab: .more)
         case 3:
             self.viewModel.navigator.toTabMenu(self, tab: .notification)
+            if !AccountStorage().isLogin() {
+                self.viewModel.navigator.toLogin()
+            }
         case 2:
             self.viewModel.navigator.toTabMenu(self, tab: .collection)
+            if !AccountStorage().isLogin() {
+                self.viewModel.navigator.toLogin()
+            }
         case 1:
             self.viewModel.navigator.toTabMenu(self, tab: .search)
         default:

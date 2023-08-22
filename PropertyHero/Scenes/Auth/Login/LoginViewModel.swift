@@ -27,7 +27,6 @@ extension LoginViewModel: ViewModel {
     struct Output {
         @Property var usernameValidation = ValidationResult.success(())
         @Property var passwordValidation = ValidationResult.success(())
-        @Property var enable = false
         @Property var error: Error?
         @Property var isLoading = false
     }
@@ -107,6 +106,7 @@ extension LoginViewModel: ViewModel {
             .asDriver()
             .drive(output.$isLoading)
             .disposed(by: disposeBag)
+        
         return output
     }
 }

@@ -6,6 +6,7 @@
 //
 
 protocol Assembler: AnyObject,
+                    RegisterAssembler,
                     LoginAssembler,
                     ProductDetailAssembler,
                     ProductListAssembler,
