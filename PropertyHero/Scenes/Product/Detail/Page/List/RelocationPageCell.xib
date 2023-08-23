@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="0.0" id="KGk-i7-Jjw" customClass="RelocationPageCell" customModule="PropertyHero" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="392" height="201"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="-73" id="KGk-i7-Jjw" customClass="RelocationPageCell" customModule="PropertyHero" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="392" height="201"/>
+                <rect key="frame" x="0.0" y="0.0" width="392" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhC-F2-E60" customClass="CardView" customModule="PropertyHero" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="392" height="194"/>
+                        <rect key="frame" x="0.0" y="0.0" width="392" height="116"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBp-PD-ZPx">
                                 <rect key="frame" x="0.0" y="0.0" width="392" height="48"/>
@@ -39,10 +39,10 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="y9v-SP-1ch">
-                                <rect key="frame" x="0.0" y="48" width="392" height="146"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="4" y="48" width="384" height="68"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="146" id="E01-Om-cx9"/>
+                                    <constraint firstAttribute="width" secondItem="y9v-SP-1ch" secondAttribute="height" multiplier="6:1" constant="-24" id="kAQ-Wx-g4p"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d8P-7c-RXc">
                                     <size key="itemSize" width="128" height="128"/>
@@ -57,9 +57,9 @@
                             <constraint firstItem="dBp-PD-ZPx" firstAttribute="leading" secondItem="fhC-F2-E60" secondAttribute="leading" id="CMp-tq-S1m"/>
                             <constraint firstAttribute="bottom" secondItem="y9v-SP-1ch" secondAttribute="bottom" id="IxN-iC-3mn"/>
                             <constraint firstItem="y9v-SP-1ch" firstAttribute="top" secondItem="dBp-PD-ZPx" secondAttribute="bottom" id="bRn-f2-MO9"/>
-                            <constraint firstItem="y9v-SP-1ch" firstAttribute="leading" secondItem="fhC-F2-E60" secondAttribute="leading" id="dQJ-xM-MpH"/>
+                            <constraint firstItem="y9v-SP-1ch" firstAttribute="leading" secondItem="fhC-F2-E60" secondAttribute="leading" constant="4" id="dQJ-xM-MpH"/>
                             <constraint firstItem="dBp-PD-ZPx" firstAttribute="top" secondItem="fhC-F2-E60" secondAttribute="top" id="fb7-gB-KdQ"/>
-                            <constraint firstAttribute="trailing" secondItem="y9v-SP-1ch" secondAttribute="trailing" id="fqL-8Q-V75"/>
+                            <constraint firstAttribute="trailing" secondItem="y9v-SP-1ch" secondAttribute="trailing" constant="4" id="fqL-8Q-V75"/>
                             <constraint firstAttribute="trailing" secondItem="dBp-PD-ZPx" secondAttribute="trailing" id="xGi-2h-oRo"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -86,7 +86,7 @@
             <connections>
                 <outlet property="collectionView" destination="y9v-SP-1ch" id="eqk-Zu-Utz"/>
             </connections>
-            <point key="canvasLocation" x="155.72519083969465" y="43.309859154929576"/>
+            <point key="canvasLocation" x="155.72519083969465" y="16.901408450704228"/>
         </tableViewCell>
     </objects>
     <resources>

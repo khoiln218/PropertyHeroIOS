@@ -16,4 +16,8 @@ extension GetCategory {
     func getBanner() -> Observable<[Banner]> {
         return categoryGateway.getBanner()
     }
+    
+    func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]> {
+        return categoryGateway.getPowerLink(provinceId)
+    }
 }

@@ -10,12 +10,18 @@ import RxSwift
 
 protocol ProductDetailUseCaseType {
     func productDetail(_ productId: Int, accountId: Int, isMeViewThis: Int) -> Observable<Product>
+    func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]>
 }
 
-struct ProductDetailUseCase: ProductDetailUseCaseType, GetProduct {
+struct ProductDetailUseCase: ProductDetailUseCaseType, GetProduct, GetCategory {
     let productGateway: ProductGatewayType
+    var categoryGateway: CategoryGatewayType
     
     func productDetail(_ productId: Int, accountId: Int, isMeViewThis: Int) -> Observable<Product> {
         return productGateway.detail(productId, accountId: accountId, isMeViewThis: isMeViewThis)
+    }
+    
+    func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]> {
+        return categoryGateway.getPowerLink(provinceId)
     }
 }

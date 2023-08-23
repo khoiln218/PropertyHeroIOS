@@ -11,6 +11,7 @@ import MGArchitecture
 
 protocol CategoryGatewayType {
     func getBanner() -> Observable<[Banner]>
+    func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]>
 }
 
 struct CategoryGateway: CategoryGatewayType {
@@ -20,6 +21,14 @@ struct CategoryGateway: CategoryGatewayType {
         
         return API.shared.getBanner(input)
             .map { $0.banners }
+            .unwrap()
+    }
+    
+    func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]> {
+        let input = API.GetPowerLinkInput(provinceId)
+        
+        return API.shared.getPowerLink(input)
+            .map { $0.relocations }
             .unwrap()
     }
 }

@@ -30,6 +30,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
     var viewModel: ProductDetailViewModel!
     var disposeBag = DisposeBag()
     var product: Product!
+    var relocations: [Relocation]!
     var cell = [ProductCellType]()
     private var appearance: UINavigationBarAppearance!
     
@@ -178,43 +179,48 @@ final class ProductDetailViewController: UIViewController, Bindable {
             })
             .disposed(by: disposeBag)
         
-        output.$product
+        output.$detail
             .asDriver()
-            .drive(onNext: { [unowned self] product in
-                if let product = product {
-                    if product.Id == 0 { return }
-                    self.product = product
-                    
-                    self.product.IsMeLikeThis = FavoriteStorage().isFavorite(product.Id) ? 1 : 0
-                    
-                    SeenStorage().addOrUpdateSeen(self.product)
-                    FavoriteStorage().updateFavorite(self.product)
-                    NotificationCenter.default.post(
-                        name: Notification.Name.productChanged,
-                        object: nil)
-                    
-                    (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
-                    
-                    if self.product.ContactPhone.isEmpty {
-                        self.phoneNumber.text = "0971-027-021"
-                    } else {
-                        self.phoneNumber.text = self.product.ContactPhone.substring(to: 4) + "-" + self.product.ContactPhone.substring(with: 4..<7) + "-" + self.product.ContactPhone.substring(from: 7)
+            .drive(onNext: { [unowned self] detail in
+                if let detail = detail {
+                    if let product = detail[0] as? Product, let relocations = detail[1] as? [Relocation] {
+                        if product.Id == 0 { return }
+                        self.product = product
+                        self.relocations = relocations
+                        
+                        self.product.IsMeLikeThis = FavoriteStorage().isFavorite(product.Id) ? 1 : 0
+                        
+                        SeenStorage().addOrUpdateSeen(self.product)
+                        FavoriteStorage().updateFavorite(self.product)
+                        NotificationCenter.default.post(
+                            name: Notification.Name.productChanged,
+                            object: nil)
+                        
+                        (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
+                        
+                        if self.product.ContactPhone.isEmpty {
+                            self.phoneNumber.text = "0971-027-021"
+                        } else {
+                            self.phoneNumber.text = self.product.ContactPhone.substring(to: 4) + "-" + self.product.ContactPhone.substring(with: 4..<7) + "-" + self.product.ContactPhone.substring(from: 7)
+                        }
+                        self.contactName.text = self.product.ContactName.isEmpty ? "Property Hero" : self.product.ContactName
+                        
+                        self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
+                        self.cell.append(.header)
+                        //self.cell.append(.map)
+                        self.cell.append(.attribute)
+                        if !self.product.FeatureList.isEmpty {
+                            self.cell.append(.feature)
+                        }
+                        if !self.relocations.isEmpty {
+                            self.cell.append(.advs)
+                        }
+                        if !self.product.FurnitureList.isEmpty {
+                            self.cell.append(.furniture)
+                        }
+                        self.cell.append(.footer)
+                        self.tableView.reloadData()
                     }
-                    self.contactName.text = self.product.ContactName.isEmpty ? "Property Hero" : self.product.ContactName
-                    
-                    self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
-                    self.cell.append(.header)
-                    //self.cell.append(.map)
-                    self.cell.append(.attribute)
-                    if !self.product.FeatureList.isEmpty {
-                        self.cell.append(.feature)
-                    }
-                    // self.cell.append(.advs)
-                    if !self.product.FurnitureList.isEmpty {
-                        self.cell.append(.furniture)
-                    }
-                    self.cell.append(.footer)
-                    self.tableView.reloadData()
                 }
             })
             .disposed(by: disposeBag)
@@ -282,6 +288,7 @@ extension ProductDetailViewController: UITableViewDataSource {
             )
             .then {
                 $0.selectionStyle = .none
+                $0.bindViewModel(self.relocations)
             }
         case .furniture:
             return tableView.dequeueReusableCell(

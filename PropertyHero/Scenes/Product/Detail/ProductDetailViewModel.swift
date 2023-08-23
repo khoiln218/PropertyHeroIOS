@@ -24,7 +24,7 @@ extension ProductDetailViewModel: ViewModel {
     
     struct Output {
         @Property var productId: Int
-        @Property var product: Product?
+        @Property var detail: [Int: Any]?
         @Property var error: Error?
         @Property var isLoading = false
     }
@@ -42,8 +42,19 @@ extension ProductDetailViewModel: ViewModel {
                     .asDriverOnErrorJustComplete()
             }
         
-        product
-            .drive(output.$product)
+        let relocations = product
+            .flatMapLatest { product in
+                self.useCase.getPowerLink(product.ProvinceID)
+                    .trackError(error)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+                    .map { relocations in
+                        return [0: product, 1: relocations]
+                    }
+            }
+        
+        relocations
+            .drive(output.$detail)
             .disposed(by: disposeBag)
         
         error
