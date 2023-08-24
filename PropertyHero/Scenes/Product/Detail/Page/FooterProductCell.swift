@@ -12,6 +12,8 @@ class FooterProductCell: PageTableCell {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var reportBtn: UIButton!
     
+    var sendReport: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         reportBtn.layer.cornerRadius = 8
@@ -26,5 +28,6 @@ class FooterProductCell: PageTableCell {
     
     
     @IBAction func report(_ sender: Any) {
+        sendReport?()
     }
 }

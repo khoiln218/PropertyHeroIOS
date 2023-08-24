@@ -39,7 +39,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
         case map
         case attribute
         case feature
-        case advs
+        case ads
         case furniture
         case footer
     }
@@ -213,7 +213,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
                             self.cell.append(.feature)
                         }
                         if !self.relocations.isEmpty {
-                            self.cell.append(.advs)
+                            self.cell.append(.ads)
                         }
                         if !self.product.FurnitureList.isEmpty {
                             self.cell.append(.furniture)
@@ -281,7 +281,7 @@ extension ProductDetailViewController: UITableViewDataSource {
                 $0.selectionStyle = .none
                 $0.bindViewModel(self.product.FeatureList)
             }
-        case .advs:
+        case .ads:
             return tableView.dequeueReusableCell(
                 for: indexPath,
                 cellType: RelocationPageCell.self
@@ -289,6 +289,9 @@ extension ProductDetailViewController: UITableViewDataSource {
             .then {
                 $0.selectionStyle = .none
                 $0.bindViewModel(self.relocations)
+                $0.adsClicked = { [unowned self] relocation in
+                    self.viewModel.navigator.toAds(relocation)
+                }
             }
         case .furniture:
             return tableView.dequeueReusableCell(
@@ -307,6 +310,13 @@ extension ProductDetailViewController: UITableViewDataSource {
             .then {
                 $0.selectionStyle = .none
                 $0.bindViewModel(self.product)
+                $0.sendReport = { [unowned self] in
+                    if AccountStorage().isLogin() {
+                        self.viewModel.navigator.toReport()
+                    } else {
+                        self.viewModel.navigator.toLogin()
+                    }
+                }
             }
         }
     }

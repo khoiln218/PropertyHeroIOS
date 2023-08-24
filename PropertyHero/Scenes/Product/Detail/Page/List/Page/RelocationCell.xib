@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,16 +21,42 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oie-A5-T4C">
                         <rect key="frame" x="0.0" y="0.0" width="293" height="158"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-XZ-Gw9">
-                                <rect key="frame" x="4" y="0.0" width="285" height="158"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAP-TK-Fjj" customClass="CardView" customModule="PropertyHero" customModuleProvider="target">
+                                <rect key="frame" x="4" y="1" width="285" height="156"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-XZ-Gw9">
+                                        <rect key="frame" x="0.0" y="0.0" width="285" height="156"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="FU5-XZ-Gw9" secondAttribute="bottom" id="Kdw-50-FCC"/>
+                                    <constraint firstItem="FU5-XZ-Gw9" firstAttribute="top" secondItem="iAP-TK-Fjj" secondAttribute="top" id="c1J-SI-rOL"/>
+                                    <constraint firstAttribute="trailing" secondItem="FU5-XZ-Gw9" secondAttribute="trailing" id="eMy-Tk-Key"/>
+                                    <constraint firstItem="FU5-XZ-Gw9" firstAttribute="leading" secondItem="iAP-TK-Fjj" secondAttribute="leading" id="isF-11-OGa"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" systemColor="systemGray4Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FU5-XZ-Gw9" firstAttribute="top" secondItem="Oie-A5-T4C" secondAttribute="top" id="6ci-Q3-S7G"/>
-                            <constraint firstAttribute="trailing" secondItem="FU5-XZ-Gw9" secondAttribute="trailing" constant="4" id="MdZ-rL-tvn"/>
-                            <constraint firstItem="FU5-XZ-Gw9" firstAttribute="leading" secondItem="Oie-A5-T4C" secondAttribute="leading" constant="4" id="YWw-PV-yMS"/>
-                            <constraint firstAttribute="bottom" secondItem="FU5-XZ-Gw9" secondAttribute="bottom" id="wAq-4y-unG"/>
+                            <constraint firstAttribute="trailing" secondItem="iAP-TK-Fjj" secondAttribute="trailing" constant="4" id="GhH-xL-OWv"/>
+                            <constraint firstItem="iAP-TK-Fjj" firstAttribute="top" secondItem="Oie-A5-T4C" secondAttribute="top" constant="1" id="Gop-Ai-wpz"/>
+                            <constraint firstAttribute="bottom" secondItem="iAP-TK-Fjj" secondAttribute="bottom" constant="1" id="ZNE-O0-syK"/>
+                            <constraint firstItem="iAP-TK-Fjj" firstAttribute="leading" secondItem="Oie-A5-T4C" secondAttribute="leading" constant="4" id="eii-pe-ifd"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -48,4 +75,12 @@
             <point key="canvasLocation" x="286.25954198473283" y="26.760563380281692"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

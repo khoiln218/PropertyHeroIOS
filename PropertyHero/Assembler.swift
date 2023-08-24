@@ -6,6 +6,8 @@
 //
 
 protocol Assembler: AnyObject,
+                    AdsDetailAssembler,
+                    ReportAssembler,
                     RegisterAssembler,
                     LoginAssembler,
                     ProductDetailAssembler,

@@ -11,6 +11,8 @@ class RelocationPageCell: PageTableCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var adsClicked: ((_ relocation: Relocation) -> Void)?
+    
     var data: [Relocation]?
     
     override func awakeFromNib() {
@@ -57,6 +59,10 @@ extension RelocationPageCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension RelocationPageCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        adsClicked?(data![indexPath.row])
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
