@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 import FlexibleTable
+import CoreLocation
 
 final class ProductDetailViewController: UIViewController, Bindable {
     
@@ -144,8 +145,8 @@ final class ProductDetailViewController: UIViewController, Bindable {
         tableView.do {
             $0.dataSource = self
             $0.separatorColor = .clear
-            $0.register(cellType: CoverProductCell.self)
             $0.register(cellType: SummaryProductCell.self)
+            $0.register(cellType: MapProductCell.self)
             $0.register(cellType: AttributeProductCell.self)
             $0.register(cellType: FeaturePageCell.self)
             $0.register(cellType: RelocationPageCell.self)
@@ -207,7 +208,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
                         
                         self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
                         self.cell.append(.header)
-                        //self.cell.append(.map)
+                        self.cell.append(.map)
                         self.cell.append(.attribute)
                         if !self.product.FeatureList.isEmpty {
                             self.cell.append(.feature)
@@ -258,10 +259,11 @@ extension ProductDetailViewController: UITableViewDataSource {
         case .map:
             return tableView.dequeueReusableCell(
                 for: indexPath,
-                cellType: SummaryProductCell.self
+                cellType: MapProductCell.self
             )
             .then {
                 $0.selectionStyle = .none
+                $0.bindViewModel(self.product)
             }
         case .attribute:
             return tableView.dequeueReusableCell(

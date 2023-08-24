@@ -66,7 +66,7 @@ extension RelocationPageCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (Dimension.SCREEN_WIDTH - 8.0) / 3
+        let width = Dimension.SCREEN_WIDTH / 3
         let height = (width - 8.0) / 2
         return CGSize(width: width, height: height)
     }
