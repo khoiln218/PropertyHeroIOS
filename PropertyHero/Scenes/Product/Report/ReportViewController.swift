@@ -47,22 +47,63 @@ final class ReportViewController: UIViewController, Bindable {
         inputReport.layer.cornerRadius = 3
         inputReport.layer.masksToBounds = true
         inputReport.delegate = self
+        
+        sendBtn.backgroundColor = UIColor(hex: "#E0E0E0")
+        sendBtn.titleLabel?.textColor = .white
     }
     
     @IBAction func warningCompletedChecked(_ sender: DLRadioButton) {
         warningType.onNext(0)
+        
+        sendBtn.isEnabled = true
+        sendBtn.backgroundColor = UIColor(hex: "#2B50F6")
+        sendBtn.titleLabel?.textColor = .white
     }
     
     @IBAction func warningInfoChecked(_ sender: DLRadioButton) {
         warningType.onNext(1)
+        
+        sendBtn.isEnabled = true
+        sendBtn.backgroundColor = UIColor(hex: "#2B50F6")
+        sendBtn.titleLabel?.textColor = .white
     }
+    
     func bindViewModel() {
         let input = ReportViewModel.Input(
             warningType: warningType.asDriverOnErrorJustComplete(),
             content: inputReport.rx.text.orEmpty.asDriver(),
             report: sendBtn.rx.tap.asDriver()
         )
+        
         let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$isSuccessful
+            .asDriver()
+            .drive(onNext: { [unowned self] isSuccessful in
+                if let isSuccessful = isSuccessful {
+                    if isSuccessful {
+                        self.showAutoCloseMessage(image: nil, title: nil, message: "Cảm ơn bạn đã phản hồi!") {
+                            self.viewModel.navigator.goBack()
+                        }
+                    } else {
+                        self.showAutoCloseMessage(image: nil, title: nil, message: "Bạn đã phản hồi quá 3 lần cho một tin rao, vui lòng kiểm tra và thử lại") {
+                            self.viewModel.navigator.goBack()
+                        }
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        output.$error
+            .asDriver()
+            .unwrap()
+            .drive(rx.error)
+            .disposed(by: disposeBag)
+        
+        output.$isLoading
+            .asDriver()
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
     }
 }
 

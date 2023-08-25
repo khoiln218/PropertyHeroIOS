@@ -8,10 +8,14 @@
 import UIKit
 
 protocol ReportNavigatorType {
-    
+    func goBack()
 }
 
 struct ReportNavigator: ReportNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
+    
+    func goBack() {
+        navigationController.popViewController(animated: true)
+    }
 }

@@ -38,11 +38,11 @@ class AreaSectionCell: PageCollectionCell {
     func bindViewModel(_ viewModel: PageSectionViewModel<Marker>) {
         data = viewModel.items
         if viewModel.index == 2 {
-            viewmore.text = "BETA"
+            viewmore.text = ""
             viewmore.textColor = UIColor(hex: "#F44336")
             icon.image = UIImage(named: "ic_drawable_korea")
         } else {
-            viewmore.text = "Khu vực khác >"
+            viewmore.text = ""
             viewmore.textColor = UIColor(hex: "#01A0B9")
             icon.image = UIImage(named: "ic_drawable_vn")
         }

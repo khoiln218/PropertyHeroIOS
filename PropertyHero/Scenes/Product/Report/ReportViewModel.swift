@@ -24,11 +24,16 @@ extension ReportViewModel: ViewModel {
     }
     
     struct Output {
-        
+        @Property var isSuccessful: Bool?
+        @Property var error: Error?
+        @Property var isLoading = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
+        
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
         
         input.report
             .withLatestFrom(Driver.combineLatest(
@@ -36,10 +41,23 @@ extension ReportViewModel: ViewModel {
             input.content
         ))
             .flatMapLatest {
-                self.useCase.sendReport(productId, accountId: AccountStorage().getAccount().Id, type: $0.0, content: $0.1)
+                let content = "Nhập mô tả thêm" == $0.1 ? "" : $0.1
+                return self.useCase.sendReport(productId, accountId: AccountStorage().getAccount().Id, type: $0.0, content: content)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
-            .drive()
+            .drive(output.$isSuccessful)
+            .disposed(by: disposeBag)
+        
+        errorTracker
+            .asDriver()
+            .drive(output.$error)
+            .disposed(by: disposeBag)
+        
+        activityIndicator
+            .asDriver()
+            .drive(output.$isLoading)
             .disposed(by: disposeBag)
         
         return output

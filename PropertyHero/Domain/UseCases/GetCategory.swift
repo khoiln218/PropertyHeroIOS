@@ -20,4 +20,8 @@ extension GetCategory {
     func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]> {
         return categoryGateway.getPowerLink(provinceId)
     }
+    
+    func sendWarning(_ productId: Int, accountId: Int, warningType: Int, content: String) -> Observable<Bool> {
+        return categoryGateway.sendWarning(productId, accountId: accountId, warningType: warningType, content: content)
+    }
 }

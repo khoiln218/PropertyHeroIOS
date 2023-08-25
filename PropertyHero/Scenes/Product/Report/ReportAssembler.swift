@@ -38,6 +38,6 @@ extension ReportAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> ReportUseCaseType {
-        return ReportUseCase()
+        return ReportUseCase(categoryGateway: resolve())
     }
 }

@@ -18,6 +18,7 @@ extension API {
         static let apiUtil = BaseUrl + "api/Utilities/"
         static let getBanner = apiUtil + "ListMainBanner"
         static let powerLink = apiUtil + "ListPowerLink/ProvinceID=%d/"
+        static let sendWarning = apiUtil + "SendWarning"
         
         // Location
         static let apiLocation = BaseUrl + "api/Location/"

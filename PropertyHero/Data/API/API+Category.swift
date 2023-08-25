@@ -17,9 +17,37 @@ extension API {
     func getPowerLink(_ input: GetPowerLinkInput) -> Observable<GetPowerLinkOutput> {
         return request(input)
     }
+    
+    func sendWarning(_ input: SendWarningInput) -> Observable<SendWarningOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class SendWarningInput: APIUploadInputBase {
+        init(_ productId: Int, accountId: Int, warningType: Int, content: String) {
+            let params: JSONDictionary = [
+                "ProductID": productId,
+                "AccountID": accountId,
+                "WarningType": warningType,
+                "Content": content
+            ]
+            super.init(data: [], urlString: API.Urls.sendWarning,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class SendWarningOutput: APIOutput {
+        private(set) var isSuccessful: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            isSuccessful <- map["DataList"]
+        }
+    }
+    
     final class GetPowerLinkInput: APIInput {
         init(_ provinceId: Int) {
             let urlString = String(format: API.Urls.powerLink, provinceId)
