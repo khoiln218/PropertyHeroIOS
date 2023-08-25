@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.6.4)
+  - DLRadioButton (1.4.12)
   - Dto (0.2.0):
     - ValidatedPropertyKit (~> 0.0.4)
   - ESPullToRefresh (2.9.3)
@@ -73,6 +74,7 @@ PODS:
   - ValidatedPropertyKit (0.0.4)
 
 DEPENDENCIES:
+  - DLRadioButton (~> 1.4)
   - Dto
   - FlexibleTable
   - Google-Maps-iOS-Utils (~> 4.2.2)
@@ -91,6 +93,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DLRadioButton
     - Dto
     - ESPullToRefresh
     - FlexibleTable
@@ -114,6 +117,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Dto: 0346adb2a98017204d384e981352c7f864296a1f
   ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
   FlexibleTable: 9799aa65cc46cb977f92778d2a2f6dd94cceffa7
@@ -135,6 +139,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: d23c1bd1aa35e6c9fa9fd386a45b40c0d5e5fe27
+PODFILE CHECKSUM: 7bdf6762055217c3cf6bbd23e7086ac35cbd3d23
 
 COCOAPODS: 1.11.3

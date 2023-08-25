@@ -27,6 +27,7 @@ def pods
     pod 'Google-Maps-iOS-Utils', '~>4.2.2'
     
     pod 'FlexibleTable'
+    pod 'DLRadioButton', '~> 1.4'
 end
 
 target 'PropertyHero' do

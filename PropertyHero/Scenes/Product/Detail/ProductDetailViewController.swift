@@ -314,7 +314,7 @@ extension ProductDetailViewController: UITableViewDataSource {
                 $0.bindViewModel(self.product)
                 $0.sendReport = { [unowned self] in
                     if AccountStorage().isLogin() {
-                        self.viewModel.navigator.toReport()
+                        self.viewModel.navigator.toReport(self.product.Id)
                     } else {
                         self.viewModel.navigator.toLogin()
                     }

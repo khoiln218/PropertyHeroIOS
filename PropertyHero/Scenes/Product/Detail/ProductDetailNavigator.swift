@@ -13,7 +13,7 @@ import RxSwift
 protocol ProductDetailNavigatorType {
     func homeBack()
     func toLogin()
-    func toReport()
+    func toReport(_ productId: Int)
     func toAds(_ relocation: Relocation)
 }
 
@@ -36,8 +36,8 @@ struct ProductDetailNavigator: ProductDetailNavigatorType {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func toReport() {
-        let vc: ReportViewController = assembler.resolve(navigationController: navigationController)
+    func toReport(_ productId: Int) {
+        let vc: ReportViewController = assembler.resolve(navigationController: navigationController, productId: productId)
         navigationController.pushViewController(vc, animated: true)
     }
     

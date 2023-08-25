@@ -9,24 +9,25 @@ import UIKit
 import Reusable
 
 protocol ReportAssembler {
-    func resolve(navigationController: UINavigationController) -> ReportViewController
-    func resolve(navigationController: UINavigationController) -> ReportViewModel
+    func resolve(navigationController: UINavigationController, productId: Int) -> ReportViewController
+    func resolve(navigationController: UINavigationController, productId: Int) -> ReportViewModel
     func resolve(navigationController: UINavigationController) -> ReportNavigatorType
     func resolve() -> ReportUseCaseType
 }
 
 extension ReportAssembler {
-    func resolve(navigationController: UINavigationController) -> ReportViewController {
+    func resolve(navigationController: UINavigationController, productId: Int) -> ReportViewController {
         let vc = ReportViewController.instantiate()
-        let vm: ReportViewModel = resolve(navigationController: navigationController)
+        let vm: ReportViewModel = resolve(navigationController: navigationController, productId: productId)
         vc.bindViewModel(to: vm)
         return vc
     }
     
-    func resolve(navigationController: UINavigationController) -> ReportViewModel {
+    func resolve(navigationController: UINavigationController, productId: Int) -> ReportViewModel {
         return ReportViewModel(
             navigator: resolve(navigationController: navigationController),
-            useCase: resolve()
+            useCase: resolve(),
+            productId: productId
         )
     }
 }

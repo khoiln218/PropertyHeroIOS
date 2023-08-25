@@ -8,9 +8,12 @@
 import RxSwift
 
 protocol ReportUseCaseType {
-    
+    func sendReport(_ productId: Int, accountId: Int, type: Int, content: String) -> Observable<Bool>
 }
 
 struct ReportUseCase: ReportUseCaseType {
     
+    func sendReport(_ productId: Int, accountId: Int, type: Int, content: String) -> Observable<Bool> {
+        Observable.just(true)
+    }
 }
