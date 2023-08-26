@@ -1030,7 +1030,9 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="RvK-Hx-hbl" id="PS6-EF-wfr"/>
+                        <outlet property="districtIcon" destination="jKn-T5-Dd7" id="ugc-2E-TBO"/>
                         <outlet property="districtSpinner" destination="gjE-aL-3E8" id="KwQ-jJ-UkD"/>
+                        <outlet property="provinceIcon" destination="t2J-7E-G78" id="RQY-X1-LIZ"/>
                         <outlet property="provinceSpinner" destination="pWH-be-LFu" id="39G-n9-oTW"/>
                         <outlet property="searchBtn" destination="aYn-46-L4T" id="1sC-Bx-U1T"/>
                     </connections>

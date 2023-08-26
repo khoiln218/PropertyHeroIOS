@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum AccountStatus: Int {
+    case accLocked = 200
+}
+
 enum AccountType: Int {
     case hero = 0
     case facebook = 1

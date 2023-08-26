@@ -47,6 +47,9 @@ final class RegisterViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        registerBtn.layer.cornerRadius = 3
+        registerBtn.layer.masksToBounds = true
+        
         title = "Đăng ký"
     }
     
@@ -61,6 +64,20 @@ final class RegisterViewController: UIViewController, Bindable {
             register: registerBtn.rx.tap.asDriver())
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$accounts
+            .asDriver()
+            .drive(onNext: { [unowned self] accounts in
+                if let accounts = accounts {
+                    if !accounts.isEmpty {
+                        let accountResult = accounts[0]
+                        self.onSuccess(accountResult)
+                    } else {
+                        self.onFails()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         
         output.$usernameValidation
             .asDriver()
@@ -97,6 +114,26 @@ final class RegisterViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    func onSuccess(_ account: Account) {
+        DispatchQueue.main.async {
+            AccountStorage().saveAccount(account)
+            AccountStorage().setIsLogin()
+            NotificationCenter.default.post(
+                name: Notification.Name.loginSuccess,
+                object: nil,
+                userInfo: ["account": account])
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Đăng ký thành công") {
+                self.viewModel.navigator.goBack()
+            }
+        }
+    }
+    
+    func onFails() {
+        DispatchQueue.main.async {
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Lỗi hệ thống vui lòng thử lại")
+        }
     }
 }
 

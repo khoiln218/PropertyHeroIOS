@@ -8,10 +8,15 @@
 import UIKit
 
 protocol ProfileNavigatorType {
-    
+    func toAccountDeletion()
 }
 
 struct ProfileNavigator: ProfileNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
+    
+    func toAccountDeletion() {
+        let vc: AccountDeletionViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

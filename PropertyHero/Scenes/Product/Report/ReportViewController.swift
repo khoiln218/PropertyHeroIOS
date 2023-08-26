@@ -33,6 +33,11 @@ final class ReportViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        removeBackButtonTitle()
+    }
+    
     deinit {
         logDeinit()
     }

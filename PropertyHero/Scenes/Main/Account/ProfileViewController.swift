@@ -33,6 +33,11 @@ final class ProfileViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        removeBackButtonTitle()
+    }
+    
     deinit {
         logDeinit()
     }
@@ -41,6 +46,7 @@ final class ProfileViewController: UIViewController, Bindable {
     
     private func configView() {
         self.deleteBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.deleteBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onDelete(_:))))
         
         self.avatar.layer.borderWidth = 1.0
         self.avatar.layer.masksToBounds = false
@@ -49,6 +55,10 @@ final class ProfileViewController: UIViewController, Bindable {
         self.avatar.clipsToBounds = true
         
         self.title = "Cá nhân"
+    }
+    
+    @objc func onDelete(_ sender: UITapGestureRecognizer) {
+        self.viewModel.navigator.toAccountDeletion()
     }
     
     func bindViewModel() {

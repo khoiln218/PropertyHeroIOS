@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 
 protocol ProductDetailNavigatorType {
-    func homeBack()
     func toLogin()
     func toReport(_ productId: Int)
     func toAds(_ relocation: Relocation)
@@ -20,16 +19,6 @@ protocol ProductDetailNavigatorType {
 struct ProductDetailNavigator: ProductDetailNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
-    
-    func homeBack() {
-        navigationController.popToRootViewController(animated: false)
-        for viewController in navigationController.viewControllers {
-            if viewController is UITabBarController {
-                (viewController as! UITabBarController).selectedIndex = 0
-                break
-            }
-        }
-    }
     
     func toLogin() {
         let vc: LoginViewController = assembler.resolve(navigationController: navigationController)

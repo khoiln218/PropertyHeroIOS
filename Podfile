@@ -25,6 +25,7 @@ def pods
     # Google Maps
     pod 'GoogleMaps', '~>7.3.0'
     pod 'Google-Maps-iOS-Utils', '~>4.2.2'
+    pod 'FirebaseDatabase'
     
     pod 'FlexibleTable'
     pod 'DLRadioButton', '~> 1.4'

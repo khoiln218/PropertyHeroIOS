@@ -51,6 +51,10 @@ final class MoreViewController: UIViewController, Bindable {
                                                selector: #selector(loginSuccess(_:)),
                                                name: NSNotification.Name.loginSuccess,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setupLogoutUI(_:)),
+                                               name: NSNotification.Name.logout,
+                                               object: nil)
         
         self.account.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.rating.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
@@ -122,6 +126,13 @@ final class MoreViewController: UIViewController, Bindable {
         NotificationCenter.default.post(
             name: Notification.Name.logout,
             object: nil)
+    }
+    
+    @objc func setupLogoutUI(_ notification: NSNotification) {
+        accountAvatar.image = UIImage(named: "vector_action_login")
+        loginLabel.visible()
+        accountInfo.hidden()
+        logout.hidden()
     }
     
     func bindViewModel() {

@@ -12,6 +12,7 @@ import RxCocoa
 import Reusable
 import Then
 import Dto
+import FirebaseDatabase
 
 final class LoginViewController: UIViewController, Bindable {
     
@@ -27,6 +28,7 @@ final class LoginViewController: UIViewController, Bindable {
     
     var viewModel: LoginViewModel!
     var disposeBag = DisposeBag()
+    var ref: DatabaseReference!
     
     // MARK: - Life Cycle
     
@@ -46,6 +48,8 @@ final class LoginViewController: UIViewController, Bindable {
         loginBtn.layer.masksToBounds = true
         
         title = "Đăng nhập"
+        
+        self.ref = Database.database(url: "https://property-hero-460a8-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     }
     
     @IBAction func registerMember(_ sender: Any) {
@@ -72,6 +76,36 @@ final class LoginViewController: UIViewController, Bindable {
             .drive(passwordValidationBinder)
             .disposed(by: disposeBag)
         
+        output.$accounts
+            .asDriver()
+            .drive(onNext: { [unowned self] accounts in
+                if let accounts = accounts {
+                    if !accounts.isEmpty {
+                        let accountResult = accounts[0]
+                        if accountResult.AccountType == AccountStatus.accLocked.rawValue {
+                            self.onAccLock()
+                            return
+                        }
+                        self.ref.child("account").child("deletion").child(String(accountResult.Id)).getData(completion:  { [unowned self] error, snapshot in
+                            guard error == nil else {
+                                print(error!.localizedDescription)
+                                self.onFails()
+                                return
+                            }
+                            if let account = snapshot?.value as? [String: Any] {
+                                print(account)
+                                self.onDeletion()
+                            } else {
+                                self.onSuccess(accountResult)
+                            }
+                        });
+                    } else {
+                        self.onFails()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         output.$error
             .asDriver()
             .unwrap()
@@ -82,6 +116,38 @@ final class LoginViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    func onSuccess(_ account: Account) {
+        DispatchQueue.main.async {
+            AccountStorage().saveAccount(account)
+            AccountStorage().setIsLogin()
+            NotificationCenter.default.post(
+                name: Notification.Name.loginSuccess,
+                object: nil,
+                userInfo: ["account": account])
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Đăng nhập thành công") {
+                self.viewModel.navigator.goBack()
+            }
+        }
+    }
+    
+    func onAccLock() {
+        DispatchQueue.main.async {
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Tài khoản đã bị khóa tạm thời")
+        }
+    }
+    
+    func onDeletion() {
+        DispatchQueue.main.async {
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Tài khoản đã bị xóa")
+        }
+    }
+    
+    func onFails() {
+        DispatchQueue.main.async {
+            self.showAutoCloseMessage(image: nil, title: nil, message: "Tài khoản hoặc mật khẩu không đúng")
+        }
     }
 }
 

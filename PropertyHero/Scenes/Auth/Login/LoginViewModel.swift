@@ -27,6 +27,7 @@ extension LoginViewModel: ViewModel {
     struct Output {
         @Property var usernameValidation = ValidationResult.success(())
         @Property var passwordValidation = ValidationResult.success(())
+        @Property var accounts: [Account]?
         @Property var error: Error?
         @Property var isLoading = false
     }
@@ -75,22 +76,7 @@ extension LoginViewModel: ViewModel {
             }
         
         login
-            .drive(onNext: { result in
-                if !result.isEmpty {
-                    let account = result[0]
-                    AccountStorage().saveAccount(account)
-                    AccountStorage().setIsLogin()
-                    NotificationCenter.default.post(
-                        name: Notification.Name.loginSuccess,
-                        object: nil,
-                        userInfo: ["account": account])
-                    self.navigator.goBack()
-                    
-                } else {
-                    let error = NSError(domain: "", code: 401, userInfo: [ NSLocalizedDescriptionKey: "Tài khoản hoặc mật khẩu không đúng"])
-                    loginFail.onNext(error)
-                }
-            })
+            .drive(output.$accounts)
             .disposed(by: disposeBag)
         
         let error = Driver.merge(

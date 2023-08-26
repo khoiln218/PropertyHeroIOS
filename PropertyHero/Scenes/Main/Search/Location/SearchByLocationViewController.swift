@@ -18,7 +18,9 @@ final class SearchByLocationViewController: UIViewController, Bindable {
     // MARK: - IBOutlets
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var provinceSpinner: UILabel!
+    @IBOutlet weak var provinceIcon: UIImageView!
     @IBOutlet weak var districtSpinner: UILabel!
+    @IBOutlet weak var districtIcon: UIImageView!
     @IBOutlet weak var searchBtn: UIButton!
     
     // MARK: - Properties
@@ -49,11 +51,15 @@ final class SearchByLocationViewController: UIViewController, Bindable {
         provinceSpinner.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
         provinceSpinner.layer.cornerRadius = 3
         provinceSpinner.layer.masksToBounds = true
+        provinceIcon.layer.cornerRadius = 3
+        provinceIcon.layer.masksToBounds = true
         
         districtSpinner.layer.borderWidth = 1
         districtSpinner.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
         districtSpinner.layer.cornerRadius = 3
         districtSpinner.layer.masksToBounds = true
+        districtIcon.layer.cornerRadius = 3
+        districtIcon.layer.masksToBounds = true
         
         searchBtn.layer.cornerRadius = 3
         searchBtn.layer.masksToBounds = true

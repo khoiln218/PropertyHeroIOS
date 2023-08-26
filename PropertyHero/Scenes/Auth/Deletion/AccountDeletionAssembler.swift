@@ -37,6 +37,6 @@ extension AccountDeletionAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> AccountDeletionUseCaseType {
-        return AccountDeletionUseCase()
+        return AccountDeletionUseCase(loginGateway: resolve())
     }
 }
