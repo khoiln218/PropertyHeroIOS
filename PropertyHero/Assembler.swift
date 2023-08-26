@@ -6,6 +6,9 @@
 //
 
 protocol Assembler: AnyObject,
+                    FilterAssembler,
+                    ProfileAssembler,
+                    AccountDeletionAssembler,
                     AdsDetailAssembler,
                     ReportAssembler,
                     RegisterAssembler,

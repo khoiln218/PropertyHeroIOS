@@ -9,6 +9,7 @@ import UIKit
 
 protocol MoreNavigatorType {
     func toLogin()
+    func toProfile(_ account: Account)
 }
 
 struct MoreNavigator: MoreNavigatorType {
@@ -17,6 +18,11 @@ struct MoreNavigator: MoreNavigatorType {
     
     func toLogin() {
         let vc: LoginViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func toProfile(_ account: Account) {
+        let vc: ProfileViewController = assembler.resolve(navigationController: navigationController, account: account)
         navigationController.pushViewController(vc, animated: true)
     }
 }

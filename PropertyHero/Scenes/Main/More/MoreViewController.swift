@@ -32,8 +32,6 @@ final class MoreViewController: UIViewController, Bindable {
     
     var viewModel: MoreViewModel!
     var disposeBag = DisposeBag()
-    var accountAction: UITapGestureRecognizer!
-    var logoutAction: UITapGestureRecognizer!
     
     // MARK: - Life Cycle
     
@@ -59,24 +57,23 @@ final class MoreViewController: UIViewController, Bindable {
         self.feedback.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.myProduct.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.setting.addBorders(edges: [.top,.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.logout.addBorders(edges: [.top,.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         
-        self.accountAction = UITapGestureRecognizer(target: self, action: #selector(onAccount(_:)))
-        self.logoutAction = UITapGestureRecognizer(target: self, action: #selector(onLogout(_:)))
         let isLogin = AccountStorage().isLogin()
         if isLogin {
             let account = AccountStorage().getAccount()
             loginLabel.hidden()
             accountInfo.visible()
-            accountAvatar.setImage(with: URL(string: account.Avatar))
+            accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
             fullname.text = account.FullName
             username.text = account.UserName
             logout.visible()
-            self.logout.addGestureRecognizer(logoutAction)
         } else {
-            self.account.addGestureRecognizer(accountAction)
             logout.hidden()
         }
         
+        self.account.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccount(_:))))
+        self.logout.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLogout(_:))))
         self.rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onRating(_:))))
         self.feedback.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFeedback(_:))))
         self.myProduct.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMyProduct(_:))))
@@ -90,7 +87,12 @@ final class MoreViewController: UIViewController, Bindable {
     }
     
     @objc func onAccount(_ sender: UITapGestureRecognizer) {
-        self.viewModel.navigator.toLogin()
+        let isLogin = AccountStorage().isLogin()
+        if isLogin {
+            self.viewModel.navigator.toProfile(AccountStorage().getAccount())
+        } else {
+            self.viewModel.navigator.toLogin()
+        }
     }
     
     @objc func onRating(_ sender: UITapGestureRecognizer) {
@@ -117,8 +119,6 @@ final class MoreViewController: UIViewController, Bindable {
         accountInfo.hidden()
         logout.hidden()
         AccountStorage().logout()
-        self.account.addGestureRecognizer(accountAction)
-        self.logout.removeGestureRecognizer(logoutAction)
         NotificationCenter.default.post(
             name: Notification.Name.logout,
             object: nil)
@@ -136,12 +136,10 @@ final class MoreViewController: UIViewController, Bindable {
                 let account = userInfo["account"]!
                 loginLabel.hidden()
                 accountInfo.visible()
-                accountAvatar.setImage(with: URL(string: account.Avatar))
+                accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
                 fullname.text = account.FullName
                 username.text = account.UserName
                 logout.visible()
-                self.account.removeGestureRecognizer(accountAction)
-                self.logout.addGestureRecognizer(logoutAction)
             }
         }
     }
