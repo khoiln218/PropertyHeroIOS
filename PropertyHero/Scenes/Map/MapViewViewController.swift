@@ -175,7 +175,7 @@ extension MapViewViewController: GMSMapViewDelegate {
         let camView = mapView.projection.visibleRegion()
         let bounds = GMSCoordinateBounds(region: camView)
         DefaultStorage().setLastLatLng(cameraPosition.target.latitude, lng: cameraPosition.target.longitude, zoom: cameraPosition.zoom)
-        let searchInfo = SearchInfo(startLat: bounds.southWest.latitude, startLng: bounds.southWest.longitude, endLat: bounds.northEast.latitude, endLng: bounds.northEast.longitude, distance: 0.0, propertyType: self.propertyType.rawValue, status: Constants.undefined.rawValue)
+        let searchInfo = SearchInfo(startLat: bounds.southWest.latitude, startLng: bounds.southWest.longitude, endLat: bounds.northEast.latitude, endLng: bounds.northEast.longitude, distance: 0.0, propertyID: self.propertyType.rawValue, status: Constants.undefined.rawValue)
         self.cameraChanged.onNext(searchInfo)
     }
     

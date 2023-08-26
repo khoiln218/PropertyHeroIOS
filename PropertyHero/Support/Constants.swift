@@ -40,10 +40,12 @@ enum TabMenu: Int {
 }
 
 enum PropertyType: Int {
-    case all = 254
-    case house = 0
-    case apartment = 1
-    case room = 2
+    case all = 1000
+    case house = 1020
+    case apartment = 1010
+    case land = 1040
+    case room = 1050
+    case office = 1030
 }
 
 enum CountryId: Int {
