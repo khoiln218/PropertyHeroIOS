@@ -19,7 +19,10 @@ final class ProfileViewController: UIViewController, Bindable {
     @IBOutlet weak var avatarBtn: UIImageView!
     @IBOutlet weak var fullname: UILabel!
     @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var userInfo: UIView!
+    @IBOutlet weak var changePw: UIView!
     @IBOutlet weak var deleteBtn: UIView!
+    @IBOutlet weak var logoutBtn: UIView!
     
     // MARK: - Properties
     
@@ -45,8 +48,12 @@ final class ProfileViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        self.deleteBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.userInfo.addBorders(edges: [.top], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.changePw.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.deleteBtn.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.logoutBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.deleteBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onDelete(_:))))
+        self.logoutBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLogout(_:))))
         
         self.avatar.layer.borderWidth = 1.0
         self.avatar.layer.masksToBounds = false
@@ -55,6 +62,15 @@ final class ProfileViewController: UIViewController, Bindable {
         self.avatar.clipsToBounds = true
         
         self.title = "Cá nhân"
+    }
+    
+    @objc func onLogout(_ sender: UITapGestureRecognizer) {
+        AccountStorage().logout()
+        NotificationCenter.default.post(
+            name: Notification.Name.logout,
+            object: nil)
+        self.viewModel.navigator.backHome()
+        
     }
     
     @objc func onDelete(_ sender: UITapGestureRecognizer) {

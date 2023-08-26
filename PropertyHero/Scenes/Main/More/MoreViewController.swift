@@ -26,7 +26,6 @@ final class MoreViewController: UIViewController, Bindable {
     @IBOutlet weak var feedback: UIView!
     @IBOutlet weak var myProduct: UIView!
     @IBOutlet weak var setting: UIView!
-    @IBOutlet weak var logout: UIView!
     
     // MARK: - Properties
     
@@ -61,7 +60,6 @@ final class MoreViewController: UIViewController, Bindable {
         self.feedback.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.myProduct.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.setting.addBorders(edges: [.top,.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
-        self.logout.addBorders(edges: [.top,.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         
         let isLogin = AccountStorage().isLogin()
         if isLogin {
@@ -71,13 +69,9 @@ final class MoreViewController: UIViewController, Bindable {
             accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
             fullname.text = account.FullName
             username.text = account.UserName
-            logout.visible()
-        } else {
-            logout.hidden()
         }
         
         self.account.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccount(_:))))
-        self.logout.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLogout(_:))))
         self.rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onRating(_:))))
         self.feedback.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onFeedback(_:))))
         self.myProduct.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMyProduct(_:))))
@@ -117,22 +111,10 @@ final class MoreViewController: UIViewController, Bindable {
         print(#function)
     }
     
-    @objc func onLogout(_ sender: UITapGestureRecognizer) {
-        accountAvatar.image = UIImage(named: "vector_action_login")
-        loginLabel.visible()
-        accountInfo.hidden()
-        logout.hidden()
-        AccountStorage().logout()
-        NotificationCenter.default.post(
-            name: Notification.Name.logout,
-            object: nil)
-    }
-    
     @objc func setupLogoutUI(_ notification: NSNotification) {
         accountAvatar.image = UIImage(named: "vector_action_login")
         loginLabel.visible()
         accountInfo.hidden()
-        logout.hidden()
     }
     
     func bindViewModel() {
@@ -150,7 +132,6 @@ final class MoreViewController: UIViewController, Bindable {
                 accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
                 fullname.text = account.FullName
                 username.text = account.UserName
-                logout.visible()
             }
         }
     }
