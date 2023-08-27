@@ -44,6 +44,8 @@ class AttributeProductCell: PageTableCell {
         }
         if viewModel.FloorCount > 0 {
             floorText.append(" / \(viewModel.FloorCount)")
+        } else {
+            floorText.append(" / -")
         }
         floor.text = floorText
         

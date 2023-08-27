@@ -45,6 +45,9 @@ final class ReportViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        sendBtn.layer.cornerRadius = 3
+        sendBtn.layer.masksToBounds = true
+        
         title = "Báo thông tin ảo"
         
         inputReport.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
