@@ -23,9 +23,11 @@ extension ProductListViewModel: ViewModel {
         let reload: Driver<Void>
         let loadMore: Driver<Void>
         let selectProduct: Driver<IndexPath>
+        let filter: Driver<Void>
     }
     
     struct Output {
+        @Property var distance: Double?
         @Property var title: String?
         @Property var products: [Product]?
         @Property var error: Error?
@@ -36,7 +38,7 @@ extension ProductListViewModel: ViewModel {
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output(title: title)
+        let output = Output(distance: searchInfo.distance, title: title)
         
         let errorTracker = ErrorTracker()
         let activityIndicator = PageActivityIndicator()
@@ -44,22 +46,45 @@ extension ProductListViewModel: ViewModel {
         let isReloading = activityIndicator.isReloading
         let error = errorTracker.asDriver()
         
+        let filterChanged = PublishSubject<Void>()
+        
+        input.filter
+            .flatMapLatest { _ -> Driver<FilterChangedDelegate> in
+                self.navigator.toFilter()
+            }
+            .drive(onNext: { delegate in
+                switch delegate {
+                case .onChanged(_):
+                    filterChanged.onNext(())
+                }
+            })
+            .disposed(by: disposeBag)
         
         let getPageInput = GetPageInput(
             pageActivityIndicator: activityIndicator,
             errorTracker: errorTracker,
             loadTrigger: input.load,
-            reloadTrigger: input.reload,
+            reloadTrigger: Driver.merge(input.reload, filterChanged.asDriverOnErrorJustComplete()),
             loadMoreTrigger: input.loadMore,
             getItems: { _, page in
-                let newFilter = SearchInfo(startLat: searchInfo.startLat,
-                                           startLng: searchInfo.startLng,
-                                           endLat: searchInfo.endLat,
-                                           endLng: searchInfo.endLng,
-                                           distance: searchInfo.distance,
-                                           propertyType: searchInfo.propertyType,
-                                           status: searchInfo.status,
-                                           pageNo: page)
+                let filterSet = FilterStorage().getFilterSet()
+                let newFilter = SearchInfo(
+                    startLat: searchInfo.startLat,
+                    startLng: searchInfo.startLng,
+                    endLat: searchInfo.endLat,
+                    endLng: searchInfo.endLng,
+                    distance: searchInfo.distance,
+                    propertyType: Constants.undefined.rawValue,
+                    propertyID: searchInfo.propertyID == 0 ? filterSet.propertyID : searchInfo.propertyID,
+                    minPrice: filterSet.minPrice,
+                    maxPrice: filterSet.maxPrice,
+                    minArea: filterSet.minArea,
+                    maxArea: filterSet.maxArea,
+                    bed: filterSet.bed,
+                    bath: filterSet.bath,
+                    status: Constants.undefined.rawValue,
+                    pageNo: page
+                )
                 return self.useCase.search(newFilter)
             }
         )

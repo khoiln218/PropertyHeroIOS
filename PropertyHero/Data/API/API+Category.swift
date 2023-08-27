@@ -21,9 +21,31 @@ extension API {
     func sendWarning(_ input: SendWarningInput) -> Observable<SendWarningOutput> {
         return request(input)
     }
+    
+    func getListProperty(_ input: ListPropertyInput) -> Observable<ListPropertyOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class ListPropertyInput: APIInput {
+        init() {
+            super.init(urlString: API.Urls.listProperty,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class ListPropertyOutput: APIOutput {
+        private(set) var option: Option?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            option <- map["DataList"]
+        }
+    }
+    
     final class SendWarningInput: APIUploadInputBase {
         init(_ productId: Int, accountId: Int, warningType: Int, content: String) {
             let params: JSONDictionary = [

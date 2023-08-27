@@ -9,6 +9,7 @@ import MGArchitecture
 import RxSwift
 import RxCocoa
 import CoreLocation
+import GoogleMaps
 
 struct MapViewViewModel {
     let navigator: MapViewNavigatorType
@@ -21,19 +22,21 @@ struct MapViewViewModel {
 // MARK: - ViewModel
 extension MapViewViewModel: ViewModel {
     struct Input {
-        let cameraChaged: Driver<SearchInfo>
+        let filter: Driver<Void>
+        let cameraChaged: Driver<GMSCoordinateBounds>
         let viewmore: Driver<Void>
     }
     
     struct Output {
-        @Property var extraData: [String: Any]?
+        @Property var title: String?
+        @Property var latlng: CLLocationCoordinate2D?
         @Property var products: [Product] = []
         @Property var error: Error?
         @Property var isLoading = false
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output(extraData: ["Title": title, "Latlng": latlng, "Type": type])
+        let output = Output(title: title, latlng: latlng)
         
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
@@ -41,7 +44,25 @@ extension MapViewViewModel: ViewModel {
         let error = errorTracker.asDriver()
         
         let products = input.cameraChaged
-            .flatMapLatest { searchInfo -> Driver<[Product]> in
+            .flatMapLatest { bounds -> Driver<[Product]> in
+                let filterSet = FilterStorage().getFilterSet()
+                let searchInfo = SearchInfo(
+                    startLat: bounds.southWest.latitude,
+                    startLng: bounds.southWest.longitude,
+                    endLat: bounds.northEast.latitude,
+                    endLng: bounds.northEast.longitude,
+                    distance: 0.0,
+                    propertyType: Constants.undefined.rawValue,
+                    propertyID: self.type.rawValue == 0 ? filterSet.propertyID : self.type.rawValue,
+                    minPrice: filterSet.minPrice,
+                    maxPrice: filterSet.maxPrice,
+                    minArea: filterSet.minArea,
+                    maxArea: filterSet.maxArea,
+                    bed: filterSet.bed,
+                    bath: filterSet.bath,
+                    status: Constants.undefined.rawValue,
+                    pageNo: 1
+                )
                 return self.useCase.search(searchInfo)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
@@ -50,8 +71,64 @@ extension MapViewViewModel: ViewModel {
         
         input.viewmore
             .withLatestFrom(input.cameraChaged)
-            .drive(onNext: { searchInfo in
+            .drive(onNext: { bounds in
+                let filterSet = FilterStorage().getFilterSet()
+                let searchInfo = SearchInfo(
+                    startLat: bounds.southWest.latitude,
+                    startLng: bounds.southWest.longitude,
+                    endLat: bounds.northEast.latitude,
+                    endLng: bounds.northEast.longitude,
+                    distance: 0.0,
+                    propertyType: Constants.undefined.rawValue,
+                    propertyID: self.type.rawValue == 0 ? filterSet.propertyID : self.type.rawValue,
+                    minPrice: filterSet.minPrice,
+                    maxPrice: filterSet.maxPrice,
+                    minArea: filterSet.minArea,
+                    maxArea: filterSet.maxArea,
+                    bed: filterSet.bed,
+                    bath: filterSet.bath,
+                    status: Constants.undefined.rawValue,
+                    pageNo: 1
+                )
                 self.navigator.toProductList(searchInfo, title: title)
+            })
+            .disposed(by: disposeBag)
+        
+        input.filter
+            .flatMapLatest { _ -> Driver<FilterChangedDelegate> in
+                self.navigator.toFilter()
+            }
+            .drive(onNext: { delegate in
+                switch delegate {
+                case .onChanged(_):
+                    Driver.just(()).withLatestFrom(input.cameraChaged)
+                        .flatMapLatest { bounds in
+                            let filterSet = FilterStorage().getFilterSet()
+                            let searchInfo = SearchInfo(
+                                startLat: bounds.southWest.latitude,
+                                startLng: bounds.southWest.longitude,
+                                endLat: bounds.northEast.latitude,
+                                endLng: bounds.northEast.longitude,
+                                distance: 0.0,
+                                propertyType: Constants.undefined.rawValue,
+                                propertyID: filterSet.propertyID,
+                                minPrice: filterSet.minPrice,
+                                maxPrice: filterSet.maxPrice,
+                                minArea: filterSet.minArea,
+                                maxArea: filterSet.maxArea,
+                                bed: filterSet.bed,
+                                bath: filterSet.bath,
+                                status: Constants.undefined.rawValue,
+                                pageNo: 1
+                            )
+                            return self.useCase.search(searchInfo)
+                                .trackError(errorTracker)
+                                .trackActivity(activityIndicator)
+                                .asDriverOnErrorJustComplete()
+                        }
+                        .drive(output.$products)
+                        .disposed(by: disposeBag)
+                }
             })
             .disposed(by: disposeBag)
         

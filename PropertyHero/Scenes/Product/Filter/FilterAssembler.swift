@@ -6,27 +6,29 @@
 //
 
 import UIKit
+import RxSwift
 import Reusable
 
 protocol FilterAssembler {
-    func resolve(navigationController: UINavigationController) -> FilterViewController
-    func resolve(navigationController: UINavigationController) -> FilterViewModel
+    func resolve(navigationController: UINavigationController, delegate: PublishSubject<FilterChangedDelegate>) -> FilterViewController
+    func resolve(navigationController: UINavigationController, delegate: PublishSubject<FilterChangedDelegate>) -> FilterViewModel
     func resolve(navigationController: UINavigationController) -> FilterNavigatorType
     func resolve() -> FilterUseCaseType
 }
 
 extension FilterAssembler {
-    func resolve(navigationController: UINavigationController) -> FilterViewController {
+    func resolve(navigationController: UINavigationController, delegate: PublishSubject<FilterChangedDelegate>) -> FilterViewController {
         let vc = FilterViewController.instantiate()
-        let vm: FilterViewModel = resolve(navigationController: navigationController)
+        let vm: FilterViewModel = resolve(navigationController: navigationController, delegate: delegate)
         vc.bindViewModel(to: vm)
         return vc
     }
     
-    func resolve(navigationController: UINavigationController) -> FilterViewModel {
+    func resolve(navigationController: UINavigationController, delegate: PublishSubject<FilterChangedDelegate>) -> FilterViewModel {
         return FilterViewModel(
             navigator: resolve(navigationController: navigationController),
-            useCase: resolve()
+            useCase: resolve(),
+            delegate: delegate
         )
     }
 }
@@ -37,6 +39,6 @@ extension FilterAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> FilterUseCaseType {
-        return FilterUseCase()
+        return FilterUseCase(categoryGateway: resolve())
     }
 }

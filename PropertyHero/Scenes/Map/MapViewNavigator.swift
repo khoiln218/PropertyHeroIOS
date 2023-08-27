@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol MapViewNavigatorType {
     func toProductDetail(_ productId: Int)
     func toProductList(_ searchInfo: SearchInfo, title: String)
     func toSearchByMarker()
+    func toFilter() -> Driver<FilterChangedDelegate>
 }
 
 struct MapViewNavigator: MapViewNavigatorType {
@@ -43,5 +46,13 @@ struct MapViewNavigator: MapViewNavigatorType {
             searchViewController!.tabLayout.setIndex(index: 1, animated: false, scroll: false)
             searchViewController!.viewModel.navigator.toSearchMenu(searchViewController!, tab: .marker)
         }
+    }
+    
+    func toFilter() -> Driver<FilterChangedDelegate> {
+        let delegate = PublishSubject<FilterChangedDelegate>()
+        let vc: FilterViewController = assembler.resolve(navigationController: navigationController, delegate: delegate)
+        navigationController.pushViewController(vc, animated: true)
+        
+        return delegate.asDriverOnErrorJustComplete()
     }
 }

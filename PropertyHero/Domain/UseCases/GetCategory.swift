@@ -24,4 +24,8 @@ extension GetCategory {
     func sendWarning(_ productId: Int, accountId: Int, warningType: Int, content: String) -> Observable<Bool> {
         return categoryGateway.sendWarning(productId, accountId: accountId, warningType: warningType, content: content)
     }
+    
+    func getListProperty() -> Observable<[PropertyId]> {
+        return categoryGateway.getListProperty()
+    }
 }

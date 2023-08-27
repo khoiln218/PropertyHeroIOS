@@ -32,10 +32,10 @@ final class MapViewViewController: UIViewController, Bindable {
     private var clusterManager: GMUClusterManager!
     private let geocoder = GMSGeocoder()
     private let manager = CLLocationManager()
-    private var propertyType: PropertyType = .all;
     
-    var cameraChanged = PublishSubject<SearchInfo>()
+    var cameraChanged = PublishSubject<GMSCoordinateBounds>()
     var viewmore = PublishSubject<Void>()
+    var filter = PublishSubject<Void>()
     
     // MARK: - Life Cycle
     
@@ -47,6 +47,17 @@ final class MapViewViewController: UIViewController, Bindable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         removeBackButtonTitle()
+        
+        let filterBtn = UIButton(type: .custom)
+        filterBtn.setImage(UIImage(named: "vector_action_filter")!, for: .normal)
+        filterBtn.addTarget(self, action: #selector(self.filterClick(_:)), for: UIControl.Event.touchUpInside)
+        let filterCurrWidth = filterBtn.widthAnchor.constraint(equalToConstant: 24)
+        filterCurrWidth.isActive = true
+        let filterCurrHeight = filterBtn.heightAnchor.constraint(equalToConstant: 24)
+        filterCurrHeight.isActive = true
+        
+        let rightBarButton = UIBarButtonItem(customView: filterBtn)
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     deinit {
@@ -89,6 +100,10 @@ final class MapViewViewController: UIViewController, Bindable {
         self.viewmore.onNext(())
     }
     
+    @objc func filterClick(_ sender: Any) {
+        self.filter.onNext(())
+    }
+    
     @objc func myLocationButton(_ sender: UITapGestureRecognizer) {
         manager.startUpdatingLocation()
     }
@@ -99,18 +114,26 @@ final class MapViewViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = MapViewViewModel.Input(
+            filter: filter.asDriverOnErrorJustComplete(),
             cameraChaged: cameraChanged.asDriverOnErrorJustComplete(),
             viewmore: viewmore.asDriverOnErrorJustComplete()
         )
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
-        output.$extraData
+        output.$title
             .asDriver()
-            .drive(onNext: { [unowned self] extraData in
-                if let extraData = extraData {
-                    self.title = extraData["Title"] as? String
-                    self.setupMap(extraData["Latlng"] as! CLLocationCoordinate2D)
-                    self.propertyType = extraData["Type"] as! PropertyType
+            .drive(onNext: { [unowned self] title in
+                if let title = title {
+                    self.title = title
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        output.$latlng
+            .asDriver()
+            .drive(onNext: { [unowned self] latlng in
+                if let latlng = latlng {
+                    self.setupMap(latlng)
                 }
             })
             .disposed(by: disposeBag)
@@ -175,8 +198,7 @@ extension MapViewViewController: GMSMapViewDelegate {
         let camView = mapView.projection.visibleRegion()
         let bounds = GMSCoordinateBounds(region: camView)
         DefaultStorage().setLastLatLng(cameraPosition.target.latitude, lng: cameraPosition.target.longitude, zoom: cameraPosition.zoom)
-        let searchInfo = SearchInfo(startLat: bounds.southWest.latitude, startLng: bounds.southWest.longitude, endLat: bounds.northEast.latitude, endLng: bounds.northEast.longitude, distance: 0.0, propertyID: self.propertyType.rawValue, status: Constants.undefined.rawValue)
-        self.cameraChanged.onNext(searchInfo)
+        self.cameraChanged.onNext(bounds)
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {

@@ -20,6 +20,9 @@ extension API {
         static let powerLink = apiUtil + "ListPowerLink/ProvinceID=%d/"
         static let sendWarning = apiUtil + "SendWarning"
         
+        static let apiUtil_V2 = BaseUrl + "api/v2.0/Utilities/"
+        static let listProperty = apiUtil_V2 + "ListProperty"
+        
         // Location
         static let apiLocation = BaseUrl + "api/Location/"
         static let listProvince = apiLocation + "ListProvince/CountryID=%d/"

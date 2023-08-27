@@ -24,6 +24,7 @@ final class ProductListViewController: UIViewController, Bindable {
     var disposeBag = DisposeBag()
     
     private var products = [Product]()
+    var filter = PublishSubject<Void>()
     
     // MARK: - Life Cycle
     
@@ -35,6 +36,21 @@ final class ProductListViewController: UIViewController, Bindable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         removeBackButtonTitle()
+        
+        let filterBtn = UIButton(type: .custom)
+        filterBtn.setImage(UIImage(named: "vector_action_filter")!, for: .normal)
+        filterBtn.addTarget(self, action: #selector(self.filterClick(_:)), for: UIControl.Event.touchUpInside)
+        let filterCurrWidth = filterBtn.widthAnchor.constraint(equalToConstant: 24)
+        filterCurrWidth.isActive = true
+        let filterCurrHeight = filterBtn.heightAnchor.constraint(equalToConstant: 24)
+        filterCurrHeight.isActive = true
+        
+        let rightBarButton = UIBarButtonItem(customView: filterBtn)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    @objc func filterClick(_ sender: Any) {
+        self.filter.onNext(())
     }
     
     deinit {
@@ -56,10 +72,22 @@ final class ProductListViewController: UIViewController, Bindable {
             load: Driver.just(()),
             reload: collectionView.refreshTrigger,
             loadMore: collectionView.loadMoreTrigger,
-            selectProduct: collectionView.rx.itemSelected.asDriver()
+            selectProduct: collectionView.rx.itemSelected.asDriver(),
+            filter: filter.asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$distance
+            .asDriver()
+            .drive(onNext: { [unowned self] distance in
+                if let distance = distance {
+                    if distance == 0 {
+                        self.collectionView.refreshFooter = nil
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         
         output.$title
             .asDriver()

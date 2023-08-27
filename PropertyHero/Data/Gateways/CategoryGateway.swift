@@ -13,6 +13,7 @@ protocol CategoryGatewayType {
     func getBanner() -> Observable<[Banner]>
     func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]>
     func sendWarning(_ productId: Int, accountId: Int, warningType: Int, content: String) -> Observable<Bool>
+    func getListProperty() -> Observable<[PropertyId]>
 }
 
 struct CategoryGateway: CategoryGatewayType {
@@ -38,6 +39,16 @@ struct CategoryGateway: CategoryGatewayType {
         
         return API.shared.sendWarning(input)
             .map { $0.isSuccessful }
+            .unwrap()
+    }
+    
+    func getListProperty() -> Observable<[PropertyId]> {
+        let input = API.ListPropertyInput()
+        
+        return API.shared.getListProperty(input)
+            .map { $0.option }
+            .unwrap()
+            .map { $0.peoperties }
             .unwrap()
     }
 }
