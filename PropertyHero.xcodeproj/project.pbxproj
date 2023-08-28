@@ -44,6 +44,11 @@
 		6E14D6D52A88CA1E002E4900 /* AreaSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E14D6D32A88CA1D002E4900 /* AreaSectionCell.xib */; };
 		6E53E6C12A8E808700AC5CEC /* FooterProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53E6BF2A8E808700AC5CEC /* FooterProductCell.swift */; };
 		6E53E6C22A8E808700AC5CEC /* FooterProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E53E6C02A8E808700AC5CEC /* FooterProductCell.xib */; };
+		6E83AC122A9CF7BF00182A23 /* FeedbackEmailAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83AC0D2A9CF7BF00182A23 /* FeedbackEmailAssembler.swift */; };
+		6E83AC132A9CF7BF00182A23 /* FeedbackEmailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83AC0E2A9CF7BF00182A23 /* FeedbackEmailNavigator.swift */; };
+		6E83AC142A9CF7BF00182A23 /* FeedbackEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83AC0F2A9CF7BF00182A23 /* FeedbackEmailUseCase.swift */; };
+		6E83AC152A9CF7BF00182A23 /* FeedbackEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83AC102A9CF7BF00182A23 /* FeedbackEmailViewController.swift */; };
+		6E83AC162A9CF7BF00182A23 /* FeedbackEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83AC112A9CF7BF00182A23 /* FeedbackEmailViewModel.swift */; };
 		6E83F4082A7F5A5B002D9BD8 /* TabLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83F4072A7F5A5B002D9BD8 /* TabLayout.swift */; };
 		6E83F40F2A7F6A2F002D9BD8 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83F40A2A7F6A2E002D9BD8 /* HomeAssembler.swift */; };
 		6E83F4102A7F6A2F002D9BD8 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E83F40B2A7F6A2E002D9BD8 /* HomeNavigator.swift */; };
@@ -276,6 +281,11 @@
 		6E14D6D32A88CA1D002E4900 /* AreaSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AreaSectionCell.xib; sourceTree = "<group>"; };
 		6E53E6BF2A8E808700AC5CEC /* FooterProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterProductCell.swift; sourceTree = "<group>"; };
 		6E53E6C02A8E808700AC5CEC /* FooterProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterProductCell.xib; sourceTree = "<group>"; };
+		6E83AC0D2A9CF7BF00182A23 /* FeedbackEmailAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEmailAssembler.swift; sourceTree = "<group>"; };
+		6E83AC0E2A9CF7BF00182A23 /* FeedbackEmailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEmailNavigator.swift; sourceTree = "<group>"; };
+		6E83AC0F2A9CF7BF00182A23 /* FeedbackEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEmailUseCase.swift; sourceTree = "<group>"; };
+		6E83AC102A9CF7BF00182A23 /* FeedbackEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEmailViewController.swift; sourceTree = "<group>"; };
+		6E83AC112A9CF7BF00182A23 /* FeedbackEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEmailViewModel.swift; sourceTree = "<group>"; };
 		6E83F4052A7F3733002D9BD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6E83F4072A7F5A5B002D9BD8 /* TabLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabLayout.swift; path = Widget/TabLayout.swift; sourceTree = "<group>"; };
 		6E83F40A2A7F6A2E002D9BD8 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
@@ -639,6 +649,8 @@
 				6E83F4162A7F6A7B002D9BD8 /* Notification */,
 				6E83F4172A7F6A8C002D9BD8 /* More */,
 				6EB743802A99767E00067B01 /* Account */,
+				6E83AC0C2A9CF79B00182A23 /* Feedback */,
+				6E83AC172A9D082E00182A23 /* Setting */,
 				6E08B32A2A7EAC8000C3EE35 /* MainAssembler.swift */,
 				6E08B32C2A7EAC8000C3EE35 /* MainNavigator.swift */,
 				6E08B32E2A7EAC8000C3EE35 /* MainUseCase.swift */,
@@ -690,6 +702,25 @@
 				6ECB455D2A88CBCA005D1B33 /* AreaCell.swift */,
 			);
 			path = AreaCell;
+			sourceTree = "<group>";
+		};
+		6E83AC0C2A9CF79B00182A23 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				6E83AC0D2A9CF7BF00182A23 /* FeedbackEmailAssembler.swift */,
+				6E83AC0E2A9CF7BF00182A23 /* FeedbackEmailNavigator.swift */,
+				6E83AC0F2A9CF7BF00182A23 /* FeedbackEmailUseCase.swift */,
+				6E83AC102A9CF7BF00182A23 /* FeedbackEmailViewController.swift */,
+				6E83AC112A9CF7BF00182A23 /* FeedbackEmailViewModel.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		6E83AC172A9D082E00182A23 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		6E83F4062A7F59C3002D9BD8 /* Widget */ = {
@@ -1337,6 +1368,7 @@
 				6ECBBF912A93B8970073BE6F /* RegisterViewModel.swift in Sources */,
 				6E14D6B62A8881B0002E4900 /* FavoriteAssembler.swift in Sources */,
 				6EB7437F2A9975EA00067B01 /* AccountDeletionViewModel.swift in Sources */,
+				6E83AC142A9CF7BF00182A23 /* FeedbackEmailUseCase.swift in Sources */,
 				6ED3628E2A8AF4B000AAF5AF /* FurniturePageCell.swift in Sources */,
 				6EBC24842A7EBD9000E58B2E /* SplashViewController.swift in Sources */,
 				6ECC2A5F2A7F7E6C0053130A /* SectionLayout.swift in Sources */,
@@ -1351,6 +1383,7 @@
 				6E83F4482A7F6EFF002D9BD8 /* NotificationViewController.swift in Sources */,
 				6EA473EA2A87A45A00D23143 /* Marker.swift in Sources */,
 				6EB8EB042A8445880055BEFD /* ProductGateway.swift in Sources */,
+				6E83AC132A9CF7BF00182A23 /* FeedbackEmailNavigator.swift in Sources */,
 				6EB743702A98F56800067B01 /* FilterAssembler.swift in Sources */,
 				6E08B3292A7EAC8000C3EE35 /* Storyboards+Main.swift in Sources */,
 				6E83F43C2A7F6AF6002D9BD8 /* MoreNavigator.swift in Sources */,
@@ -1426,10 +1459,12 @@
 				6EBC24782A7EBCD500E58B2E /* UIApplication.swift in Sources */,
 				6EBC247B2A7EBCD500E58B2E /* Utils.swift in Sources */,
 				6E83F4122A7F6A2F002D9BD8 /* HomeViewController.swift in Sources */,
+				6E83AC162A9CF7BF00182A23 /* FeedbackEmailViewModel.swift in Sources */,
 				6EA473E42A87983800D23143 /* LocationGateway.swift in Sources */,
 				6E14D6CB2A88AC82002E4900 /* CardView.swift in Sources */,
 				6E14D6CE2A88ACA2002E4900 /* DesignableUITextField.swift in Sources */,
 				6EA3FC3B2A96C44F00222315 /* AdsDetailViewModel.swift in Sources */,
+				6E83AC152A9CF7BF00182A23 /* FeedbackEmailViewController.swift in Sources */,
 				6EA3FC432A96C47A00222315 /* ReportNavigator.swift in Sources */,
 				6E83F4462A7F6EFF002D9BD8 /* NotificationNavigator.swift in Sources */,
 				6EB743722A98F56800067B01 /* FilterUseCase.swift in Sources */,
@@ -1484,6 +1519,7 @@
 				6ED362462A8A558300AAF5AF /* District.swift in Sources */,
 				6E14D6B72A8881B0002E4900 /* FavoriteNavigator.swift in Sources */,
 				6EBC24792A7EBCD500E58B2E /* UIColor+.swift in Sources */,
+				6E83AC122A9CF7BF00182A23 /* FeedbackEmailAssembler.swift in Sources */,
 				6ED362842A8AF4B000AAF5AF /* SummaryProductCell.swift in Sources */,
 				6E83F43D2A7F6AF6002D9BD8 /* MoreUseCase.swift in Sources */,
 				6EBC247A2A7EBCD500E58B2E /* Dimension.swift in Sources */,

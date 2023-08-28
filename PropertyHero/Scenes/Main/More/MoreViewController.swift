@@ -100,7 +100,12 @@ final class MoreViewController: UIViewController, Bindable {
     }
     
     @objc func onFeedback(_ sender: UITapGestureRecognizer) {
-        print(#function)
+        let isLogin = AccountStorage().isLogin()
+        if isLogin {
+            self.viewModel.navigator.toFeedback()
+        } else {
+            self.viewModel.navigator.toLogin()
+        }
     }
     
     @objc func onMyProduct(_ sender: UITapGestureRecognizer) {

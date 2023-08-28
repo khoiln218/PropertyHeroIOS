@@ -161,6 +161,7 @@ extension RegisterViewModel: ViewModel {
             .asDriver()
             .drive(output.$isLoading)
             .disposed(by: disposeBag)
+        
         return output
     }
 }
