@@ -52,6 +52,7 @@ final class ProfileViewController: UIViewController, Bindable {
         self.changePw.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.deleteBtn.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.logoutBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.changePw.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onChange(_:))))
         self.deleteBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onDelete(_:))))
         self.logoutBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLogout(_:))))
         
@@ -62,6 +63,10 @@ final class ProfileViewController: UIViewController, Bindable {
         self.avatar.clipsToBounds = true
         
         self.title = "Cá nhân"
+    }
+    
+    @objc func onChange(_ sender: UITapGestureRecognizer) {
+        self.viewModel.navigator.toChangePassword()
     }
     
     @objc func onLogout(_ sender: UITapGestureRecognizer) {

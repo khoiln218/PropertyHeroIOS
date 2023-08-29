@@ -36,5 +36,6 @@ extension API {
         static let login = apiAuth + "AccountLogin"
         static let verify = apiAuth + "Verify/UserName=%@/"
         static let register = apiAuth + "MemberRegistration"
+        static let changePW = apiAuth + "ChangePassword/AccountID=%d/Password=%@/"
     }
 }

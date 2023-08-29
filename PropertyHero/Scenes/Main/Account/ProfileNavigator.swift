@@ -10,6 +10,7 @@ import UIKit
 protocol ProfileNavigatorType {
     func backHome()
     func toAccountDeletion()
+    func toChangePassword()
 }
 
 struct ProfileNavigator: ProfileNavigatorType {
@@ -22,6 +23,11 @@ struct ProfileNavigator: ProfileNavigatorType {
     
     func toAccountDeletion() {
         let vc: AccountDeletionViewController = assembler.resolve(navigationController: navigationController)
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func toChangePassword() {
+        let vc: ChangePasswordViewController = assembler.resolve(navigationController: navigationController)
         navigationController.pushViewController(vc, animated: true)
     }
 }

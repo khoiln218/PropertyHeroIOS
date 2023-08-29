@@ -22,9 +22,31 @@ extension API {
     func register(_ input: RegisterInput) -> Observable<RegisterOutput> {
         return request(input)
     }
+    
+    func changePassword(_ input: ChangePasswordInput) -> Observable<ChangePasswordOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class ChangePasswordInput: APIInput {
+        init(_ accountId: Int, password: String) {
+            let urlString = String(format: API.Urls.changePW, accountId, password)
+            super.init(urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class ChangePasswordOutput: APIOutput {
+        private(set) var success: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            success <- map["DataList"]
+        }
+    }
     
     final class RegisterInput: APIUploadInputBase {
         init(_ username: String, password: String, fullname: String, phoneNumber: String) {

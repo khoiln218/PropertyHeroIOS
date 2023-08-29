@@ -6,6 +6,7 @@
 //
 
 protocol Assembler: AnyObject,
+                    ChangePasswordAssembler,
                     FeedbackEmailAssembler,
                     FilterAssembler,
                     ProfileAssembler,

@@ -117,7 +117,8 @@ final class RegisterViewController: UIViewController, Bindable {
     }
     
     func onSuccess(_ account: Account) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
+            AccountStorage().savePassword(self.password.text!)
             AccountStorage().saveAccount(account)
             AccountStorage().setIsLogin()
             NotificationCenter.default.post(

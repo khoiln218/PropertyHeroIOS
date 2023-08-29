@@ -10,6 +10,7 @@ import Foundation
 struct AccountStorage {
     let key = "account-storage"
     let loginKey = "account-login-storage"
+    let passwordkey = "password-key-storage"
     private let userDefault = UserDefaults.standard
     
     func saveAccount(_ account: Account) {
@@ -27,6 +28,19 @@ struct AccountStorage {
         } catch {
             return Account()
         }
+    }
+    
+    
+    func savePassword(_ password: String) {
+        userDefault.set(password, forKey: passwordkey)
+    }
+    
+    func getPassword() -> String {
+        return userDefault.string(forKey: passwordkey) ?? ""
+    }
+    
+    func clearPassword() {
+        userDefault.removeObject(forKey: passwordkey)
     }
     
     func clearAccount() {
@@ -47,6 +61,7 @@ struct AccountStorage {
     
     func logout() {
         clearAccount()
+        clearPassword()
         clearIsLogin()
         FavoriteStorage().clearFavorites()
         SeenStorage().clearSeens()

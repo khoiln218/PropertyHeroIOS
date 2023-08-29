@@ -24,4 +24,8 @@ extension Login {
     func register(_ username: String, password: String, fullname: String, phoneNumber: String) -> Observable<Bool> {
         loginGateway.register(username, password: password, fullname: fullname, phoneNumber: phoneNumber)
     }
+    
+    func changePassword(_ accountId: Int, password: String) -> Observable<Bool> {
+        loginGateway.changePassword(accountId, password: password)
+    }
 }

@@ -13,6 +13,7 @@ protocol LoginGatewayType {
     func login(_ username: String, password: String) -> Observable<[Account]>
     func verify(_ username: String) -> Observable<[Account]>
     func register(_ username: String, password: String, fullname: String, phoneNumber: String) -> Observable<Bool>
+    func changePassword(_ accountId: Int, password: String) -> Observable<Bool>
 }
 
 struct LoginGateway: LoginGatewayType {
@@ -37,6 +38,14 @@ struct LoginGateway: LoginGatewayType {
         let input = API.RegisterInput(username, password: password, fullname: fullname, phoneNumber: phoneNumber)
         
         return API.shared.register(input)
+            .map { $0.success }
+            .unwrap()
+    }
+    
+    func changePassword(_ accountId: Int, password: String) -> Observable<Bool> {
+        let input = API.ChangePasswordInput(accountId, password: password)
+        
+        return API.shared.changePassword(input)
             .map { $0.success }
             .unwrap()
     }
