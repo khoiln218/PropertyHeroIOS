@@ -8,12 +8,14 @@
 import UIKit
 import RxSwift
 import MGArchitecture
+import MGAPIService
 
 protocol LoginGatewayType {
     func login(_ username: String, password: String) -> Observable<[Account]>
     func verify(_ username: String) -> Observable<[Account]>
     func register(_ username: String, password: String, fullname: String, phoneNumber: String) -> Observable<Bool>
     func changePassword(_ accountId: Int, password: String) -> Observable<Bool>
+    func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool>
 }
 
 struct LoginGateway: LoginGatewayType {
@@ -46,6 +48,14 @@ struct LoginGateway: LoginGatewayType {
         let input = API.ChangePasswordInput(accountId, password: password)
         
         return API.shared.changePassword(input)
+            .map { $0.success }
+            .unwrap()
+    }
+    
+    func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool> {
+        let input = API.ChangeAvatarInput(accountId, username: username, avatar: avatar)
+        
+        return API.shared.changeAvatar(input)
             .map { $0.success }
             .unwrap()
     }

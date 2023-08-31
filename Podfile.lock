@@ -69,6 +69,7 @@ PODS:
     - Reusable/View (= 4.1.2)
   - Reusable/Storyboard (4.1.2)
   - Reusable/View (4.1.2)
+  - RSKImageCropper (4.0.0)
   - RxAlamofire (5.7.1):
     - RxAlamofire/Core (= 5.7.1)
   - RxAlamofire/Core (5.7.1):
@@ -103,6 +104,7 @@ DEPENDENCIES:
   - MGArchitecture (~> 2.0.1)
   - MGLoadMore (~> 3.0.2)
   - Reusable (~> 4.1)
+  - RSKImageCropper
   - RxViewController
   - SDWebImage (~> 5.8.3)
   - Then (~> 2.7)
@@ -129,6 +131,7 @@ SPEC REPOS:
     - ObjectMapper
     - PromisesObjC
     - Reusable
+    - RSKImageCropper
     - RxAlamofire
     - RxCocoa
     - RxRelay
@@ -159,6 +162,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  RSKImageCropper: 90dfe482402fb8a40cabd5fea65186d9102cc425
   RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
   RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
@@ -168,6 +172,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: 55c8d2bd0a47c75a92f46f084c71fbc406e445b7
+PODFILE CHECKSUM: 23fc0df022697d3261f37b56cdbc4494abead25d
 
 COCOAPODS: 1.11.3

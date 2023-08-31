@@ -6,11 +6,16 @@
 //
 
 import RxSwift
+import MGAPIService
 
 protocol ProfileUseCaseType {
-    
+    func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool>
 }
 
-struct ProfileUseCase: ProfileUseCaseType {
+struct ProfileUseCase: ProfileUseCaseType, Login {
+    var loginGateway: LoginGatewayType
     
+    func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool> {
+        loginGateway.changeAvatar(accountId, username: username, avatar: avatar)
+    }
 }

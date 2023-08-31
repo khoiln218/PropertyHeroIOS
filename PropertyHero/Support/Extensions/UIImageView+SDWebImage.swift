@@ -15,6 +15,6 @@ extension UIImageView {
     }
     
     func setAvatarImage(with url: URL?, completion: SDExternalCompletionBlock? = nil) {
-        self.sd_setImage(with: url, placeholderImage: UIImage(named: "default_avatar"), completed: completion)
+        self.sd_setImage(with: url, placeholderImage: UIImage(named: "default_avatar"), options: .refreshCached, completed: completion)
     }
 }

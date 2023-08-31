@@ -1712,6 +1712,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PropertyHero/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Property Hero";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ứng dụng cần quyền sử dụng máy ảnh";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Định vị người dùng để cung cấp danh sách doanh nghiệp lân cận.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash;
@@ -1744,6 +1745,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PropertyHero/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Property Hero";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ứng dụng cần quyền sử dụng máy ảnh";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Định vị người dùng để cung cấp danh sách doanh nghiệp lân cận.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash;

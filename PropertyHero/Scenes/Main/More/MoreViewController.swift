@@ -54,6 +54,10 @@ final class MoreViewController: UIViewController, Bindable {
                                                selector: #selector(setupLogoutUI(_:)),
                                                name: NSNotification.Name.logout,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateAvatar(_:)),
+                                               name: NSNotification.Name.avatarChanged,
+                                               object: nil)
         
         self.account.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.rating.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
@@ -120,6 +124,11 @@ final class MoreViewController: UIViewController, Bindable {
         accountAvatar.image = UIImage(named: "vector_action_login")
         loginLabel.visible()
         accountInfo.hidden()
+    }
+    
+    @objc func updateAvatar(_ notification: NSNotification) {
+        let account = AccountStorage().getAccount()
+        accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
     }
     
     func bindViewModel() {

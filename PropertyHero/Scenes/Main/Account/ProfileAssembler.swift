@@ -38,6 +38,6 @@ extension ProfileAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> ProfileUseCaseType {
-        return ProfileUseCase()
+        return ProfileUseCase(loginGateway: resolve())
     }
 }

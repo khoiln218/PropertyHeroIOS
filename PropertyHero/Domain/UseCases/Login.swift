@@ -7,6 +7,7 @@
 
 import RxSwift
 import MGArchitecture
+import MGAPIService
 
 protocol Login {
     var loginGateway: LoginGatewayType { get }
@@ -27,5 +28,9 @@ extension Login {
     
     func changePassword(_ accountId: Int, password: String) -> Observable<Bool> {
         loginGateway.changePassword(accountId, password: password)
+    }
+    
+    func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool> {
+        loginGateway.changeAvatar(accountId, username: username, avatar: avatar)
     }
 }

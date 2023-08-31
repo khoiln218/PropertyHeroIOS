@@ -162,14 +162,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eA-jb-dx1">
                                         <rect key="frame" x="132.66666666666666" y="24" width="127.99999999999997" height="128"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-oU-Jmg">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-oU-Jmg">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Odr-oU-Jmg" secondAttribute="height" multiplier="1:1" id="DD6-g1-1PC"/>
                                                     <constraint firstAttribute="width" constant="128" id="wdh-yu-XBg"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_action_photo" translatesAutoresizingMaskIntoConstraints="NO" id="4rs-QE-4ke">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_action_photo" translatesAutoresizingMaskIntoConstraints="NO" id="4rs-QE-4ke">
                                                 <rect key="frame" x="96" y="96" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="4rs-QE-4ke" secondAttribute="height" multiplier="1:1" id="Flx-yT-dE9"/>

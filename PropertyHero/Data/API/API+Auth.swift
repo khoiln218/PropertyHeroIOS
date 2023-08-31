@@ -26,9 +26,35 @@ extension API {
     func changePassword(_ input: ChangePasswordInput) -> Observable<ChangePasswordOutput> {
         return request(input)
     }
+    
+    func changeAvatar(_ input: ChangeAvatarInput) -> Observable<ChangeAvatarOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class ChangeAvatarInput: APIUploadInputBase {
+        init(_ accountId: Int, username: String, avatar: APIUploadData) {
+            let params: JSONDictionary = [
+                "AccountID": accountId,
+                "UserName": username,
+            ]
+            super.init(data: [avatar], urlString: API.Urls.changeAvatar,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class ChangeAvatarOutput: APIOutput {
+        private(set) var success: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            success <- map["DataList"]
+        }
+    }
+    
     final class ChangePasswordInput: APIInput {
         init(_ accountId: Int, password: String) {
             let urlString = String(format: API.Urls.changePW, accountId, password)

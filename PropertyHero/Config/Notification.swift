@@ -12,4 +12,5 @@ extension Notification.Name {
     static let logout = Notification.Name(rawValue: "authentication.logout")
     static let productChanged = Notification.Name(rawValue: "collection.productChanged")
     static let favoriteChanged = Notification.Name(rawValue: "collection.favoriteChanged")
+    static let avatarChanged = Notification.Name(rawValue: "account.avatarChanged")
 }
