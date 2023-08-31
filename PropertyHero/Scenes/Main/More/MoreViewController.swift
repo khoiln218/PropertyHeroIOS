@@ -32,6 +32,8 @@ final class MoreViewController: UIViewController, Bindable {
     var viewModel: MoreViewModel!
     var disposeBag = DisposeBag()
     
+    var load = PublishSubject<Void>()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -58,6 +60,10 @@ final class MoreViewController: UIViewController, Bindable {
                                                selector: #selector(updateAvatar(_:)),
                                                name: NSNotification.Name.avatarChanged,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(infoChange(_:)),
+                                               name: NSNotification.Name.infoChanged,
+                                               object: nil)
         
         self.account.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.rating.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
@@ -72,7 +78,6 @@ final class MoreViewController: UIViewController, Bindable {
             accountInfo.visible()
             accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
             fullname.text = account.FullName
-            username.text = account.UserName
         }
         
         self.account.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccount(_:))))
@@ -132,8 +137,23 @@ final class MoreViewController: UIViewController, Bindable {
     }
     
     func bindViewModel() {
-        let input = MoreViewModel.Input()
-        _ = viewModel.transform(input, disposeBag: disposeBag)
+        let input = MoreViewModel.Input(
+            load: load.asDriverOnErrorJustComplete()
+        )
+        
+        let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$account
+            .asDriver()
+            .drive(onNext:  { [unowned self] account in
+                if let account = account {
+                    loginLabel.hidden()
+                    accountInfo.visible()
+                    accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
+                    fullname.text = account.FullName
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc func loginSuccess(_ notification: NSNotification) {
@@ -145,8 +165,13 @@ final class MoreViewController: UIViewController, Bindable {
                 accountInfo.visible()
                 accountAvatar.setAvatarImage(with: URL(string: account.Avatar))
                 fullname.text = account.FullName
-                username.text = account.UserName
             }
+        }
+    }
+    
+    @objc func infoChange(_ notification: NSNotification) {
+        if notification.name == Notification.Name.infoChanged {
+            load.onNext(())
         }
     }
 }

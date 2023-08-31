@@ -30,6 +30,7 @@ def pods
     pod 'FlexibleTable'
     pod 'DLRadioButton', '~> 1.4'
     pod 'RSKImageCropper'
+    pod 'DatePickerDialog'
 end
 
 target 'PropertyHero' do

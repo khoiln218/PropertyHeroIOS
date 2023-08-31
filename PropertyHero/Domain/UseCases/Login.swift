@@ -14,6 +14,14 @@ protocol Login {
 }
 
 extension Login {
+    func updateInfo(_ account: Account) -> Observable<Bool> {
+        loginGateway.updateInfo(account)
+    }
+    
+    func getInfo(_ accountId: Int) -> Observable<[Account]> {
+        loginGateway.getInfo(accountId)
+    }
+    
     func login(_ username: String, password: String) -> Observable<[Account]> {
         loginGateway.login(username, password: password)
     }

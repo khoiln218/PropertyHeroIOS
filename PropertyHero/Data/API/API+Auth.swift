@@ -30,9 +30,69 @@ extension API {
     func changeAvatar(_ input: ChangeAvatarInput) -> Observable<ChangeAvatarOutput> {
         return request(input)
     }
+    
+    func getInfo(_ input: GetInfoInput) -> Observable<GetInfoOutput> {
+        return request(input)
+    }
+    
+    func updateInfo(_ input: UpdateInfoInput) -> Observable<UpdateInfoOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class UpdateInfoInput: APIUploadInputBase {
+        init(_ account: Account) {
+            let params: JSONDictionary = [
+                "AccountID": account.Id,
+                "FullName": account.FullName,
+                "Gender": account.Gender,
+                "BirthDate": account.BirthDate,
+                "PhoneNumber": account.PhoneNumber,
+                "Email": account.Email,
+                "Address": account.Address,
+                "CountryID": account.CountryID,
+                "ProvinceID": account.ProvinceID,
+                "DistrictID": account.DistrictID,
+                "IDCode": account.IDCode,
+                "IssuedDate": account.IssuedDate,
+                "IssuedPlace": account.IssuedPlace
+            ]
+            super.init(data: [], urlString: API.Urls.updateInfo,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class UpdateInfoOutput: APIOutput {
+        private(set) var success: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            success <- map["DataList"]
+        }
+    }
+    
+    final class GetInfoInput: APIInput {
+        init(_ accountId: Int) {
+            let urlString = String(format: API.Urls.getDetail, accountId)
+            super.init(urlString: urlString,
+                       parameters: nil,
+                       method: .get,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class GetInfoOutput: APIOutput {
+        private(set) var accounts: [Account]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            accounts <- map["DataList"]
+        }
+    }
+    
     final class ChangeAvatarInput: APIUploadInputBase {
         init(_ accountId: Int, username: String, avatar: APIUploadData) {
             let params: JSONDictionary = [
@@ -102,9 +162,9 @@ extension API {
         init(_ username: String) {
             let urlString = String(format: API.Urls.verify, username)
             super.init( urlString: urlString,
-                       parameters: nil,
-                       method: .get,
-                       requireAccessToken: true)
+                        parameters: nil,
+                        method: .get,
+                        requireAccessToken: true)
         }
     }
     

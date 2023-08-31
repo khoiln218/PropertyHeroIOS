@@ -7,6 +7,18 @@
 
 import Foundation
 
+enum GenderName: String {
+    case female = "Nữ"
+    case male = "Nam"
+    case other = "Khác"
+}
+
+enum Gender: Int {
+    case female = 0
+    case male = 1
+    case other = 2
+}
+
 enum AccountStatus: Int {
     case accLocked = 200
 }

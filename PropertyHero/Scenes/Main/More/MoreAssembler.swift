@@ -37,6 +37,6 @@ extension MoreAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> MoreUseCaseType {
-        return MoreUseCase()
+        return MoreUseCase(loginGateway: resolve())
     }
 }

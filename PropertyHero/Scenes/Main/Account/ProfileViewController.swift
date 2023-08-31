@@ -58,6 +58,7 @@ final class ProfileViewController: UIViewController, Bindable {
         self.deleteBtn.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.logoutBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.avatarBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onChooseAvatar(_:))))
+        self.userInfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onUserInfo(_:))))
         self.changePw.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onChange(_:))))
         self.deleteBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onDelete(_:))))
         self.logoutBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onLogout(_:))))
@@ -86,6 +87,10 @@ final class ProfileViewController: UIViewController, Bindable {
         alertViewController.addAction(gallery)
         alertViewController.addAction(cancel)
         self.present(alertViewController, animated: true, completion: nil)
+    }
+    
+    @objc func onUserInfo(_ sender: UITapGestureRecognizer) {
+        self.viewModel.navigator.toAccountInfo()
     }
     
     @objc func onChange(_ sender: UITapGestureRecognizer) {
