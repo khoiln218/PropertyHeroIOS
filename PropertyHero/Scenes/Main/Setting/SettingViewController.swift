@@ -37,6 +37,11 @@ final class SettingViewController: UIViewController, Bindable {
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        removeBackButtonTitle()
+    }
+    
     deinit {
         logDeinit()
     }
@@ -52,6 +57,11 @@ final class SettingViewController: UIViewController, Bindable {
         self.infoView.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         
         self.provineSpin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onProviceChanged(_:))))
+        self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAbout(_:))))
+    }
+    
+    @objc func onAbout(_ sender: UITapGestureRecognizer) {
+        self.viewModel.navigator.toAbout()
     }
     
     @objc func onProviceChanged(_ sender: UITapGestureRecognizer) {

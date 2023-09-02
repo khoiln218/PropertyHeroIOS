@@ -1716,6 +1716,130 @@
             </objects>
             <point key="canvasLocation" x="1868" y="1415"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="2j7-1B-8Fd">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" id="eBv-Cg-YTg" customClass="InfoViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zeh-69-wQm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fkS-Ow-Zch"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJg-Ns-ZER" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2679" y="1415"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="enf-ZF-lvN">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="VhS-Oy-Bex" customClass="AboutViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hxo-RO-FTU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x05-4O-ScC">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bf-Ft-dop">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="909"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKk-1l-U7B">
+                                                <rect key="frame" x="16" y="16" width="361" height="630.33333333333337"/>
+                                                <mutableString key="text">Property Hero là ứng dụng điện thoại di động đầu tiên tại Việt Nam để “Tìm kiếm” và “Đăng tin” các địa điểm bất động sản cho thuê tại Việt Nam… Mọi thông tin đăng trên Property Hero đều được KIỂM TRA và XÁC NHẬN.
+Với cách sắp xếp thông tin rõ ràng cụ thể, hình ảnh thực tế chính xác sẽ giúp bạn tìm địa điểm tốt nhất và ưng ý nhất.
+
+Tính năng chính của ứng dụng Property Hero: 
+* THÔNG TIN XÁC NHẬN
+- Thông tin được đội ngũ kiểm định chất lượng (Checking Team) đảm bảo kiểm tra tận nơi xác nhận nội dung, hình ảnh thực tế.
+- Thực trạng, và phản hồi về thông tin của tin đăng sẽ được hệ thống xử lý và có thể đội ngũ kiểm định chất lượng (Checking Team) sẽ đi kiểm tra ngay lập tức
+
+* TÌM KIẾM ĐỊA ĐIỂM BẤT ĐỘNG SẢN PHÙ HỢP VỚI BẠN NHẤT
+- Phân loại bất động sản Căn hộ Chung cư / Văn Phòng, Phòng trọ / Nhà trọ được hiển thị ngay vị trí đầu tiên
+- Tìm kiếm các địa điểm xung quanh bạn hoặc các khu vực trung tâm
+- Cung cấp các lựa chọn tìm kiếm theo giá thuê, diện tích…
+
+* ĐĂNG TIN MỚI
+- Cho phép người dùng đăng tin cho thuê bất động sản mới.</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <mutableString key="userLabel">Property Hero là ứng dụng điện thoại di động đầu tiên tại Việt Nam để “Tìm kiếm” và “Đăng tin” các địa điểm bất động sản cho thuê tại Việt Nam… Mọi thông tin đăng trên Property Hero đều được KIỂM TRA và XÁC NHẬN.         Với cách sắp xếp thông tin rõ ràng cụ thể, hình ảnh thực tế chính xác sẽ giúp bạn tìm địa điểm tốt nhất và ưng ý nhất.         Tính năng chính của ứng dụng Property Hero:          * THÔNG TIN XÁC NHẬN         - Thông tin được đội ngũ kiểm định chất lượng (Checking Team) đảm bảo kiểm tra tận nơi xác nhận nội dung, hình ảnh thực tế.         - Thực trạng, và phản hồi về thông tin của tin đăng sẽ được hệ thống xử lý và có thể đội ngũ kiểm định chất lượng (Checking Team) sẽ đi kiểm tra ngay lập tức          * TÌM KIẾM ĐỊA ĐIỂM BẤT ĐỘNG SẢN PHÙ HỢP VỚI BẠN NHẤT         - Phân loại bất động sản Căn hộ Chung cư / Văn Phòng, Phòng trọ / Nhà trọ được hiển thị ngay vị trí đầu tiên         - Tìm kiếm các địa điểm xung quanh bạn hoặc các khu vực trung tâm         - Cung cấp các lựa chọn tìm kiếm theo giá thuê, diện tích…          * ĐĂNG TIN MỚI         - Cho phép người dùng đăng tin cho thuê bất động sản mới.</mutableString>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl5-Hz-QHA">
+                                                <rect key="frame" x="16" y="662.33333333333337" width="361" height="48"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Yvl-YJ-a9m">
+                                                        <rect key="frame" x="120.66666666666666" y="0.0" width="120" height="48"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_action_facebook" translatesAutoresizingMaskIntoConstraints="NO" id="5qF-Kn-EKR">
+                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="5qF-Kn-EKR" secondAttribute="height" multiplier="1:1" id="PcR-AF-vXg"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_action_google" translatesAutoresizingMaskIntoConstraints="NO" id="0yj-eo-z5c">
+                                                                <rect key="frame" x="72" y="0.0" width="48" height="48"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="0yj-eo-z5c" secondAttribute="height" multiplier="1:1" id="sOV-uI-vZR"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="79M-uI-Psq"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Yvl-YJ-a9m" firstAttribute="centerX" secondItem="jl5-Hz-QHA" secondAttribute="centerX" id="M5s-wP-n7d"/>
+                                                    <constraint firstAttribute="height" constant="48" id="usa-Eg-A8N"/>
+                                                    <constraint firstItem="Yvl-YJ-a9m" firstAttribute="centerY" secondItem="jl5-Hz-QHA" secondAttribute="centerY" id="zAF-ob-Hnf"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="jl5-Hz-QHA" firstAttribute="top" secondItem="XKk-1l-U7B" secondAttribute="bottom" constant="16" id="7D4-8n-wN1"/>
+                                            <constraint firstItem="XKk-1l-U7B" firstAttribute="top" secondItem="1bf-Ft-dop" secondAttribute="top" constant="16" id="UJT-K7-wVq"/>
+                                            <constraint firstAttribute="trailing" secondItem="jl5-Hz-QHA" secondAttribute="trailing" constant="16" id="cla-9r-cGp"/>
+                                            <constraint firstItem="jl5-Hz-QHA" firstAttribute="leading" secondItem="1bf-Ft-dop" secondAttribute="leading" constant="16" id="ewC-ot-H3z"/>
+                                            <constraint firstAttribute="trailing" secondItem="XKk-1l-U7B" secondAttribute="trailing" constant="16" id="ux0-ME-PWU"/>
+                                            <constraint firstItem="XKk-1l-U7B" firstAttribute="leading" secondItem="1bf-Ft-dop" secondAttribute="leading" constant="16" id="zDd-eN-Wm1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1bf-Ft-dop" firstAttribute="trailing" secondItem="r3z-UI-x1O" secondAttribute="trailing" id="46r-Ie-tk8"/>
+                                    <constraint firstItem="1bf-Ft-dop" firstAttribute="leading" secondItem="r3z-UI-x1O" secondAttribute="leading" id="6PB-V2-wSd"/>
+                                    <constraint firstItem="1bf-Ft-dop" firstAttribute="width" secondItem="5BE-9U-n5Q" secondAttribute="width" id="8bT-9m-j7M"/>
+                                    <constraint firstItem="1bf-Ft-dop" firstAttribute="height" secondItem="5BE-9U-n5Q" secondAttribute="height" constant="150" id="Inn-8n-Zpc"/>
+                                    <constraint firstItem="r3z-UI-x1O" firstAttribute="top" secondItem="1bf-Ft-dop" secondAttribute="top" id="rab-31-NeD"/>
+                                    <constraint firstItem="1bf-Ft-dop" firstAttribute="bottom" secondItem="r3z-UI-x1O" secondAttribute="bottom" id="xay-JM-7hO"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="r3z-UI-x1O"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="5BE-9U-n5Q"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qBi-H2-b1Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x05-4O-ScC" firstAttribute="top" secondItem="qBi-H2-b1Q" secondAttribute="top" id="X9q-Pm-t77"/>
+                            <constraint firstItem="x05-4O-ScC" firstAttribute="leading" secondItem="qBi-H2-b1Q" secondAttribute="leading" id="Xcw-UO-2JO"/>
+                            <constraint firstItem="x05-4O-ScC" firstAttribute="trailing" secondItem="qBi-H2-b1Q" secondAttribute="trailing" id="kea-xG-ofx"/>
+                            <constraint firstItem="x05-4O-ScC" firstAttribute="bottom" secondItem="qBi-H2-b1Q" secondAttribute="bottom" id="utm-SF-xct"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fbBtn" destination="5qF-Kn-EKR" id="I9B-zP-WjY"/>
+                        <outlet property="ggBtn" destination="0yj-eo-z5c" id="P6m-Qg-n1F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMx-am-Vu5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3488" y="1415"/>
+        </scene>
         <!--Search By Location View Controller-->
         <scene sceneID="6ID-eF-Jq3">
             <objects>
@@ -1833,6 +1957,8 @@
         <image name="ic_vector_language" width="32" height="32"/>
         <image name="ic_vector_province" width="32" height="32"/>
         <image name="vector_action_contact" width="36" height="36"/>
+        <image name="vector_action_facebook" width="478" height="478"/>
+        <image name="vector_action_google" width="471" height="471"/>
         <image name="vector_action_info" width="36" height="36"/>
         <image name="vector_action_login" width="36" height="36"/>
         <image name="vector_action_logout" width="36" height="36"/>
