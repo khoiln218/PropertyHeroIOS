@@ -186,6 +186,9 @@ extension HomeViewController: UICollectionViewDataSource {
                 $0.selectMarker = { marker in
                     self.selectedMarker.onNext(marker)
                 }
+                $0.viewMore = { index in
+                    self.viewModel.navigator.toFindArea()
+                }
             }
         }
     }

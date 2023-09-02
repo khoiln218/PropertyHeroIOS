@@ -30,6 +30,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
     private var provinces = [Province]()
     private var markers = [Marker]()
     private var provinceSelected:Province!
+    private var markerType: MarkerType!
     
     var provinceSubject = PublishSubject<Province>()
     var keywordSubject = PublishSubject<String>()
@@ -48,6 +49,8 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        title = "Tìm khu vực"
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(provinceChanged(_:)),
                                                name: NSNotification.Name.settingChanged,
@@ -108,6 +111,21 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
         
+        output.$markerType
+            .asDriver()
+            .drive(onNext: { [unowned self] type in
+                if let type = type {
+                    self.markerType = type
+                    switch(type) {
+                    case .attr:
+                        self.searchBar.placeholder = "Nhập tên khu vực"
+                    default:
+                        self.searchBar.placeholder = "Tên tòa nhà, Trường đại học"
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         output.$proinces
             .asDriver()
             .drive(onNext: { [unowned self] provinces in
@@ -167,7 +185,7 @@ extension SearchByMarkerViewController: UITableViewDataSource {
         )
         .then {
             $0.selectionStyle = .none
-            $0.bindViewModel(marker)
+            $0.bindViewModel(marker, markerType: self.markerType)
         }
     }
 }

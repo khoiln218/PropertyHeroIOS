@@ -13,6 +13,7 @@ import CoreLocation
 struct SearchByMarkerViewModel {
     let navigator: SearchByMarkerNavigatorType
     let useCase: SearchByMarkerUseCaseType
+    let markerType: MarkerType
 }
 
 // MARK: - ViewModel
@@ -25,6 +26,7 @@ extension SearchByMarkerViewModel: ViewModel {
     }
     
     struct Output {
+        @Property var markerType: MarkerType?
         @Property var proinces: [Province]?
         @Property var markers: [Marker]?
         @Property var error: Error?
@@ -33,7 +35,7 @@ extension SearchByMarkerViewModel: ViewModel {
     }
     
     func transform(_ input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output()
+        let output = Output(markerType: markerType)
         
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
@@ -54,7 +56,7 @@ extension SearchByMarkerViewModel: ViewModel {
         
         let markerList = loadMarkers
             .flatMapLatest { keyword, province in
-                self.useCase.searchMarkers(keyword, provinceID: province.Id, markerType: Constants.undefined.rawValue)
+                self.useCase.searchMarkers(keyword, provinceID: province.Id, markerType: markerType.rawValue)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()

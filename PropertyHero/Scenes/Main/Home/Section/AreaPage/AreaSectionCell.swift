@@ -15,8 +15,9 @@ class AreaSectionCell: PageCollectionCell {
     @IBOutlet weak var viewmore: UILabel!
     
     var selectMarker: ((_ marker: Marker) -> Void)?
+    var viewMore: ((_ index: Int) -> Void)?
     
-    var data: [Marker]?
+    var data: PageSectionViewModel<Marker>?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,21 +37,26 @@ class AreaSectionCell: PageCollectionCell {
     }
     
     func bindViewModel(_ viewModel: PageSectionViewModel<Marker>) {
-        data = viewModel.items
+        data = viewModel
         if viewModel.index == 2 {
             viewmore.text = ""
             viewmore.textColor = UIColor(hex: "#F44336")
             icon.image = UIImage(named: "ic_drawable_korea")
         } else {
-            viewmore.text = ""
+            viewmore.text = "Khu vực khác >"
             viewmore.textColor = UIColor(hex: "#01A0B9")
             icon.image = UIImage(named: "ic_drawable_vn")
         }
         name.text = viewModel.title
+        viewmore.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMore(_:))))
+        viewmore.isUserInteractionEnabled = true
         collectionView.reloadData()
     }
+    
+    @objc func onMore(_ sender: UIButton) {
+        viewMore?(data!.index)
+    }
 }
-
 
 // MARK: - UICollectionViewDataSource
 extension AreaSectionCell: UICollectionViewDataSource {
@@ -59,7 +65,7 @@ extension AreaSectionCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data!.count
+        return data!.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,12 +74,12 @@ extension AreaSectionCell: UICollectionViewDataSource {
             cellType: AreaCell.self
         )
         .then {
-            $0.bindViewModel(data![indexPath.row])
+            $0.bindViewModel(data!.items[indexPath.row])
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectMarker?(data![indexPath.row])
+        selectMarker?(data!.items[indexPath.row])
     }
 }
 
@@ -91,7 +97,7 @@ extension AreaSectionCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,

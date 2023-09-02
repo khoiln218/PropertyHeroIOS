@@ -29,6 +29,12 @@ enum AccountType: Int {
     case google = 2
 }
 
+enum MarkerType: Int {
+    case all = 254
+    case building = 0
+    case attr = 1
+}
+
 enum Constants: Int {
     case undefined = 254
 }

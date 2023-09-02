@@ -11,6 +11,7 @@ import GoogleMaps
 protocol HomeNavigatorType {
     func toMapView(_ title: String, latlng: CLLocationCoordinate2D, type: PropertyType)
     func toProductList(_ searchInfo: SearchInfo, title: String)
+    func toFindArea()
 }
 
 struct HomeNavigator: HomeNavigatorType {
@@ -25,5 +26,10 @@ struct HomeNavigator: HomeNavigatorType {
     func toProductList(_ searchInfo: SearchInfo, title: String) {
         let vc: ProductListViewController = assembler.resolve(navigationController: navigationController, searchInfo: searchInfo, title: title)
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func toFindArea() {
+        let vcSearchByMarker: SearchByMarkerViewController = assembler.resolve(navigationController: navigationController, markerType: .attr)
+        navigationController.pushViewController(vcSearchByMarker, animated: true)
     }
 }
