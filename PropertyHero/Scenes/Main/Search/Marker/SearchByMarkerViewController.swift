@@ -48,6 +48,11 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(provinceChanged(_:)),
+                                               name: NSNotification.Name.settingChanged,
+                                               object: nil)
+        
         self.tableView.do {
             $0.dataSource = self
             $0.register(cellType: MarkerCell.self)
@@ -107,7 +112,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
             .asDriver()
             .drive(onNext: { [unowned self] provinces in
                 if let provinces = provinces {
-                    self.provinceSelected = provinces.first{ $0.Id == 2 } ?? provinces.first
+                    self.provinceSelected = provinces.first{ $0.Id == DefaultStorage().getDefaultProvince() } ?? provinces.first
                     self.provinceSubject.onNext(self.provinceSelected)
                     self.provinceLabel.text = self.provinceSelected.Name
                     self.provinces = provinces
@@ -140,6 +145,12 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
             .asDriver()
             .drive(tableView.isEmpty)
             .disposed(by: disposeBag)
+    }
+    
+    @objc func provinceChanged(_ notification: Notification) {
+        self.provinceSelected = self.provinces.first{ $0.Id == DefaultStorage().getDefaultProvince() } ?? self.provinces.first
+        self.provinceSubject.onNext(self.provinceSelected)
+        self.provinceLabel.text = self.provinceSelected.Name
     }
 }
 

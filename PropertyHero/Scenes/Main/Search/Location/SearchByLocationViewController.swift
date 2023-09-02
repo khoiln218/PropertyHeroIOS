@@ -47,6 +47,11 @@ final class SearchByLocationViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(provinceChanged(_:)),
+                                               name: NSNotification.Name.settingChanged,
+                                               object: nil)
+        
         provinceSpinner.layer.borderWidth = 1
         provinceSpinner.layer.borderColor = UIColor(hex: "#CFD8DC")?.cgColor
         provinceSpinner.layer.cornerRadius = 3
@@ -135,7 +140,7 @@ final class SearchByLocationViewController: UIViewController, Bindable {
             .asDriver()
             .drive(onNext: { [unowned self] provinces in
                 if let provinces = provinces {
-                    if let province = provinces.first(where: { $0.Id == 2 }) ?? provinces.first {
+                    if let province = provinces.first(where: { $0.Id == DefaultStorage().getDefaultProvince() }) ?? provinces.first {
                         self.provinceSubject.onNext(province)
                         self.provinceSpinner.text = province.Name
                         self.provinces = provinces
@@ -169,6 +174,13 @@ final class SearchByLocationViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    @objc func provinceChanged(_ notification: Notification) {
+        if let province = self.provinces.first(where: { $0.Id == DefaultStorage().getDefaultProvince() }) ?? self.provinces.first {
+            self.provinceSubject.onNext(province)
+            self.provinceSpinner.text = province.Name
+        }
     }
 }
 

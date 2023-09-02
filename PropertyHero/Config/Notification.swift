@@ -14,4 +14,5 @@ extension Notification.Name {
     static let favoriteChanged = Notification.Name(rawValue: "collection.favoriteChanged")
     static let avatarChanged = Notification.Name(rawValue: "account.avatarChanged")
     static let infoChanged = Notification.Name(rawValue: "account.infoChanged")
+    static let settingChanged = Notification.Name(rawValue: "account.settingChanged")
 }

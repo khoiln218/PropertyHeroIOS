@@ -122,7 +122,7 @@ final class MoreViewController: UIViewController, Bindable {
     }
     
     @objc func onSetting(_ sender: UITapGestureRecognizer) {
-        print(#function)
+        self.viewModel.navigator.toSetting()
     }
     
     @objc func setupLogoutUI(_ notification: NSNotification) {

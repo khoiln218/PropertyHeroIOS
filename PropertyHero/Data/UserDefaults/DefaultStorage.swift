@@ -11,12 +11,14 @@ struct DefaultStorage {
     private let latKey = "last-lat-storage"
     private let lngKey = "last-lng-storage"
     private let zoomKey = "last-zoom-storage"
+    private let defaultProvinceKey = "default-province-storage"
     private let userDefault = UserDefaults.standard
     
     //Bến Thành Maker
     private let kCameraLatitude = 10.771513
     private let kCameraLongitude = 106.698387
     private let kMapZoom: Float = 15.0
+    private let kProvince: Int = 2
     
     func setLastLatLng(_ lat: Double, lng: Double, zoom: Float) {
         userDefault.set(lat, forKey: latKey)
@@ -37,5 +39,14 @@ struct DefaultStorage {
     func getMapZoom() -> Float {
         if userDefault.object(forKey: zoomKey) == nil { return kMapZoom }
         return userDefault.float(forKey: zoomKey)
+    }
+    
+    func setDefaultProvince(_ provinceId: Int) {
+        userDefault.set(provinceId, forKey: defaultProvinceKey)
+    }
+    
+    func getDefaultProvince() -> Int {
+        if userDefault.object(forKey: defaultProvinceKey) == nil { return kProvince }
+        return userDefault.integer(forKey: defaultProvinceKey)
     }
 }
