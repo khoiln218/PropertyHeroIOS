@@ -6,6 +6,7 @@
 //
 
 protocol Assembler: AnyObject,
+                    ImageSliderAssembler,
                     AboutAssembler,
                     InfoAssembler,
                     SettingAssembler,

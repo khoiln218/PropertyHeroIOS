@@ -15,6 +15,9 @@ class CoverProductCell: PageTableCell {
     @IBOutlet weak var paging: UIView!
     @IBOutlet weak var pagingLabel: UILabel!
     
+    var selectCover: ((_ position: Int) -> Void)?
+    var position = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()
@@ -43,5 +46,19 @@ class CoverProductCell: PageTableCell {
         }
         covers.setImageInputs(sdWebImageSource)
         covers.pauseTimer()
+        covers.delegate = self
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTap))
+        covers.addGestureRecognizer(recognizer)
+    }
+    
+    @objc func didTap() {
+        selectCover?(position)
+    }
+}
+
+extension CoverProductCell: ImageSlideshowDelegate {
+    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
+        self.position = page
     }
 }

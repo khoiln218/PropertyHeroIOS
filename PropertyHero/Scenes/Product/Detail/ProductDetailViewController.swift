@@ -13,6 +13,7 @@ import RxSwift
 import UIKit
 import FlexibleTable
 import CoreLocation
+import ImageSlideshow
 
 final class ProductDetailViewController: UIViewController, Bindable {
     
@@ -53,6 +54,7 @@ final class ProductDetailViewController: UIViewController, Bindable {
         
         let cover:CoverProductCell = UINib(nibName:"CoverProductCell", bundle:.main).instantiate(withOwner: nil, options: nil).first as! CoverProductCell
         cover.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
         headerView.addSubview(cover)
         
         return headerView
@@ -157,6 +159,12 @@ final class ProductDetailViewController: UIViewController, Bindable {
             $0.stickyHeader.view = stickyHeaderView
             $0.stickyHeader.height = Dimension.SCREEN_WIDTH / 1.5
             $0.stickyHeader.minimumHeight = 0
+        }
+        
+        if let cover = stickyHeaderView.subviews[0] as? CoverProductCell {
+            cover.selectCover = { [unowned self] position in
+                self.viewModel.navigator.toSlider(self.product, position: position)
+            }
         }
     }
     

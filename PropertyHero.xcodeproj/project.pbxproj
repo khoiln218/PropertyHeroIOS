@@ -130,6 +130,11 @@
 		6EB2037D2AA358E8009B965C /* AboutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203782AA358E8009B965C /* AboutUseCase.swift */; };
 		6EB2037E2AA358E8009B965C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203792AA358E8009B965C /* AboutViewController.swift */; };
 		6EB2037F2AA358E8009B965C /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2037A2AA358E8009B965C /* AboutViewModel.swift */; };
+		6EB203862AA383A4009B965C /* ImageSliderAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203812AA383A4009B965C /* ImageSliderAssembler.swift */; };
+		6EB203872AA383A4009B965C /* ImageSliderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203822AA383A4009B965C /* ImageSliderNavigator.swift */; };
+		6EB203882AA383A4009B965C /* ImageSliderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203832AA383A4009B965C /* ImageSliderUseCase.swift */; };
+		6EB203892AA383A4009B965C /* ImageSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203842AA383A4009B965C /* ImageSliderViewController.swift */; };
+		6EB2038A2AA383A4009B965C /* ImageSliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB203852AA383A4009B965C /* ImageSliderViewModel.swift */; };
 		6EB5B0892A7FF5F6004AAB38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EB5B0882A7FF5F6004AAB38 /* GoogleService-Info.plist */; };
 		6EB5B0922A7FFA54004AAB38 /* MapViewAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B08D2A7FFA54004AAB38 /* MapViewAssembler.swift */; };
 		6EB5B0932A7FFA54004AAB38 /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB5B08E2A7FFA54004AAB38 /* MapViewNavigator.swift */; };
@@ -394,6 +399,11 @@
 		6EB203782AA358E8009B965C /* AboutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUseCase.swift; sourceTree = "<group>"; };
 		6EB203792AA358E8009B965C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		6EB2037A2AA358E8009B965C /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		6EB203812AA383A4009B965C /* ImageSliderAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderAssembler.swift; sourceTree = "<group>"; };
+		6EB203822AA383A4009B965C /* ImageSliderNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderNavigator.swift; sourceTree = "<group>"; };
+		6EB203832AA383A4009B965C /* ImageSliderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderUseCase.swift; sourceTree = "<group>"; };
+		6EB203842AA383A4009B965C /* ImageSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderViewController.swift; sourceTree = "<group>"; };
+		6EB203852AA383A4009B965C /* ImageSliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderViewModel.swift; sourceTree = "<group>"; };
 		6EB5B0882A7FF5F6004AAB38 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EB5B08D2A7FFA54004AAB38 /* MapViewAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewAssembler.swift; sourceTree = "<group>"; };
 		6EB5B08E2A7FFA54004AAB38 /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
@@ -963,6 +973,18 @@
 			path = About;
 			sourceTree = "<group>";
 		};
+		6EB203802AA38362009B965C /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				6EB203812AA383A4009B965C /* ImageSliderAssembler.swift */,
+				6EB203822AA383A4009B965C /* ImageSliderNavigator.swift */,
+				6EB203832AA383A4009B965C /* ImageSliderUseCase.swift */,
+				6EB203842AA383A4009B965C /* ImageSliderViewController.swift */,
+				6EB203852AA383A4009B965C /* ImageSliderViewModel.swift */,
+			);
+			path = Slider;
+			sourceTree = "<group>";
+		};
 		6EB5B08A2A7FF9D3004AAB38 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1069,6 +1091,7 @@
 				6EBE4AE02A8906090005B23F /* Storyboards+Product.swift */,
 				6EBE4AE22A8906550005B23F /* List */,
 				6ECB0E1C2A8BD2910065557E /* Detail */,
+				6EB203802AA38362009B965C /* Slider */,
 				6EB7436A2A98F54700067B01 /* Filter */,
 				6EA3FC3C2A96C45600222315 /* Report */,
 				6EA3FC312A96C42400222315 /* Ads */,
@@ -1502,6 +1525,7 @@
 				6E08B3292A7EAC8000C3EE35 /* Storyboards+Main.swift in Sources */,
 				6E83F43C2A7F6AF6002D9BD8 /* MoreNavigator.swift in Sources */,
 				6E14D6D42A88CA1E002E4900 /* AreaSectionCell.swift in Sources */,
+				6EB203882AA383A4009B965C /* ImageSliderUseCase.swift in Sources */,
 				6EA3FC392A96C44F00222315 /* AdsDetailUseCase.swift in Sources */,
 				6EB203712AA35776009B965C /* InfoNavigator.swift in Sources */,
 				6EB2037C2AA358E8009B965C /* AboutNavigator.swift in Sources */,
@@ -1592,6 +1616,7 @@
 				6EB743722A98F56800067B01 /* FilterUseCase.swift in Sources */,
 				6EC79BEA2AA0CE7100F4B2C7 /* AccountInfoNavigator.swift in Sources */,
 				6E14D6BA2A8881B0002E4900 /* FavoriteViewModel.swift in Sources */,
+				6EB203862AA383A4009B965C /* ImageSliderAssembler.swift in Sources */,
 				6EA8B0682A921F4C0000EB42 /* LoginViewController.swift in Sources */,
 				6E08B3332A7EAC8000C3EE35 /* MainViewModel.swift in Sources */,
 				6E14D6B92A8881B0002E4900 /* FavoriteViewController.swift in Sources */,
@@ -1619,6 +1644,7 @@
 				6ED3629A2A8AF4B000AAF5AF /* CoverProductCell.swift in Sources */,
 				6EBC24882A7EBD9000E58B2E /* SplashAssembler.swift in Sources */,
 				6EA8B0752A92329A0000EB42 /* ValidationResultViewModel.swift in Sources */,
+				6EB2038A2AA383A4009B965C /* ImageSliderViewModel.swift in Sources */,
 				6EB8EB002A84442C0055BEFD /* Product.swift in Sources */,
 				6EA8B0652A921F4B0000EB42 /* LoginAssembler.swift in Sources */,
 				6ECB0E162A8BC9420065557E /* RelocationCell.swift in Sources */,
@@ -1639,6 +1665,7 @@
 				6E83AC212A9E1C1900182A23 /* ChangePasswordViewController.swift in Sources */,
 				6E83F4212A7F6AA4002D9BD8 /* SearchViewModel.swift in Sources */,
 				6EBC24722A7EBCD500E58B2E /* UIView+.swift in Sources */,
+				6EB203872AA383A4009B965C /* ImageSliderNavigator.swift in Sources */,
 				6ED3629C2A8AF4B000AAF5AF /* ProductDetailUseCase.swift in Sources */,
 				6EB743742A98F56800067B01 /* FilterViewModel.swift in Sources */,
 				6E14D6AE2A88819A002E4900 /* ProductViewUseCase.swift in Sources */,
@@ -1672,6 +1699,7 @@
 				6EB5B0932A7FFA54004AAB38 /* MapViewNavigator.swift in Sources */,
 				6ECC2A6A2A7F89360053130A /* GetCategory.swift in Sources */,
 				6E83F4492A7F6EFF002D9BD8 /* NotificationViewModel.swift in Sources */,
+				6EB203892AA383A4009B965C /* ImageSliderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
