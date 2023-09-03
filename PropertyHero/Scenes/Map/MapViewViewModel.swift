@@ -111,7 +111,7 @@ extension MapViewViewModel: ViewModel {
                                 endLng: bounds.northEast.longitude,
                                 distance: 0.0,
                                 propertyType: Constants.undefined.rawValue,
-                                propertyID: filterSet.propertyID,
+                                propertyID: self.type.rawValue == 0 ? filterSet.propertyID : self.type.rawValue,
                                 minPrice: filterSet.minPrice,
                                 maxPrice: filterSet.maxPrice,
                                 minArea: filterSet.minArea,

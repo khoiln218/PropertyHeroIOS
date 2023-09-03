@@ -217,7 +217,6 @@ final class FilterViewController: UIViewController, Bindable {
             .drive(onNext: { [unowned self] properties in
                 if let properties = properties {
                     self.properties = properties
-                    print(properties)
                 }
             })
             .disposed(by: disposeBag)

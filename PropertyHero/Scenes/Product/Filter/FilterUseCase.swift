@@ -20,6 +20,11 @@ struct FilterUseCase: FilterUseCaseType, GetCategory {
     
     func getListProperty() -> Observable<[PropertyId]> {
         categoryGateway.getListProperty()
+            .map { properties in
+                var newProperty = properties
+                newProperty.insert(PropertyId(id: "1000", value: "Tất cả"), at: 0)
+                return newProperty
+            }
     }
     
     func verifyPrice(_ minPrice: String, maxPrice: String) -> ValidationResult {
