@@ -22,6 +22,9 @@ struct AccountDeletionUseCase: AccountDeletionUseCaseType, Login {
     }
     
     func validatePassword(_ password: String) -> ValidationResult {
+        if AccountStorage().getAccount().AccountType != AccountType.hero.rawValue {
+            return .success(())
+        }
         if password.isEmpty {
             return .failure(ValidationError(message: "Vui lòng nhập mật khẩu"))
         } else if password.count >= 6 && password.count <= 32 {

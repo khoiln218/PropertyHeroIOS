@@ -49,6 +49,9 @@ final class AccountDeletionViewController: UIViewController, Bindable {
         deleteBtn.layer.cornerRadius = 3
         deleteBtn.layer.masksToBounds = true
         
+        password.isHidden = AccountStorage().getAccount().AccountType != AccountType.hero.rawValue
+        passwordError.isHidden = AccountStorage().getAccount().AccountType != AccountType.hero.rawValue
+        
         title = "Xác nhận xóa tài khoản"
     }
     
