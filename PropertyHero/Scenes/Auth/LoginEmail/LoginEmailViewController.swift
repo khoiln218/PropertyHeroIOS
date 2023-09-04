@@ -1,8 +1,8 @@
 //
-//  LoginViewController.swift
+//  LoginEmailViewController.swift
 //  PropertyHero
 //
-//  Created by KHOI LE on 9/4/23.
+//  Created by KHOI LE on 8/20/23.
 //
 
 import UIKit
@@ -11,22 +11,21 @@ import RxSwift
 import RxCocoa
 import Reusable
 import Then
-import GoogleSignIn
+import Dto
 
-final class LoginViewController: UIViewController, Bindable {
+final class LoginEmailViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var facebookLogin: UIButton!
-    @IBOutlet weak var googleLogin: UIButton!
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var usernameError: UILabel!
+    @IBOutlet weak var passwordError: UILabel!
     
     // MARK: - Properties
     
-    var viewModel: LoginViewModel!
+    var viewModel: LoginEmailViewModel!
     var disposeBag = DisposeBag()
-    
-    let login = PublishSubject<Account>()
     
     // MARK: - Life Cycle
     
@@ -42,42 +41,32 @@ final class LoginViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-            loginBtn.layer.cornerRadius = 3
-            loginBtn.layer.masksToBounds = true
-            
-            title = "Đăng nhập Property Hero"
-    }
-    
-    @IBAction func loginGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if error == nil && user != nil {
-                GIDSignIn.sharedInstance.signOut()
-            }
-            GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] signInResult, error in
-                guard error == nil else { return }
-                guard let signInResult = signInResult else { return }
-                getAccountGoogleInformation(signInResult.user)
-            }
-        }
-    }
-    
-    @IBAction func loginFacebook(_ sender: Any) {
-    }
-     
-    @IBAction func loginWithEmail(_ sender: Any) {
-        self.viewModel.navigator.toLoginEmail()
-    }
-    
-    @IBAction func registerMember(_ sender: Any) {
-        self.viewModel.navigator.toRegister()
+        loginBtn.layer.cornerRadius = 3
+        loginBtn.layer.masksToBounds = true
+        
+        title = "Đăng nhập với Email"
+        username.text = AccountStorage().getUsername()
     }
     
     func bindViewModel() {
-        let input = LoginViewModel.Input(
-            login: login.asDriverOnErrorJustComplete()
+        let input = LoginEmailViewModel.Input(
+            trigger: Driver.just(()),
+            username: username.rx.text.orEmpty.asDriver(),
+            password: password.rx.text.orEmpty.asDriver(),
+            login: loginBtn.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
+        
+        output.$usernameValidation
+            .asDriver()
+            .drive(usernameValidationBinder)
+            .disposed(by: disposeBag)
+        
+        output.$passwordValidation
+            .asDriver()
+            .drive(passwordValidationBinder)
+            .disposed(by: disposeBag)
         
         output.$accounts
             .asDriver()
@@ -111,21 +100,9 @@ final class LoginViewController: UIViewController, Bindable {
             .disposed(by: disposeBag)
     }
     
-    func getAccountGoogleInformation(_ user: GIDGoogleUser) {
-        let userId = user.userID!
-        let fullName = user.profile!.name
-        let email = user.profile!.email
-        loginSuccess(accType: .google, id: userId, fullName: fullName, email: email)
-    }
-    
-    func loginSuccess(accType: AccountType, id: String, fullName: String, email: String) {
-        let account = Account(UserName: id, FullName: fullName, Email: email, AccountType: accType.rawValue)
-        print(account)
-        login.onNext(account)
-    }
-    
     func onSuccess(_ account: Account) {
         DispatchQueue.main.async { [unowned self] in
+            AccountStorage().savePassword(self.password.text!)
             AccountStorage().saveAccount(account)
             AccountStorage().setIsLogin()
             NotificationCenter.default.post(
@@ -157,7 +134,26 @@ final class LoginViewController: UIViewController, Bindable {
     }
 }
 
+// MARK: - Binders
+extension LoginEmailViewController {
+    var usernameValidationBinder: Binder<ValidationResult> {
+        return Binder(self) { vc, result in
+            let viewModel = ValidationResultViewModel(validationResult: result)
+            vc.username.backgroundColor = viewModel.backgroundColor
+            vc.usernameError.text = viewModel.text
+        }
+    }
+    
+    var passwordValidationBinder: Binder<ValidationResult> {
+        return Binder(self) { vc, result in
+            let viewModel = ValidationResultViewModel(validationResult: result)
+            vc.password.backgroundColor = viewModel.backgroundColor
+            vc.passwordError.text = viewModel.text
+        }
+    }
+}
+
 // MARK: - StoryboardSceneBased
-extension LoginViewController: StoryboardSceneBased {
+extension LoginEmailViewController: StoryboardSceneBased {
     static var sceneStoryboard = Storyboards.auth
 }

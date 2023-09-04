@@ -45,5 +45,6 @@ extension API {
         static let getDetail = apiAuth + "GetDetails/AccountID=%d/"
         static let updateInfo = apiAuth + "UpdateInfo"
         static let accountDeletion = apiAuth + "AccountDelete"
+        static let socialLogin = apiAuth + "SocialLogin"
     }
 }

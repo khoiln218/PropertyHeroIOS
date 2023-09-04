@@ -9,14 +9,15 @@ import RxCocoa
 import RxSwift
 import UIKit
 import GoogleMaps
+import GoogleSignIn
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     var assembler: Assembler = DefaultAssembler()
     var disposeBag = DisposeBag()
-
+    
     func applicationDidFinishLaunching(_ application: UIApplication) {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
@@ -28,11 +29,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         bindViewModel(window: window)
     }
-
+    
     private func bindViewModel(window: UIWindow) {
         let vc: SplashViewController = assembler.resolve(window: window)
         
         window.rootViewController = vc
         window.makeKeyAndVisible()
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+         return GIDSignIn.sharedInstance.handle(url)
     }
 }

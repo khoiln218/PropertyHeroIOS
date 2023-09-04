@@ -6,6 +6,7 @@
 //
 
 protocol Assembler: AnyObject,
+                    LoginAssembler,
                     ImageSliderAssembler,
                     AboutAssembler,
                     InfoAssembler,
@@ -19,7 +20,7 @@ protocol Assembler: AnyObject,
                     AdsDetailAssembler,
                     ReportAssembler,
                     RegisterAssembler,
-                    LoginAssembler,
+                    LoginEmailAssembler,
                     ProductDetailAssembler,
                     ProductListAssembler,
                     FavoriteAssembler,

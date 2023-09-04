@@ -11,6 +11,10 @@ import MGAPIService
 
 extension API {
     
+    func socialLogin(_ input: SocialLoginInput) -> Observable<SocialLoginOutput> {
+        return request(input)
+    }
+    
     func login(_ input: LoginInput) -> Observable<LoginOutput> {
         return request(input)
     }
@@ -45,6 +49,38 @@ extension API {
 }
 
 extension API {
+    final class SocialLoginInput: APIUploadInputBase {
+        init(_ account: Account) {
+            let params: JSONDictionary = [
+                "UserName": account.UserName,
+                "FullName": account.FullName,
+                "Email": account.Email,
+                "BirthDate": "",
+                "Gender": "0",
+                "AccountType": account.AccountType,
+                "Token": "",
+                "DeviceType": "",
+                "Version": "",
+                "Address": "",
+                "Latitude": "",
+                "Longitude": ""
+            ]
+            super.init(data: [], urlString: API.Urls.socialLogin,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class SocialLoginOutput: APIOutput {
+        private(set) var accounts: [Account]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            accounts <- map["DataList"]
+        }
+    }
+    
     final class AccountDeletionInput: APIUploadInputBase {
         init(_ username: String, password: String) {
             let params: JSONDictionary = [

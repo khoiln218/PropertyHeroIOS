@@ -10,9 +10,125 @@
     </dependencies>
     <scenes>
         <!--Login View Controller-->
+        <scene sceneID="YAu-ow-5hQ">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="WnY-OY-lyS" customClass="LoginViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DH2-Zv-NZp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bo-0s-CdI">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_main" translatesAutoresizingMaskIntoConstraints="NO" id="w05-vY-GpW">
+                                        <rect key="frame" x="100.66666666666669" y="24" width="192" height="192"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="192" id="MYe-Uz-5UF"/>
+                                            <constraint firstAttribute="width" secondItem="w05-vY-GpW" secondAttribute="height" multiplier="1:1" id="V09-Dp-zjR"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nLB-NP-CvW">
+                                        <rect key="frame" x="16" y="232.00000000000003" width="361" height="124.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Lg-STI">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="54"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="tfS-Lg-STI" secondAttribute="height" multiplier="320:48" id="wzv-Ci-9l5"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Đăng nhập bằng Facebook">
+                                                    <backgroundConfiguration key="background" image="vector_btn_facebook"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="loginFacebook:" destination="WnY-OY-lyS" eventType="touchUpInside" id="amR-nw-P1R"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjO-Jn-vpM">
+                                                <rect key="frame" x="0.0" y="70" width="361" height="54.333333333333343"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="kjO-Jn-vpM" secondAttribute="height" multiplier="320:48" id="ufT-Ra-MEr"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Đăng nhập bẳng Google">
+                                                    <backgroundConfiguration key="background" image="vector_btn_google"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="loginGoogle:" destination="WnY-OY-lyS" eventType="touchUpInside" id="mAs-yQ-hOF"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3xS-XE-Muw">
+                                        <rect key="frame" x="16" y="651.66666666666663" width="361" height="91.333333333333371"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llN-7I-xP2">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="42"/>
+                                                <color key="backgroundColor" red="0.16862745100000001" green="0.31372549020000001" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="4OM-9c-elY"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Đăng nhập với Email">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="loginWithEmail:" destination="WnY-OY-lyS" eventType="touchUpInside" id="GME-uJ-vl8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4c-ga-XwK">
+                                                <rect key="frame" x="0.0" y="58" width="361" height="33.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Đăng ký thành viên">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="baseForegroundColor" red="0.37647058823529411" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="registerMember:" destination="WnY-OY-lyS" eventType="touchUpInside" id="fVy-Kv-0po"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nLB-NP-CvW" secondAttribute="trailing" constant="16" id="25Y-fR-yWU"/>
+                                    <constraint firstItem="nLB-NP-CvW" firstAttribute="top" secondItem="w05-vY-GpW" secondAttribute="bottom" constant="16" id="7Xs-Sk-WQ3"/>
+                                    <constraint firstAttribute="trailing" secondItem="3xS-XE-Muw" secondAttribute="trailing" constant="16" id="Eg6-r7-Nic"/>
+                                    <constraint firstItem="w05-vY-GpW" firstAttribute="top" secondItem="5Bo-0s-CdI" secondAttribute="top" constant="24" id="Jgp-9b-sgJ"/>
+                                    <constraint firstItem="w05-vY-GpW" firstAttribute="centerX" secondItem="5Bo-0s-CdI" secondAttribute="centerX" id="PDr-M8-0pC"/>
+                                    <constraint firstItem="3xS-XE-Muw" firstAttribute="leading" secondItem="5Bo-0s-CdI" secondAttribute="leading" constant="16" id="eZR-CT-O4G"/>
+                                    <constraint firstAttribute="bottom" secondItem="3xS-XE-Muw" secondAttribute="bottom" constant="16" id="iMw-RJ-lxo"/>
+                                    <constraint firstItem="nLB-NP-CvW" firstAttribute="leading" secondItem="5Bo-0s-CdI" secondAttribute="leading" constant="16" id="kCb-gB-vdG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W5I-bH-x2d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W5I-bH-x2d" firstAttribute="trailing" secondItem="5Bo-0s-CdI" secondAttribute="trailing" id="25W-0y-eyC"/>
+                            <constraint firstItem="5Bo-0s-CdI" firstAttribute="leading" secondItem="W5I-bH-x2d" secondAttribute="leading" id="2hy-aO-8pj"/>
+                            <constraint firstItem="W5I-bH-x2d" firstAttribute="bottom" secondItem="5Bo-0s-CdI" secondAttribute="bottom" id="ndr-1m-nQM"/>
+                            <constraint firstItem="5Bo-0s-CdI" firstAttribute="top" secondItem="W5I-bH-x2d" secondAttribute="top" id="vqT-tC-dvT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="facebookLogin" destination="tfS-Lg-STI" id="291-O1-jXt"/>
+                        <outlet property="googleLogin" destination="kjO-Jn-vpM" id="Wwa-gz-kGp"/>
+                        <outlet property="loginBtn" destination="llN-7I-xP2" id="ePk-Nt-3hb"/>
+                        <outlet property="registerBtn" destination="W4c-ga-XwK" id="imo-Jz-fHw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dGy-3o-lTs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-688" y="-35"/>
+        </scene>
+        <!--Login Email View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="Y6W-OH-hqX" customClass="LoginViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginEmailViewController" id="Y6W-OH-hqX" customClass="LoginEmailViewController" customModule="PropertyHero" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +140,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="943"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sjj-yY-U8O">
-                                                <rect key="frame" x="32" y="24.000000000000014" width="329" height="220.33333333333337"/>
+                                                <rect key="frame" x="32" y="24" width="329" height="178"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ykd-gu-nrS">
                                                         <rect key="frame" x="0.0" y="0.0" width="329" height="60"/>
@@ -76,14 +192,6 @@
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4c-ga-XwK">
-                                                        <rect key="frame" x="0.0" y="186" width="329" height="34.333333333333343"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Đăng ký thành viên"/>
-                                                        <connections>
-                                                            <action selector="registerMember:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jmb-dU-wlV"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -120,7 +228,6 @@
                         <outlet property="loginBtn" destination="uAc-XJ-Nbh" id="2ie-Jw-qPs"/>
                         <outlet property="password" destination="SOr-zC-dYm" id="ctf-Q6-ZOO"/>
                         <outlet property="passwordError" destination="r22-ay-zFR" id="hHm-Rk-kCe"/>
-                        <outlet property="registerBtn" destination="W4c-ga-XwK" id="jM5-OK-1D9"/>
                         <outlet property="username" destination="aNR-jR-8bs" id="gjR-QI-LXi"/>
                         <outlet property="usernameError" destination="DMh-wJ-uCu" id="1ub-gj-5Zt"/>
                     </connections>
@@ -543,6 +650,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_main" width="256" height="256"/>
+        <image name="vector_btn_facebook" width="328" height="48"/>
+        <image name="vector_btn_google" width="328" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

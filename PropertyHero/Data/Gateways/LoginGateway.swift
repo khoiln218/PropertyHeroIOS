@@ -13,6 +13,7 @@ import MGAPIService
 protocol LoginGatewayType {
     func updateInfo(_ account: Account) -> Observable<Bool>
     func getInfo(_ accountId: Int) -> Observable<[Account]>
+    func socialLogin(_ account: Account) -> Observable<[Account]>
     func login(_ username: String, password: String) -> Observable<[Account]>
     func verify(_ username: String) -> Observable<[Account]>
     func register(_ username: String, password: String, fullname: String, phoneNumber: String) -> Observable<Bool>
@@ -34,6 +35,14 @@ struct LoginGateway: LoginGatewayType {
         let input = API.GetInfoInput(accountId)
         
         return API.shared.getInfo(input)
+            .map { $0.accounts }
+            .unwrap()
+    }
+    
+    func socialLogin(_ account: Account) -> Observable<[Account]> {
+        let input = API.SocialLoginInput(account)
+        
+        return API.shared.socialLogin(input)
             .map { $0.accounts }
             .unwrap()
     }

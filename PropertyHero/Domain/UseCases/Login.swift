@@ -22,6 +22,10 @@ extension Login {
         loginGateway.getInfo(accountId)
     }
     
+    func socialLogin(_ account: Account) -> Observable<[Account]> {
+        loginGateway.socialLogin(account)
+    }
+    
     func login(_ username: String, password: String) -> Observable<[Account]> {
         loginGateway.login(username, password: password)
     }

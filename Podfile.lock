@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (5.6.4)
+  - AppAuth (1.6.0):
+    - AppAuth/Core (= 1.6.0)
+    - AppAuth/ExternalUserAgent (= 1.6.0)
+  - AppAuth/Core (1.6.0)
+  - AppAuth/ExternalUserAgent (1.6.0):
+    - AppAuth/Core
   - DatePickerDialog (4.0)
   - DLRadioButton (1.4.12)
   - Dto (0.2.0):
@@ -30,6 +36,14 @@ PODS:
   - GoogleMaps/Base (7.3.0)
   - GoogleMaps/Maps (7.3.0):
     - GoogleMaps/Base
+  - GoogleSignIn (7.0.0):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (< 3.0, >= 1.3)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.1)
+  - GTMAppAuth (2.0.0):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.5)
+  - GTMSessionFetcher/Core (3.1.0)
   - ImageSlideshow (1.9.2):
     - ImageSlideshow/Core (= 1.9.2)
   - ImageSlideshow/Core (1.9.2)
@@ -82,6 +96,7 @@ DEPENDENCIES:
   - FlexibleTable
   - Google-Maps-iOS-Utils (~> 4.2.2)
   - GoogleMaps (~> 7.3.0)
+  - GoogleSignIn
   - ImageSlideshow (~> 1.9.2)
   - ImageSlideshow/SDWebImage
   - MBProgressHUD (~> 1.2)
@@ -97,6 +112,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
     - DatePickerDialog
     - DLRadioButton
     - Dto
@@ -104,6 +120,9 @@ SPEC REPOS:
     - FlexibleTable
     - Google-Maps-iOS-Utils
     - GoogleMaps
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - ImageSlideshow
     - MBProgressHUD
     - MGAPIService
@@ -123,6 +142,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
   DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Dto: 0346adb2a98017204d384e981352c7f864296a1f
@@ -130,6 +150,9 @@ SPEC CHECKSUMS:
   FlexibleTable: 9799aa65cc46cb977f92778d2a2f6dd94cceffa7
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
   GoogleMaps: a146f275ee429d14822178c7a841c03366ec92a1
+  GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
+  GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
+  GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MGAPIService: 83684387a742af98b944f5badfa566cc2e146318
@@ -147,6 +170,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   ValidatedPropertyKit: 599b32854be66b3eea55c0ad7aa22c52cba4b997
 
-PODFILE CHECKSUM: c04472153bbe77c9aef2e9a39dd8eeb787a001a6
+PODFILE CHECKSUM: 04a2abe70010e2f50054d78fbf1ebbe3ff797851
 
 COCOAPODS: 1.11.3
