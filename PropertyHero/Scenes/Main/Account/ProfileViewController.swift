@@ -53,9 +53,12 @@ final class ProfileViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        self.userInfo.addBorders(edges: [.top], color: UIColor(hex: "#ECEFF1")!, width: 1)
-        self.changePw.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
-        self.deleteBtn.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        self.userInfo.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        if AccountStorage().getAccount().AccountType == AccountType.hero.rawValue {
+            self.deleteBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        } else {
+            self.deleteBtn.addBorders(edges: [.bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
+        }
         self.logoutBtn.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.avatarBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onChooseAvatar(_:))))
         self.userInfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onUserInfo(_:))))
@@ -68,6 +71,8 @@ final class ProfileViewController: UIViewController, Bindable {
         self.avatar.layer.borderColor = UIColor.white.cgColor
         self.avatar.layer.cornerRadius = avatar.frame.size.width / 2
         self.avatar.clipsToBounds = true
+        
+        self.changePw.isHidden = AccountStorage().getAccount().AccountType != AccountType.hero.rawValue
         
         self.title = "Cá nhân"
     }

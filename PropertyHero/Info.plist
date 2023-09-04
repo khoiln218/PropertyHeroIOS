@@ -4,14 +4,21 @@
 <dict>
 	<key>GIDClientID</key>
 	<string>721105407584-lj93al1ijc39uipfdu5to0qtmklgr6b7.apps.googleusercontent.com</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.721105407584-lj93al1ijc39uipfdu5to0qtmklgr6b7</string>
-			</array>
-		</dict>
-	</array>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb835680071452810</string>
+        <string>com.googleusercontent.apps.721105407584-lj93al1ijc39uipfdu5to0qtmklgr6b7</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>835680071452810</string>
+    <key>FacebookClientToken</key>
+    <string>c7ef9f04cdbf5b0c85dd4ba7cc37513f</string>
+    <key>FacebookDisplayName</key>
+    <string>Property Hero</string>
 </dict>
 </plist>

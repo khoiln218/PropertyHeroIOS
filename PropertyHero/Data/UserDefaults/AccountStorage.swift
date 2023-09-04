@@ -15,7 +15,11 @@ struct AccountStorage {
     private let userDefault = UserDefaults.standard
     
     func saveAccount(_ account: Account) {
-        saveUsername(account.UserName)
+        if account.AccountType == AccountType.hero.rawValue {
+            saveUsername(account.UserName)
+        } else {
+            saveUsername(nil)
+        }
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(account)
         let json = String(data: jsonData, encoding: .utf8)
@@ -32,7 +36,7 @@ struct AccountStorage {
         }
     }
     
-    func saveUsername(_ username: String) {
+    func saveUsername(_ username: String?) {
         userDefault.set(username, forKey: usernameKey)
     }
     

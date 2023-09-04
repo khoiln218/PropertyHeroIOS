@@ -12,6 +12,8 @@ import RxCocoa
 import Reusable
 import Then
 import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 final class LoginViewController: UIViewController, Bindable {
     
@@ -42,10 +44,19 @@ final class LoginViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-            loginBtn.layer.cornerRadius = 3
-            loginBtn.layer.masksToBounds = true
-            
-            title = "Đăng nhập Property Hero"
+        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange,
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] _ in
+            if let token = AccessToken.current, !token.isExpired {
+                let accessToken =  token.tokenString
+                self?.getAccountFBInformation(accessToken: accessToken)
+            }
+        }
+        
+        loginBtn.layer.cornerRadius = 3
+        loginBtn.layer.masksToBounds = true
+        
+        title = "Đăng nhập Property Hero"
     }
     
     @IBAction func loginGoogle(_ sender: Any) {
@@ -62,6 +73,10 @@ final class LoginViewController: UIViewController, Bindable {
     }
     
     @IBAction func loginFacebook(_ sender: Any) {
+        if let _ = AccessToken.current {
+            LoginManager().logOut()
+        }
+        LoginManager().logIn(permissions: ["public_profile", "email"], from: self)
     }
      
     @IBAction func loginWithEmail(_ sender: Any) {
@@ -116,6 +131,22 @@ final class LoginViewController: UIViewController, Bindable {
         let fullName = user.profile!.name
         let email = user.profile!.email
         loginSuccess(accType: .google, id: userId, fullName: fullName, email: email)
+    }
+    
+    func getAccountFBInformation(accessToken: String) {
+        let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: accessToken, version: nil, httpMethod: .get )
+        req.start { [unowned self] (connection, result, error) -> Void in
+            if error == nil {
+                guard let userInfo = result as? NSDictionary else { return }
+                let email = userInfo["email"] as? String ?? ""
+                let fullName = userInfo["name"] as! String
+                let userId = userInfo["id"] as! String
+                self.loginSuccess(accType: .facebook, id: userId, fullName: fullName, email: email)
+            }
+            else {
+                print("error \(error!)")
+            }
+        }
     }
     
     func loginSuccess(accType: AccountType, id: String, fullName: String, email: String) {

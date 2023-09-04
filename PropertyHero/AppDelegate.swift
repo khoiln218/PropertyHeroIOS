@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 import GoogleMaps
 import GoogleSignIn
+import FacebookCore
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window.overrideUserInterfaceStyle = .light
         
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions: nil
+        )
+        
         bindViewModel(window: window)
     }
     
@@ -38,6 +44,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        if url.scheme == "fb835680071452810" {
+            return ApplicationDelegate.shared.application(
+                app,
+                open: url,
+                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+            )
+        }
          return GIDSignIn.sharedInstance.handle(url)
     }
 }
