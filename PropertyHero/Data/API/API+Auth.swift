@@ -38,9 +38,35 @@ extension API {
     func updateInfo(_ input: UpdateInfoInput) -> Observable<UpdateInfoOutput> {
         return request(input)
     }
+    
+    func accountDeletion(_ input: AccountDeletionInput) -> Observable<AccountDeletionOutput> {
+        return request(input)
+    }
 }
 
 extension API {
+    final class AccountDeletionInput: APIUploadInputBase {
+        init(_ username: String, password: String) {
+            let params: JSONDictionary = [
+                "UserName": username,
+                "Password": password
+            ]
+            super.init(data: [], urlString: API.Urls.accountDeletion,
+                       parameters: params,
+                       method: .post,
+                       requireAccessToken: true)
+        }
+    }
+    
+    final class AccountDeletionOutput: APIOutput {
+        private(set) var success: Bool?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            success <- map["DataList"]
+        }
+    }
+    
     final class UpdateInfoInput: APIUploadInputBase {
         init(_ account: Account) {
             let params: JSONDictionary = [

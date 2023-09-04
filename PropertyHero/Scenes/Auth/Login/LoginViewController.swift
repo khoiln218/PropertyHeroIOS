@@ -12,7 +12,6 @@ import RxCocoa
 import Reusable
 import Then
 import Dto
-import FirebaseDatabase
 
 final class LoginViewController: UIViewController, Bindable {
     
@@ -28,7 +27,6 @@ final class LoginViewController: UIViewController, Bindable {
     
     var viewModel: LoginViewModel!
     var disposeBag = DisposeBag()
-    var ref: DatabaseReference!
     
     // MARK: - Life Cycle
     
@@ -48,8 +46,7 @@ final class LoginViewController: UIViewController, Bindable {
         loginBtn.layer.masksToBounds = true
         
         title = "Đăng nhập"
-        
-        self.ref = Database.database(url: "https://property-hero-460a8-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        username.text = AccountStorage().getUsername()
     }
     
     @IBAction func registerMember(_ sender: Any) {
@@ -58,10 +55,10 @@ final class LoginViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = LoginViewModel.Input(
-                trigger: Driver.just(()),
-                username: username.rx.text.orEmpty.asDriver(),
-                password: password.rx.text.orEmpty.asDriver(),
-                login: loginBtn.rx.tap.asDriver()
+            trigger: Driver.just(()),
+            username: username.rx.text.orEmpty.asDriver(),
+            password: password.rx.text.orEmpty.asDriver(),
+            login: loginBtn.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
@@ -84,21 +81,11 @@ final class LoginViewController: UIViewController, Bindable {
                         let accountResult = accounts[0]
                         if accountResult.AccountType == AccountStatus.accLocked.rawValue {
                             self.onAccLock()
-                            return
+                        } else if accountResult.AccountType == AccountStatus.accDeletion.rawValue {
+                            self.onDeletion()
+                        } else {
+                            self.onSuccess(accountResult)
                         }
-                        self.ref.child("account").child("deletion").child(String(accountResult.Id)).getData(completion:  { [unowned self] error, snapshot in
-                            guard error == nil else {
-                                print(error!.localizedDescription)
-                                self.onFails()
-                                return
-                            }
-                            if let account = snapshot?.value as? [String: Any] {
-                                print(account)
-                                self.onDeletion()
-                            } else {
-                                self.onSuccess(accountResult)
-                            }
-                        });
                     } else {
                         self.onFails()
                     }

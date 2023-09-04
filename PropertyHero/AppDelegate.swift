@@ -9,7 +9,6 @@ import RxCocoa
 import RxSwift
 import UIKit
 import GoogleMaps
-import FirebaseCore
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +23,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor(hex: "#424242")
         
         GMSServices.provideAPIKey("AIzaSyCweUKlL7MrYKl5qXC1YBL6U4y4DSZZTn4")
-        FirebaseApp.configure()
         
         window.overrideUserInterfaceStyle = .light
         

@@ -36,13 +36,15 @@ extension AccountDeletionViewModel: ViewModel {
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
         
-        let loginFail = PublishSubject<Error>()
-        
         let passwordValidation = Driver.combineLatest(input.password, input.delete)
             .map { $0.0 }
             .map(useCase.validatePassword(_:))
         
-        let login = input.delete
+        passwordValidation
+            .drive(output.$passwordValidation)
+            .disposed(by: disposeBag)
+        
+        let delete = input.delete
             .withLatestFrom(passwordValidation.map { $0.isValid })
             .filter { $0 }
             .withLatestFrom(Driver.combineLatest(
@@ -50,28 +52,7 @@ extension AccountDeletionViewModel: ViewModel {
                 input.password
             ))
             .flatMapLatest { account, password in
-                return self.useCase.login(account.UserName, password: password)
-                    .trackError(errorTracker)
-                    .trackActivity(activityIndicator)
-                    .asDriverOnErrorJustComplete()
-            }
-        
-        let checkLogin = login
-            .map(useCase.checklogin(_:))
-        
-        Driver.merge(passwordValidation, checkLogin)
-            .drive(output.$passwordValidation)
-            .disposed(by: disposeBag)
-        
-        let delete = checkLogin
-            .map { $0.isValid }
-            .filter { $0 }
-            .withLatestFrom(Driver.combineLatest(
-                input.account,
-                input.password
-            ))
-            .flatMapLatest { account, password in
-                return self.useCase.delete(account.Id, password: password)
+                return self.useCase.delete(account.UserName, password: password)
                     .trackError(errorTracker)
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
@@ -81,12 +62,8 @@ extension AccountDeletionViewModel: ViewModel {
             .drive(output.$isSuccessful)
             .disposed(by: disposeBag)
         
-        let error = Driver.merge(
-            errorTracker.asDriver(),
-            loginFail.asDriverOnErrorJustComplete()
-        )
-        
-        error
+        errorTracker
+            .asDriver()
             .drive(output.$error)
             .disposed(by: disposeBag)
         

@@ -21,6 +21,7 @@ enum Gender: Int {
 
 enum AccountStatus: Int {
     case accLocked = 200
+    case accDeletion = 250
 }
 
 enum AccountType: Int {

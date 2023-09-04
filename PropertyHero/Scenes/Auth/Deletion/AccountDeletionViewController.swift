@@ -12,7 +12,6 @@ import RxCocoa
 import Reusable
 import Then
 import Dto
-import FirebaseDatabase
 
 final class AccountDeletionViewController: UIViewController, Bindable {
     
@@ -25,7 +24,6 @@ final class AccountDeletionViewController: UIViewController, Bindable {
     
     var viewModel: AccountDeletionViewModel!
     var disposeBag = DisposeBag()
-    var ref: DatabaseReference!
     
     let account: Account = AccountStorage().getAccount()
     
@@ -52,8 +50,6 @@ final class AccountDeletionViewController: UIViewController, Bindable {
         deleteBtn.layer.masksToBounds = true
         
         title = "Xác nhận xóa tài khoản"
-        
-        self.ref = Database.database(url: "https://property-hero-460a8-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     }
     
     func bindViewModel() {
@@ -70,19 +66,7 @@ final class AccountDeletionViewController: UIViewController, Bindable {
             .drive(onNext: { [unowned self] isSuccessful in
                 if let isSuccessfull = isSuccessful {
                     if isSuccessfull {
-                        self.ref.child("account").child("deletion").child(String(self.account.Id)).getData(completion:  { [unowned self] error, snapshot in
-                            guard error == nil else {
-                                print(error!.localizedDescription)
-                                self.onFails()
-                                return
-                            }
-                            if let account = snapshot?.value as? [String: Any] {
-                                print(account)
-                                self.onFails()
-                            } else {
-                                self.onSuccess()
-                            }
-                        });
+                        self.onSuccess()
                     } else {
                         self.onFails()
                     }
@@ -109,7 +93,6 @@ final class AccountDeletionViewController: UIViewController, Bindable {
     
     func onSuccess() {
         DispatchQueue.main.async {
-            self.ref.child("account").child("deletion").child(String(self.account.Id)).setValue(["username": self.account.UserName])
             self.onLogout()
             self.showAutoCloseMessage(image: nil, title: nil, message: "Xóa thành công") {
                 self.viewModel.navigator.backHome()

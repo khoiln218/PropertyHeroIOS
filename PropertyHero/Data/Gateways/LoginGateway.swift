@@ -18,6 +18,7 @@ protocol LoginGatewayType {
     func register(_ username: String, password: String, fullname: String, phoneNumber: String) -> Observable<Bool>
     func changePassword(_ accountId: Int, password: String) -> Observable<Bool>
     func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool>
+    func accountDeletion(_ username: String, password: String) -> Observable<Bool>
 }
 
 struct LoginGateway: LoginGatewayType {
@@ -73,6 +74,14 @@ struct LoginGateway: LoginGatewayType {
         let input = API.ChangeAvatarInput(accountId, username: username, avatar: avatar)
         
         return API.shared.changeAvatar(input)
+            .map { $0.success }
+            .unwrap()
+    }
+    
+    func accountDeletion(_ username: String, password: String) -> Observable<Bool> {
+        let input = API.AccountDeletionInput(username, password: password)
+        
+        return API.shared.accountDeletion(input)
             .map { $0.success }
             .unwrap()
     }

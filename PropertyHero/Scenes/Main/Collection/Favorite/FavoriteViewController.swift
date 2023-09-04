@@ -44,6 +44,16 @@ final class FavoriteViewController: UIViewController, Bindable {
         NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name:
                 UIApplication.didBecomeActiveNotification, object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(favoriteChanged),
+                                               name: NSNotification.Name.logout,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(favoriteChanged),
+                                               name: NSNotification.Name.loginSuccess,
+                                               object: nil)
+        
         tableView.do {
             $0.dataSource = self
             $0.refreshFooter = nil

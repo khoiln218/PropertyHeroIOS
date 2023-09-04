@@ -41,4 +41,8 @@ extension Login {
     func changeAvatar(_ accountId: Int, username: String, avatar: APIUploadData) -> Observable<Bool> {
         loginGateway.changeAvatar(accountId, username: username, avatar: avatar)
     }
+    
+    func accountDeletion(_ username: String, password: String) -> Observable<Bool> {
+        loginGateway.accountDeletion(username, password: password)
+    }
 }
