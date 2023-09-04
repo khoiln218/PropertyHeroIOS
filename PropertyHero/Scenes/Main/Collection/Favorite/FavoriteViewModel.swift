@@ -25,6 +25,7 @@ extension FavoriteViewModel: ViewModel {
         @Property var products: [Product]?
         @Property var error: Error?
         @Property var isLoading = false
+        @Property var isReloading = false
         @Property var isEmpty = false
     }
     
@@ -38,7 +39,10 @@ extension FavoriteViewModel: ViewModel {
         
         let products = input.trigger
             .flatMapLatest { _ in
-                Driver.just(FavoriteStorage().getFavorites())
+                self.useCase.getFavorite(AccountStorage().getAccount().Id)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
             }
         
         products
@@ -57,6 +61,10 @@ extension FavoriteViewModel: ViewModel {
         
         loading
             .drive(output.$isLoading)
+            .disposed(by: disposeBag)
+        
+        loading
+            .drive(output.$isReloading)
             .disposed(by: disposeBag)
         
         errorTracker

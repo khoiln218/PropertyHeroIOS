@@ -36,6 +36,9 @@ final class ProductDetailViewController: UIViewController, Bindable {
     var cell = [ProductCellType]()
     private var appearance: UINavigationBarAppearance!
     
+    let favorite = PublishSubject<Void>()
+    let deleteFavorite = PublishSubject<Void>()
+    
     enum ProductCellType {
         case header
         case map
@@ -112,16 +115,10 @@ final class ProductDetailViewController: UIViewController, Bindable {
         }
         
         if product.IsMeLikeThis == 0 {
-            product.IsMeLikeThis = 1
-            FavoriteStorage().insertFavorite(product)
+            favorite.onNext(())
         } else {
-            product.IsMeLikeThis = 0
-            FavoriteStorage().deleteFavorite(product)
+            deleteFavorite.onNext(())
         }
-        favoriteBtn.isSelected = product.IsMeLikeThis == 1
-        NotificationCenter.default.post(
-            name: Notification.Name.favoriteChanged,
-            object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -176,7 +173,9 @@ final class ProductDetailViewController: UIViewController, Bindable {
     
     func bindViewModel() {
         let input = ProductDetailViewModel.Input(
-            load: Driver.just(())
+            load: Driver.just(()),
+            favorite: favorite.asDriverOnErrorJustComplete(),
+            deleteFavorite: deleteFavorite.asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
@@ -196,14 +195,6 @@ final class ProductDetailViewController: UIViewController, Bindable {
                         if product.Id == 0 { return }
                         self.product = product
                         self.relocations = relocations
-                        
-                        self.product.IsMeLikeThis = FavoriteStorage().isFavorite(product.Id) ? 1 : 0
-                        
-                        SeenStorage().addOrUpdateSeen(self.product)
-                        FavoriteStorage().updateFavorite(self.product)
-                        NotificationCenter.default.post(
-                            name: Notification.Name.productChanged,
-                            object: nil)
                         
                         (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
                         
@@ -229,6 +220,22 @@ final class ProductDetailViewController: UIViewController, Bindable {
                         }
                         self.cell.append(.footer)
                         self.tableView.reloadData()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        output.$isSuccessful
+            .asDriver()
+            .drive(onNext: { [unowned self] isSuccessful in
+                if let isSuccessful = isSuccessful {
+                    if isSuccessful {
+                        if product.IsMeLikeThis == 0 {
+                            product.IsMeLikeThis = 1
+                        } else {
+                            product.IsMeLikeThis = 0
+                        }
+                        self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
                     }
                 }
             })

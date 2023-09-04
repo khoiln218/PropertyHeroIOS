@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FavoriteStorage {
+struct FavoriteStorageDerep {
     let key = "product-favorite-storage"
     private let userDefault = UserDefaults.standard
     let NOT_FOUND = -1

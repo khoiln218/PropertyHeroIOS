@@ -11,6 +11,8 @@ import RxSwift
 protocol ProductDetailUseCaseType {
     func productDetail(_ productId: Int, accountId: Int, isMeViewThis: Int) -> Observable<Product>
     func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]>
+    func favorite(_ productId: Int, accountId: Int) -> Observable<Bool>
+    func deleteFavorite(_ productId: Int, accountId: Int) -> Observable<Bool>
 }
 
 struct ProductDetailUseCase: ProductDetailUseCaseType, GetProduct, GetCategory {
@@ -23,5 +25,13 @@ struct ProductDetailUseCase: ProductDetailUseCaseType, GetProduct, GetCategory {
     
     func getPowerLink(_ provinceId: Int) -> Observable<[Relocation]> {
         return categoryGateway.getPowerLink(provinceId)
+    }
+    
+    func favorite(_ productId: Int, accountId: Int) -> Observable<Bool> {
+        return productGateway.favorite(productId, accountId: accountId)
+    }
+    
+    func deleteFavorite(_ productId: Int, accountId: Int) -> Observable<Bool> {
+        return productGateway.favoriteDelete(productId, accountId: accountId)
     }
 }

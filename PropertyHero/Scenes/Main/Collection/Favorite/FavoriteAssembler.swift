@@ -37,6 +37,6 @@ extension FavoriteAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> FavoriteUseCaseType {
-        return FavoriteUseCase()
+        return FavoriteUseCase(productGateway: resolve())
     }
 }

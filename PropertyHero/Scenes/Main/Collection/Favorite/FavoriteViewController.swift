@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 import Reusable
 import Then
+import MGLoadMore
 
 final class FavoriteViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
     @IBOutlet weak var container: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: PagingTableView!
     
     // MARK: - Properties
     
@@ -40,27 +41,19 @@ final class FavoriteViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(favoriteChanged(_:)),
-                                               name: NSNotification.Name.favoriteChanged,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(favoriteChanged(_:)),
-                                               name: NSNotification.Name.productChanged,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(favoriteChanged(_:)),
-                                               name: NSNotification.Name.logout,
-                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(favoriteChanged), name:
+                UIApplication.didBecomeActiveNotification, object: nil)
+        
         tableView.do {
             $0.dataSource = self
+            $0.refreshFooter = nil
             $0.register(cellType: ProductTableCell.self)
         }
     }
     
     func bindViewModel() {
         let input = FavoriteViewModel.Input(
-            trigger: Driver.merge(Driver.just(()) , reload.asDriverOnErrorJustComplete()),
+            trigger: Driver.merge(Driver.just(()) , reload.asDriverOnErrorJustComplete(), tableView.refreshTrigger),
             selected: tableView.rx.itemSelected.asDriver()
         )
         
@@ -87,13 +80,18 @@ final class FavoriteViewController: UIViewController, Bindable {
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
         
+        output.$isReloading
+            .asDriver()
+            .drive(tableView.isRefreshing)
+            .disposed(by: disposeBag)
+        
         output.$isEmpty
             .asDriver()
             .drive(tableView.isEmpty)
             .disposed(by: disposeBag)
     }
     
-    @objc func favoriteChanged(_ notification: NSNotification) {
+    @objc func favoriteChanged() {
         reload.onNext(())
     }
 }

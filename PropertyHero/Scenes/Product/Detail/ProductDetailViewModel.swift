@@ -20,10 +20,13 @@ struct ProductDetailViewModel {
 extension ProductDetailViewModel: ViewModel {
     struct Input {
         let load: Driver<Void>
+        let favorite: Driver<Void>
+        let deleteFavorite: Driver<Void>
     }
     
     struct Output {
         @Property var productId: Int
+        @Property var isSuccessful: Bool?
         @Property var detail: [Int: Any]?
         @Property var error: Error?
         @Property var isLoading = false
@@ -36,7 +39,7 @@ extension ProductDetailViewModel: ViewModel {
         let activityIndicator = ActivityIndicator()
         
         let product = input.load
-            .flatMapLatest{ self.useCase.productDetail(productId, accountId: 0, isMeViewThis: 0)
+            .flatMapLatest { self.useCase.productDetail(productId, accountId: AccountStorage().getAccount().Id, isMeViewThis: 0)
                     .trackError(error)
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
@@ -52,6 +55,22 @@ extension ProductDetailViewModel: ViewModel {
                         return [0: product, 1: relocations]
                     }
             }
+        
+        input.favorite
+            .flatMapLatest {
+                self.useCase.favorite(productId, accountId: AccountStorage().getAccount().Id)
+                    .asDriverOnErrorJustComplete()
+            }
+            .drive(output.$isSuccessful)
+            .disposed(by: disposeBag)
+        
+        input.deleteFavorite
+            .flatMapLatest {
+                self.useCase.deleteFavorite(productId, accountId: AccountStorage().getAccount().Id)
+                    .asDriverOnErrorJustComplete()
+            }
+            .drive(output.$isSuccessful)
+            .disposed(by: disposeBag)
         
         relocations
             .drive(output.$detail)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SeenStorage {
+struct SeenStorageDerep {
     let key = "product-seen-storage"
     private let userDefault = UserDefaults.standard
     let NOT_FOUND = -1

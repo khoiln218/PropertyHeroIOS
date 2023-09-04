@@ -63,8 +63,6 @@ struct AccountStorage {
         clearAccount()
         clearPassword()
         clearIsLogin()
-        FavoriteStorage().clearFavorites()
-        SeenStorage().clearSeens()
     }
 }
 

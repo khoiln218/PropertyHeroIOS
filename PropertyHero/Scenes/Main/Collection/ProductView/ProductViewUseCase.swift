@@ -8,9 +8,13 @@
 import RxSwift
 
 protocol ProductViewUseCaseType {
-    
+    func getRecently(_ accountId: Int) -> Observable<[Product]>
 }
 
-struct ProductViewUseCase: ProductViewUseCaseType {
+struct ProductViewUseCase: ProductViewUseCaseType, GetProduct {
+    var productGateway: ProductGatewayType
     
+    func getRecently(_ accountId: Int) -> Observable<[Product]> {
+        getProductRecently(accountId)
+    }
 }

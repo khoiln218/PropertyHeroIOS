@@ -8,9 +8,13 @@
 import RxSwift
 
 protocol FavoriteUseCaseType {
-    
+    func getFavorite(_ accountId: Int) -> Observable<[Product]>
 }
 
-struct FavoriteUseCase: FavoriteUseCaseType {
+struct FavoriteUseCase: FavoriteUseCaseType, GetProduct {
+    var productGateway: ProductGatewayType
     
+    func getFavorite(_ accountId: Int) -> Observable<[Product]> {
+        getProductFavorite(accountId)
+    }
 }

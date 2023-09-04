@@ -13,6 +13,10 @@ extension API {
         static let apiProduct = BaseUrl + "api/v2.0/Product/"
         static let productSearch = apiProduct + "Search"
         static let productDetail = apiProduct + "GetByID"
+        static let getFavorite = apiProduct + "GetFavourite"
+        static let favorite = apiProduct + "Favorite"
+        static let deleteFavorite = apiProduct + "Favorite/Delete"
+        static let getRecently = apiProduct + "GetRecentlyViewed"
         
         // Utilities
         static let apiUtil = BaseUrl + "api/Utilities/"
