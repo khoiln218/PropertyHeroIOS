@@ -22,7 +22,7 @@ extension SearchByMarkerViewModel: ViewModel {
         let trigger: Driver<Void>
         let province: Driver<Province>
         let keyword: Driver<String>
-        let selectMarker: Driver<IndexPath>
+        let selectMarker: Driver<Marker>
     }
     
     struct Output {
@@ -70,9 +70,13 @@ extension SearchByMarkerViewModel: ViewModel {
             .drive(output.$markers)
             .disposed(by: disposeBag)
         
-        select(trigger: input.selectMarker, items: markerList)
+        input.selectMarker
             .drive(onNext: { marker in
-                self.navigator.toMapView(marker.Name, latlng: CLLocationCoordinate2D(latitude: marker.Latitude, longitude: marker.Longitude), type: .all)
+                if markerType == .attr {
+                    self.navigator.toProductList(SearchInfo(startLat: marker.Latitude, startLng: marker.Longitude, distance: marker.distance, propertyType: Constants.undefined.rawValue), title: "\(marker.Name) \(marker.distance.clean)km")
+                } else {
+                    self.navigator.toMapView(marker.Name, latlng: CLLocationCoordinate2D(latitude: marker.Latitude, longitude: marker.Longitude), type: .all)
+                }
             })
             .disposed(by: disposeBag)
         

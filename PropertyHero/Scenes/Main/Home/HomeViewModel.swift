@@ -85,7 +85,7 @@ extension HomeViewModel: ViewModel {
         
         input.markerSelected
             .drive(onNext: { marker in
-                self.navigator.toProductList(SearchInfo(startLat: marker.Latitude, startLng: marker.Longitude, distance: 5.0, propertyType: Constants.undefined.rawValue), title: "\(marker.Name) 5km")
+                self.navigator.toProductList(SearchInfo(startLat: marker.Latitude, startLng: marker.Longitude, distance: marker.distance, propertyType: Constants.undefined.rawValue), title: "\(marker.Name) \(marker.distance.clean)km")
             })
             .disposed(by: disposeBag)
         

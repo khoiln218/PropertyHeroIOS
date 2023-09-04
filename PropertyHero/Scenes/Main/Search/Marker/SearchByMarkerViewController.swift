@@ -34,6 +34,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
     
     var provinceSubject = PublishSubject<Province>()
     var keywordSubject = PublishSubject<String>()
+    var selectedMarker = PublishSubject<Marker>()
     
     // MARK: - Life Cycle
     
@@ -58,6 +59,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
         
         self.tableView.do {
             $0.dataSource = self
+            $0.delegate = self
             $0.register(cellType: MarkerCell.self)
         }
         
@@ -106,7 +108,7 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
             trigger: Driver.just(()),
             province: provinceSubject.asDriverOnErrorJustComplete(),
             keyword: Driver.merge(keywordSubject.asDriverOnErrorJustComplete(), searchBar.rx.text.orEmpty.asDriver().debounce(.milliseconds(880))),
-            selectMarker: tableView.rx.itemSelected.asDriver()
+            selectMarker: selectedMarker.asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input, disposeBag: disposeBag)
@@ -170,6 +172,29 @@ final class SearchByMarkerViewController: UIViewController, Bindable {
         self.provinceSubject.onNext(self.provinceSelected)
         self.provinceLabel.text = self.provinceSelected.Name
     }
+    
+    func onChooseDistance(_ marker: Marker) {
+        let alertViewController = UIAlertController(title: marker.Name, message: nil, preferredStyle: .alert)
+        let distanceOne = UIAlertAction(title: "Bán kính 1km", style: .default, handler: { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 1.0)
+            self.selectedMarker.onNext(newMarker)
+        })
+        let distanceThree = UIAlertAction(title: "Bán kính 3km", style: .default) { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 3.0)
+            self.selectedMarker.onNext(newMarker)
+        }
+        let distanceFive = UIAlertAction(title: "Bán kính 5km", style: .default) { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 5.0)
+            self.selectedMarker.onNext(newMarker)
+        }
+        let cancel = UIAlertAction(title: "Hủy bỏ", style: .cancel) { (_) in
+        }
+        alertViewController.addAction(distanceOne)
+        alertViewController.addAction(distanceThree)
+        alertViewController.addAction(distanceFive)
+        alertViewController.addAction(cancel)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
 }
 
 extension SearchByMarkerViewController: UITableViewDataSource {
@@ -186,6 +211,17 @@ extension SearchByMarkerViewController: UITableViewDataSource {
         .then {
             $0.selectionStyle = .none
             $0.bindViewModel(marker, markerType: self.markerType)
+        }
+    }
+}
+
+extension SearchByMarkerViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let marker = self.markers[indexPath.row]
+        if markerType == .attr {
+            self.onChooseDistance(marker)
+        } else {
+            self.selectedMarker.onNext(marker)
         }
     }
 }

@@ -16,6 +16,7 @@ struct Marker {
     var Longitude = 0.0
     var Thumbnail = ""
     var FloorCount = 0
+    var distance = 0.0
 }
 
 extension Marker: Then { }

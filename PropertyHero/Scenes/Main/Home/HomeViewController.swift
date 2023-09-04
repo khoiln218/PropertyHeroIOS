@@ -184,13 +184,36 @@ extension HomeViewController: UICollectionViewDataSource {
             .then {
                 $0.bindViewModel(pageSectionMarker)
                 $0.selectMarker = { marker in
-                    self.selectedMarker.onNext(marker)
+                    self.onChooseDistance(marker)
                 }
                 $0.viewMore = { index in
                     self.viewModel.navigator.toFindArea()
                 }
             }
         }
+    }
+    
+    func onChooseDistance(_ marker: Marker) {
+        let alertViewController = UIAlertController(title: marker.Name, message: nil, preferredStyle: .alert)
+        let distanceOne = UIAlertAction(title: "Bán kính 1km", style: .default, handler: { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 1.0)
+            self.selectedMarker.onNext(newMarker)
+        })
+        let distanceThree = UIAlertAction(title: "Bán kính 3km", style: .default) { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 3.0)
+            self.selectedMarker.onNext(newMarker)
+        }
+        let distanceFive = UIAlertAction(title: "Bán kính 5km", style: .default) { (_) in
+            let newMarker = Marker(Id: marker.Id, Name: marker.Name, Latitude: marker.Latitude, Longitude: marker.Longitude, distance: 5.0)
+            self.selectedMarker.onNext(newMarker)
+        }
+        let cancel = UIAlertAction(title: "Hủy bỏ", style: .cancel) { (_) in
+        }
+        alertViewController.addAction(distanceOne)
+        alertViewController.addAction(distanceThree)
+        alertViewController.addAction(distanceFive)
+        alertViewController.addAction(cancel)
+        self.present(alertViewController, animated: true, completion: nil)
     }
 }
 
