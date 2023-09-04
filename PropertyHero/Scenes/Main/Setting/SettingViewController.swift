@@ -21,6 +21,8 @@ final class SettingViewController: UIViewController, Bindable {
     @IBOutlet weak var provineSpin: UIStackView!
     @IBOutlet weak var languageView: UIView!
     @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var vesionLabel: UILabel!
+    @IBOutlet weak var copyright: UILabel!
     
     // MARK: - Properties
     
@@ -50,6 +52,10 @@ final class SettingViewController: UIViewController, Bindable {
     
     private func configView() {
         title = "Cài đặt"
+        
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        vesionLabel.text = "Phiên bản: \(appVersion ?? "1.0.0")"
+        copyright.text = "©\(Calendar.current.component(.year, from: Date())) Một sản phẩm của Gomi Corporation"
         
         self.countryView.addBorders(edges: [.top], color: UIColor(hex: "#ECEFF1")!, width: 1)
         self.provinceView.addBorders(edges: [.top, .bottom], color: UIColor(hex: "#ECEFF1")!, width: 1)

@@ -1685,12 +1685,32 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="6L7-mu-aKu">
+                                        <rect key="frame" x="0.0" y="708.66666666666663" width="393" height="34.333333333333371"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phiên bản: 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWq-HE-aIH">
+                                                <rect key="frame" x="145.66666666666666" y="0.0" width="101.66666666666666" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@2023 Một sản phẩm của Gomi Corporation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt6-qC-cw7">
+                                                <rect key="frame" x="71.000000000000014" y="20" width="251.33333333333337" height="14.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.0039215686274509803" green="0.62745098039215685" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Tbu-pm-mmF" firstAttribute="top" secondItem="JZN-kW-4jP" secondAttribute="top" id="3on-ME-Mh7"/>
                                     <constraint firstItem="Tbu-pm-mmF" firstAttribute="leading" secondItem="JZN-kW-4jP" secondAttribute="leading" id="Da9-BK-VJE"/>
+                                    <constraint firstAttribute="trailing" secondItem="6L7-mu-aKu" secondAttribute="trailing" id="sKE-Cb-k4R"/>
                                     <constraint firstAttribute="trailing" secondItem="Tbu-pm-mmF" secondAttribute="trailing" id="sfj-vl-azF"/>
+                                    <constraint firstAttribute="bottom" secondItem="6L7-mu-aKu" secondAttribute="bottom" constant="16" id="vyJ-Cy-I7D"/>
+                                    <constraint firstItem="6L7-mu-aKu" firstAttribute="leading" secondItem="JZN-kW-4jP" secondAttribute="leading" id="xgW-sZ-QJS"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1704,12 +1724,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="copyright" destination="xt6-qC-cw7" id="RH1-4k-sFe"/>
                         <outlet property="countryView" destination="JML-BA-EmM" id="IED-PV-XpQ"/>
                         <outlet property="infoView" destination="KVq-f1-5ch" id="fS0-Bv-JDA"/>
                         <outlet property="languageView" destination="9Ys-Gy-OR7" id="6t1-mf-vCZ"/>
                         <outlet property="province" destination="tMq-l1-OTc" id="Fgk-9S-FPq"/>
                         <outlet property="provinceView" destination="yX5-j9-Zdn" id="kCQ-jm-agr"/>
                         <outlet property="provineSpin" destination="4nn-qr-eKP" id="mMB-we-lSH"/>
+                        <outlet property="vesionLabel" destination="lWq-HE-aIH" id="418-Qs-0aO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ab-VS-VCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1945,7 +1967,7 @@ Tính năng chính của ứng dụng Property Hero: 
     </scenes>
     <designables>
         <designable name="YKe-C3-ZKj">
-            <size key="intrinsicContentSize" width="234.33333333333334" height="34"/>
+            <size key="intrinsicContentSize" width="208.33333333333334" height="34"/>
         </designable>
     </designables>
     <color key="tintColor" red="0.16862745100000001" green="0.31372549020000001" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>

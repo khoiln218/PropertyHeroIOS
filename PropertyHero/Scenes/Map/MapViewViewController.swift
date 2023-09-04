@@ -140,9 +140,11 @@ final class MapViewViewController: UIViewController, Bindable {
         
         output.$products
             .asDriver()
-            .drive(onNext: { [unowned self] products in
-                self.numItems.text = "\(products.count)\("unit_item".localized())";
-                self.createClusterItems(products)
+            .drive(onNext: { [weak self] products in
+                if let products = products {
+                    self?.numItems.text = "\(products.count)\("unit_item".localized())";
+                    self?.createClusterItems(products)
+                }
             })
             .disposed(by: disposeBag)
         

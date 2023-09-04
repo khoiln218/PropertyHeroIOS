@@ -30,7 +30,7 @@ extension MapViewViewModel: ViewModel {
     struct Output {
         @Property var title: String?
         @Property var latlng: CLLocationCoordinate2D?
-        @Property var products: [Product] = []
+        @Property var products: [Product]?
         @Property var error: Error?
         @Property var isLoading = false
     }
