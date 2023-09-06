@@ -30,7 +30,7 @@ extension AccountInfoViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var data: [String: Any]?
+        @Property var data = [String: Any]()
         @Property var gender: Int?
         @Property var birthday: Date?
         @Property var province: Province?

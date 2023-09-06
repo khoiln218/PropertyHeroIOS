@@ -22,7 +22,7 @@ extension ProductViewViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var products: [Product]?
+        @Property var products: [Product] = []
         @Property var error: Error?
         @Property var isLoading = false
         @Property var isReloading = false

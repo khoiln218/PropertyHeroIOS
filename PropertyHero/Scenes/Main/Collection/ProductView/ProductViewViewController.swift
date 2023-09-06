@@ -42,7 +42,7 @@ final class ProductViewViewController: UIViewController, Bindable {
     
     private func configView() {
         NotificationCenter.default.addObserver(self, selector: #selector(productViewChanged), name:
-                UIApplication.didBecomeActiveNotification, object: nil)
+                                                UIApplication.didBecomeActiveNotification, object: nil)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(productViewChanged),
@@ -72,10 +72,8 @@ final class ProductViewViewController: UIViewController, Bindable {
         output.$products
             .asDriver()
             .drive(onNext: { [unowned self] products in
-                if let products = products {
-                    self.products = products
-                    self.tableView.reloadData()
-                }
+                self.products = products
+                self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
         

@@ -29,7 +29,7 @@ extension ProductListViewModel: ViewModel {
     struct Output {
         @Property var distance: Double?
         @Property var title: String?
-        @Property var products: [Product]?
+        @Property var products: [Product] = []
         @Property var error: Error?
         @Property var isLoading = false
         @Property var isReloading = false

@@ -254,7 +254,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="88.666666666666671"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8Z-PC-jKL" customClass="DLRadioButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="209" height="34.333333333333336"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="226.33333333333334" height="34.333333333333336"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Tin rao đã có người thuê">
                                                                     <color key="baseForegroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
@@ -285,7 +285,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53y-JJ-2TC" customClass="DLRadioButton">
-                                                                <rect key="frame" x="0.0" y="34.333333333333314" width="336.66666666666669" height="54.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="34.333333333333314" width="354" height="54.333333333333343"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Thông tin không chính xác (hình ảnh, địa chỉ, giá thuê...)">
                                                                     <color key="baseForegroundColor" red="0.37647058823529411" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
@@ -800,10 +800,10 @@
     </scenes>
     <designables>
         <designable name="53y-JJ-2TC">
-            <size key="intrinsicContentSize" width="449" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="466.33333333333331" height="34.333333333333336"/>
         </designable>
         <designable name="f8Z-PC-jKL">
-            <size key="intrinsicContentSize" width="209" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="226.33333333333334" height="34.333333333333336"/>
         </designable>
     </designables>
     <color key="tintColor" red="0.16862745100000001" green="0.31372549020000001" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>

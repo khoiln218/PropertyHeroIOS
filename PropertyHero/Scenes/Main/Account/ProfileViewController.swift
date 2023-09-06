@@ -126,11 +126,9 @@ final class ProfileViewController: UIViewController, Bindable {
         output.$account
             .asDriver()
             .drive(onNext: { [unowned self] account in
-                if let account = account {
-                    avatar.setAvatarImage(with: URL(string: account.Avatar))
-                    fullname.text = account.FullName
-                    username.text = account.UserName
-                }
+                avatar.setAvatarImage(with: URL(string: account.Avatar))
+                fullname.text = account.FullName
+                username.text = account.UserName
             })
             .disposed(by: disposeBag)
         

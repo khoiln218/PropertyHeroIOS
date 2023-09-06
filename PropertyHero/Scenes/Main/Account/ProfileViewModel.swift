@@ -24,7 +24,7 @@ extension ProfileViewModel: ViewModel {
     }
     
     struct Output {
-        @Property var account: Account?
+        @Property var account = Account()
         @Property var isSuccessful: Bool?
         @Property var error: Error?
         @Property var isLoading = false

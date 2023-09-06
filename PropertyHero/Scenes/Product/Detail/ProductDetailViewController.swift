@@ -190,37 +190,34 @@ final class ProductDetailViewController: UIViewController, Bindable {
         output.$detail
             .asDriver()
             .drive(onNext: { [unowned self] detail in
-                if let detail = detail {
-                    if let product = detail[0] as? Product, let relocations = detail[1] as? [Relocation] {
-                        if product.Id == 0 { return }
-                        self.product = product
-                        self.relocations = relocations
-                        
-                        (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
-                        
-                        if self.product.ContactPhone.isEmpty {
-                            self.phoneNumber.text = "0971-027-021"
-                        } else {
-                            self.phoneNumber.text = self.product.ContactPhone.substring(to: 4) + "-" + self.product.ContactPhone.substring(with: 4..<7) + "-" + self.product.ContactPhone.substring(from: 7)
-                        }
-                        self.contactName.text = self.product.ContactName.isEmpty ? "Property Hero" : self.product.ContactName
-                        
-                        self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
-                        self.cell.append(.header)
-                        self.cell.append(.map)
-                        self.cell.append(.attribute)
-                        if !self.product.FeatureList.isEmpty {
-                            self.cell.append(.feature)
-                        }
-                        if !self.relocations.isEmpty {
-                            self.cell.append(.ads)
-                        }
-                        if !self.product.FurnitureList.isEmpty {
-                            self.cell.append(.furniture)
-                        }
-                        self.cell.append(.footer)
-                        self.tableView.reloadData()
+                if let product = detail[0] as? Product, let relocations = detail[1] as? [Relocation] {
+                    self.product = product
+                    self.relocations = relocations
+                    
+                    (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
+                    
+                    if self.product.ContactPhone.isEmpty {
+                        self.phoneNumber.text = "0971-027-021"
+                    } else {
+                        self.phoneNumber.text = self.product.ContactPhone.substring(to: 4) + "-" + self.product.ContactPhone.substring(with: 4..<7) + "-" + self.product.ContactPhone.substring(from: 7)
                     }
+                    self.contactName.text = self.product.ContactName.isEmpty ? "Property Hero" : self.product.ContactName
+                    
+                    self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
+                    self.cell.append(.header)
+                    self.cell.append(.map)
+                    self.cell.append(.attribute)
+                    if !self.product.FeatureList.isEmpty {
+                        self.cell.append(.feature)
+                    }
+                    if !self.relocations.isEmpty {
+                        self.cell.append(.ads)
+                    }
+                    if !self.product.FurnitureList.isEmpty {
+                        self.cell.append(.furniture)
+                    }
+                    self.cell.append(.footer)
+                    self.tableView.reloadData()
                 }
             })
             .disposed(by: disposeBag)

@@ -27,7 +27,7 @@ extension ProductDetailViewModel: ViewModel {
     struct Output {
         @Property var productId: Int
         @Property var isSuccessful: Bool?
-        @Property var detail: [Int: Any]?
+        @Property var detail = [Int: Any]()
         @Property var error: Error?
         @Property var isLoading = false
     }

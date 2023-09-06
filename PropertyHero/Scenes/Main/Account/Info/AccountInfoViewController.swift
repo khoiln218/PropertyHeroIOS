@@ -197,23 +197,20 @@ final class AccountInfoViewController: UIViewController, Bindable {
         output.$data
             .asDriver()
             .drive(onNext: { [unowned self] data in
-                if let data = data {
-                    if let account = data["account"] {
-                        self.account = account as? Account
-                        print(account)
-                        
-                        self.fullname.text = self.account.FullName
-                        self.phoneNumber.text = self.account.PhoneNumber
-                        self.address.text = self.account.Address
-                    }
+                if let account = data["account"] {
+                    self.account = account as? Account
                     
-                    if let provinces = data["provinces"] {
-                        self.provinces = provinces as! [Province]
-                    }
-                    
-                    if let districts = data["districts"] {
-                        self.districts = districts as! [District]
-                    }
+                    self.fullname.text = self.account.FullName
+                    self.phoneNumber.text = self.account.PhoneNumber
+                    self.address.text = self.account.Address
+                }
+                
+                if let provinces = data["provinces"] {
+                    self.provinces = provinces as! [Province]
+                }
+                
+                if let districts = data["districts"] {
+                    self.districts = districts as! [District]
                 }
             })
             .disposed(by: disposeBag)

@@ -101,10 +101,8 @@ final class ProductListViewController: UIViewController, Bindable {
         output.$products
             .asDriver()
             .drive(onNext: { [unowned self] products in
-                if let products = products {
-                    self.products = products
-                    self.collectionView.reloadData()
-                }
+                self.products = products
+                self.collectionView.reloadData()
             })
             .disposed(by: disposeBag)
         
