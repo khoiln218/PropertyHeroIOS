@@ -28,34 +28,36 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nLB-NP-CvW">
-                                        <rect key="frame" x="16" y="232.00000000000003" width="361" height="124.33333333333334"/>
+                                        <rect key="frame" x="16" y="232" width="361" height="196"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfS-Lg-STI">
-                                                <rect key="frame" x="0.0" y="0.0" width="361" height="54"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bu-iz-maZ" userLabel="apple">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="54.666666666666664"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="tfS-Lg-STI" secondAttribute="height" multiplier="320:48" id="wzv-Ci-9l5"/>
+                                                    <constraint firstAttribute="width" secondItem="8Bu-iz-maZ" secondAttribute="height" multiplier="614:93" id="UBP-lQ-DJo"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Đăng nhập bằng Facebook">
-                                                    <backgroundConfiguration key="background" image="vector_btn_facebook"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                                <state key="normal" title="Button" image="login-apple"/>
                                                 <connections>
-                                                    <action selector="loginFacebook:" destination="WnY-OY-lyS" eventType="touchUpInside" id="amR-nw-P1R"/>
+                                                    <action selector="loginApple:" destination="WnY-OY-lyS" eventType="touchUpInside" id="aqp-8A-5Xe"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjO-Jn-vpM">
-                                                <rect key="frame" x="0.0" y="70" width="361" height="54.333333333333343"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Te-hm-THH" userLabel="facebook">
+                                                <rect key="frame" x="0.0" y="70.666666666666686" width="361" height="54.666666666666657"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="kjO-Jn-vpM" secondAttribute="height" multiplier="320:48" id="ufT-Ra-MEr"/>
+                                                    <constraint firstAttribute="width" secondItem="1Te-hm-THH" secondAttribute="height" multiplier="614:93" id="oQM-bg-86L"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Đăng nhập bằng Google">
-                                                    <backgroundConfiguration key="background" image="vector_btn_google"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                                <state key="normal" title="Button" image="login-facebook"/>
                                                 <connections>
-                                                    <action selector="loginGoogle:" destination="WnY-OY-lyS" eventType="touchUpInside" id="mAs-yQ-hOF"/>
+                                                    <action selector="loginFacebook:" destination="WnY-OY-lyS" eventType="touchUpInside" id="LcP-a4-e7m"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shv-YZ-V5F" userLabel="google">
+                                                <rect key="frame" x="0.0" y="141.33333333333331" width="361" height="54.666666666666657"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="shv-YZ-V5F" secondAttribute="height" multiplier="614:93" id="g4p-dU-cre"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="login-google"/>
+                                                <connections>
+                                                    <action selector="loginGoogle:" destination="WnY-OY-lyS" eventType="touchUpInside" id="R9d-Bk-QLe"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -122,8 +124,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="facebookLogin" destination="tfS-Lg-STI" id="291-O1-jXt"/>
-                        <outlet property="googleLogin" destination="kjO-Jn-vpM" id="Wwa-gz-kGp"/>
+                        <outlet property="appleLogin" destination="8Bu-iz-maZ" id="GjZ-Xf-PeN"/>
+                        <outlet property="facebookLogin" destination="1Te-hm-THH" id="Dja-Fh-DeL"/>
+                        <outlet property="googleLogin" destination="shv-YZ-V5F" id="1eS-aK-wEp"/>
                         <outlet property="loginBtn" destination="llN-7I-xP2" id="ePk-Nt-3hb"/>
                         <outlet property="registerBtn" destination="W4c-ga-XwK" id="imo-Jz-fHw"/>
                     </connections>
@@ -658,8 +661,9 @@
     </scenes>
     <resources>
         <image name="ic_main" width="256" height="256"/>
-        <image name="vector_btn_facebook" width="328" height="48"/>
-        <image name="vector_btn_google" width="328" height="48"/>
+        <image name="login-apple" width="614.239990234375" height="93.599998474121094"/>
+        <image name="login-facebook" width="614.239990234375" height="93.599998474121094"/>
+        <image name="login-google" width="614.239990234375" height="93.599998474121094"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

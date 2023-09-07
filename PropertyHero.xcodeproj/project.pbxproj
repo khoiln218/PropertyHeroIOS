@@ -292,6 +292,7 @@
 		6E08B32E2A7EAC8000C3EE35 /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUseCase.swift; sourceTree = "<group>"; };
 		6E08B3302A7EAC8000C3EE35 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6E08B3322A7EAC8000C3EE35 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		6E0BD7102AAA2C4E00B5A7D4 /* PropertyHero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PropertyHero.entitlements; sourceTree = "<group>"; };
 		6E14D6A12A887A20002E4900 /* CoomingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoomingSoonView.swift; sourceTree = "<group>"; };
 		6E14D6A32A887A4D002E4900 /* CoomingSoonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoomingSoonView.xib; sourceTree = "<group>"; };
 		6E14D6A72A88819A002E4900 /* ProductViewAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewAssembler.swift; sourceTree = "<group>"; };
@@ -602,6 +603,7 @@
 				6EBC242F2A7EB8C900E58B2E /* Assembler.swift */,
 				6EB5B0882A7FF5F6004AAB38 /* GoogleService-Info.plist */,
 				6E83F4052A7F3733002D9BD8 /* Info.plist */,
+				6E0BD7102AAA2C4E00B5A7D4 /* PropertyHero.entitlements */,
 				6EBC24232A7EB8C900E58B2E /* Assets.xcassets */,
 				6ED1487E2A85119600763797 /* Localizable.strings */,
 			);
@@ -1853,6 +1855,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PropertyHero/PropertyHero.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3KXMVDL2D2;
@@ -1886,6 +1889,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PropertyHero/PropertyHero.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3KXMVDL2D2;

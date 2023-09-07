@@ -14,10 +14,12 @@ import Then
 import GoogleSignIn
 import FacebookCore
 import FacebookLogin
+import AuthenticationServices
 
 final class LoginViewController: UIViewController, Bindable {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var appleLogin: UIButton!
     @IBOutlet weak var facebookLogin: UIButton!
     @IBOutlet weak var googleLogin: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
@@ -57,6 +59,17 @@ final class LoginViewController: UIViewController, Bindable {
         loginBtn.layer.masksToBounds = true
         
         title = "Đăng nhập Property Hero"
+    }
+    
+    @IBAction func loginApple(_ sender: Any) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
     @IBAction func loginGoogle(_ sender: Any) {
@@ -185,6 +198,33 @@ final class LoginViewController: UIViewController, Bindable {
         DispatchQueue.main.async {
             self.showAutoCloseMessage(image: nil, title: nil, message: "Tài khoản hoặc mật khẩu không đúng")
         }
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let userId = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email ?? ""
+            
+            if #available(iOS 15.0, *) {
+                self.loginSuccess(accType: .apple, id: userId, fullName: fullName?.formatted(.name(style: .long)) ?? "Guest", email: email)
+            } else {
+                var name = fullName?.givenName ?? "Guest"
+                if let familyName = fullName?.familyName {
+                    name.append(" ")
+                    name.append(familyName)
+                }
+                self.loginSuccess(accType: .apple, id: userId, fullName: name, email: email)
+            }
+        }
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }
 
