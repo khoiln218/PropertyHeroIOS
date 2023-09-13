@@ -7,7 +7,7 @@
 
 extension API {
     enum Urls {
-        static let BaseUrl = "https://hellorentapi.gomimall.vn/"
+        static let BaseUrl = "https://hellorent-api.gomimall.vn/"
         
         // Product
         static let apiProduct = BaseUrl + "api/v2.0/Product/"
