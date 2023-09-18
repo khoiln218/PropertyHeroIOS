@@ -68,6 +68,13 @@ final class MapViewViewController: UIViewController, Bindable {
         logDeinit()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.rotateChange()
+        }
+    }
+    
     // MARK: - Methods
     
     private func configView() {
@@ -198,6 +205,11 @@ final class MapViewViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    func rotateChange() {
+        self.mapView.frame.size.width = Dimension.SCREEN_WIDTH
+        self.mapView.frame.size.height = Dimension.SCREEN_HEIGHT
     }
     
     private func setupMap(_ latlng: CLLocationCoordinate2D) {

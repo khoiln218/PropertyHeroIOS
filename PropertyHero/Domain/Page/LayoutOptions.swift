@@ -19,11 +19,10 @@ struct LayoutOptions {
 
 extension LayoutOptions {
     var itemAutoWidth: CGFloat {
-        let screenSize = UIScreen.main.bounds
         let paddingSpace = sectionInsets.left
             + sectionInsets.right
             + CGFloat(itemsPerRow - 1) * itemSpacing
-        let availableWidth = screenSize.width - paddingSpace
+        let availableWidth = Dimension.SCREEN_WIDTH - paddingSpace
         return availableWidth / CGFloat(itemsPerRow)
     }
     

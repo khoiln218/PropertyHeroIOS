@@ -133,6 +133,14 @@ final class ProductDetailViewController: UIViewController, Bindable {
         logDeinit()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.rotateChange()
+            self.tableView.reloadData()
+        }
+    }
+    
     // MARK: - Methods
     
     private func configView() {
@@ -248,6 +256,14 @@ final class ProductDetailViewController: UIViewController, Bindable {
             .asDriver()
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+    }
+    
+    func rotateChange() {
+        let width = Dimension.SCREEN_WIDTH
+        let height = width / 1.5
+        self.tableView.stickyHeader.height = height
+        self.stickyHeaderView.subviews[0].frame.size.width = width
+        self.stickyHeaderView.subviews[0].frame.size.height = height
     }
 }
 

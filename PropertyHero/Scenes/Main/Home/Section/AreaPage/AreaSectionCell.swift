@@ -88,10 +88,7 @@ extension AreaSectionCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let width = (screenSize.width - 8)/3
-        let height = width/2 + 34;
-        return CGSize(width: width, height: height)
+        return CGSize(width: Dimension.AREA_ITEM_WIDTH, height: Dimension.AREA_ITEM_HEIGHT)
     }
     
     func collectionView(_ collectionView: UICollectionView,

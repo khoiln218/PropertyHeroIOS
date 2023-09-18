@@ -30,5 +30,11 @@ class MapProductCell: PageTableCell {
         circ.strokeColor = .white
         circ.strokeWidth = 3;
         circ.map = self.mapView;
+        updateMapView()
+    }
+    
+    func updateMapView() {
+        self.mapView.frame.size.width = Dimension.SCREEN_WIDTH
+        self.mapView.frame.size.height = Dimension.SCREEN_WIDTH * 2 / 3
     }
 }

@@ -27,7 +27,7 @@
                                             <constraint firstAttribute="width" secondItem="w05-vY-GpW" secondAttribute="height" multiplier="1:1" id="V09-Dp-zjR"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nLB-NP-CvW">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nLB-NP-CvW">
                                         <rect key="frame" x="16" y="232" width="361" height="196"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bu-iz-maZ" userLabel="apple">

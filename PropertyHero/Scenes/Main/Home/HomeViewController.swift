@@ -32,21 +32,6 @@ final class HomeViewController: UIViewController, Bindable {
     
     var sections = [Int: Any]()
     
-    let sectionLayoutDictionary: [SectionType: SectionLayout] = {
-        let sectionLayouts = [
-            HeaderSectionLayout(),
-            AreaSectionLayout()
-        ]
-        
-        var sectionLayoutDictionary = [SectionType: SectionLayout]()
-        
-        for layout in sectionLayouts {
-            sectionLayoutDictionary[layout.sectionType] = layout
-        }
-        
-        return sectionLayoutDictionary
-    }()
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -63,16 +48,21 @@ final class HomeViewController: UIViewController, Bindable {
         logDeinit()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.collectionView.reloadData()
+        }
+    }
+    
     // MARK: - Methods
     
     private func configView() {
-        for layout in self.sectionLayoutDictionary.values {
-            collectionView.register(cellType: layout.cellType.self)
-        }
-        
         collectionView.do {
             $0.delegate = self
             $0.dataSource = self
+            $0.register(cellType: HeaderCell.self)
+            $0.register(cellType: AreaSectionCell.self)
         }
         
         manager.delegate = self
@@ -224,11 +214,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if sections[indexPath.row] is PageSectionViewModel<Banner> {
-            let layout = self.sectionLayoutDictionary[.banner]!.layout
-            return layout.itemSize
+            return CGSize(width: Dimension.SCREEN_WIDTH, height: Dimension.HEADER_HEIGHT)
         } else {
-            let layout = self.sectionLayoutDictionary[.findByArea]!.layout
-            return layout.itemSize
+            return CGSize(width: Dimension.SCREEN_WIDTH, height: Dimension.AREA_HEIGHT)
         }
     }
     
