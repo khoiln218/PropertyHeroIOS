@@ -10,13 +10,17 @@ import UIKit
 
 struct Dimension {
     static var SCREEN_WIDTH: CGFloat {
-        let window = UIApplication.keyWindow
-        return UIScreen.main.bounds.width - window!.safeAreaInsets.left - window!.safeAreaInsets.right
+        if let window = UIApplication.keyWindow {
+            return UIScreen.main.bounds.width - window.safeAreaInsets.left - window.safeAreaInsets.right
+        }
+        return UIScreen.main.bounds.width
     }
     
     static var SCREEN_HEIGHT: CGFloat {
-        let window = UIApplication.keyWindow
-        return UIScreen.main.bounds.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
+        if let window = UIApplication.keyWindow {
+            return UIScreen.main.bounds.height - window.safeAreaInsets.top - window.safeAreaInsets.bottom
+        }
+        return UIScreen.main.bounds.height
     }
     
     static var HEADER_HEIGHT: CGFloat {

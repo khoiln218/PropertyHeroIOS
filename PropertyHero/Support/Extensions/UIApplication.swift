@@ -50,11 +50,11 @@ extension UIApplication {
     }
     
     class var topViewController: UIViewController? { return getTopViewController() }
-    static let keyWindow = UIApplication.shared.connectedScenes
-        .filter({$0.activationState == .foregroundActive})
-        .compactMap({$0 as? UIWindowScene})
-        .first?.windows
-        .filter({$0.isKeyWindow}).first
+    static let keyWindow = UIApplication
+        .shared
+        .connectedScenes
+        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+        .last { $0.isKeyWindow }
     private class func getTopViewController(base: UIViewController? = keyWindow?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController { return getTopViewController(base: nav.visibleViewController) }
         if let tab = base as? UITabBarController {

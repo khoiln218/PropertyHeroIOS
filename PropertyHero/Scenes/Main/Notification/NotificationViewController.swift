@@ -39,6 +39,13 @@ final class NotificationViewController: UIViewController, Bindable {
         logDeinit()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { [weak self] _ in
+            self?.rotateChanged()
+        }
+    }
+    
     // MARK: - Methods
     
     private func configView() {
@@ -48,6 +55,13 @@ final class NotificationViewController: UIViewController, Bindable {
     func bindViewModel() {
         let input = NotificationViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
+    }
+    
+    func rotateChanged() {
+        let width = Dimension.SCREEN_WIDTH
+        let height = Dimension.SCREEN_HEIGHT
+        self.container.subviews[0].frame.size.width = width
+        self.container.subviews[0].frame.size.height = height
     }
 }
 
