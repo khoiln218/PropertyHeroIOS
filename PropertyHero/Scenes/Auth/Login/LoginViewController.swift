@@ -170,7 +170,8 @@ final class LoginViewController: UIViewController, Bindable {
     
     func onSuccess(_ account: Account) {
         DispatchQueue.main.async { [unowned self] in
-            AccountStorage().saveAccount(account)
+            let newAccount = Account(Id: account.Id, UserName: account.UserName, FullName: account.FullName, PhoneNumber: account.PhoneNumber, Avatar: account.Avatar, AccountRole: account.AccountRole, AccountType: account.AccountType)
+            AccountStorage().saveAccount(newAccount)
             AccountStorage().setIsLogin()
             NotificationCenter.default.post(
                 name: Notification.Name.loginSuccess,

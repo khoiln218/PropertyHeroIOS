@@ -102,8 +102,9 @@ final class LoginEmailViewController: UIViewController, Bindable {
     
     func onSuccess(_ account: Account) {
         DispatchQueue.main.async { [unowned self] in
+            let newAccount = Account(Id: account.Id, UserName: account.UserName, FullName: account.FullName, PhoneNumber: account.PhoneNumber, Avatar: account.Avatar, AccountRole: account.AccountRole, AccountType: AccountType.hero.rawValue)
             AccountStorage().savePassword(self.password.text!)
-            AccountStorage().saveAccount(account)
+            AccountStorage().saveAccount(newAccount)
             AccountStorage().setIsLogin()
             NotificationCenter.default.post(
                 name: Notification.Name.loginSuccess,
