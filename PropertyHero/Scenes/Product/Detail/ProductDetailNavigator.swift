@@ -15,6 +15,7 @@ protocol ProductDetailNavigatorType {
     func toReport(_ productId: Int)
     func toAds(_ relocation: Relocation)
     func toSlider(_ product: Product, position: Int)
+    func goBack()
 }
 
 struct ProductDetailNavigator: ProductDetailNavigatorType {
@@ -39,5 +40,9 @@ struct ProductDetailNavigator: ProductDetailNavigatorType {
     func toSlider(_ product: Product, position: Int) {
         let vc: ImageSliderViewController = assembler.resolve(navigationController: navigationController, images: product.Images, position: position)
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goBack() {
+        navigationController.popViewController(animated: true)
     }
 }

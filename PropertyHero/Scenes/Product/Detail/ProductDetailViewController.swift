@@ -202,6 +202,14 @@ final class ProductDetailViewController: UIViewController, Bindable {
                     self.product = product
                     self.relocations = relocations
                     
+                    if product.Id == 0 {
+                        deleteFavorite.onNext(())
+                        showAutoCloseMessage(image: nil, title: nil, message: "Tin đã hết hạn") {
+                            self.viewModel.navigator.goBack()
+                        }
+                        return
+                    }
+                    
                     (self.stickyHeaderView.subviews[0] as? CoverProductCell)?.bindViewModel(product.Images)
                     
                     if self.product.ContactPhone.isEmpty {
@@ -241,6 +249,9 @@ final class ProductDetailViewController: UIViewController, Bindable {
                             product.IsMeLikeThis = 0
                         }
                         self.favoriteBtn.isSelected = self.product.IsMeLikeThis == 1
+                        NotificationCenter.default.post(
+                            name: Notification.Name.favoriteChanged,
+                            object: nil)
                     }
                 }
             })
