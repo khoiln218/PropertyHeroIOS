@@ -70,7 +70,7 @@
                                             <constraint firstAttribute="height" constant="40" id="z5m-2R-Q8w"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BWU-Fh-WCf">
+                                    <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BWU-Fh-WCf">
                                         <rect key="frame" x="0.0" y="559" width="393" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="4ES-Jz-uVV"/>

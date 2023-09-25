@@ -322,8 +322,11 @@ extension MapViewViewController: GMSMapViewDelegate {
             marker.opacity = 0.5
             guard let cluster = marker.userData as? GMUCluster else { return false }
             for item in cluster.items {
-                if let product = self.products.first(where: { $0.Latitude == item.position.latitude && $0.Longitude == item.position.longitude }) {
-                    clusters.append(product)
+                let products = self.products.filter({ $0.Latitude == item.position.latitude && $0.Longitude == item.position.longitude })
+                for product in products {
+                    if !clusters.contains(where: {$0.Id == product.Id}) {
+                        clusters.append(product)
+                    }
                 }
             }
             collectionView.isHidden = clusters.isEmpty
