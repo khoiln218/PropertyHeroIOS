@@ -24,6 +24,7 @@ final class MainViewController: UIViewController, Bindable {
     var viewModel: MainViewModel!
     var disposeBag = DisposeBag()
     private var isInit = false
+    private var tabSelected = 0
     
     // MARK: - Life Cycle
     
@@ -108,6 +109,11 @@ extension MainViewController: TabLayoutDelegate {
             }
         case 2:
             self.viewModel.navigator.toTabMenu(self, tab: .collection)
+            if tabSelected != index {
+                NotificationCenter.default.post(
+                    name: Notification.Name.collectionChanged,
+                    object: nil)
+            }
             if !AccountStorage().isLogin() {
                 self.viewModel.navigator.toLogin()
             }
@@ -116,6 +122,7 @@ extension MainViewController: TabLayoutDelegate {
         default:
             self.viewModel.navigator.toTabMenu(self, tab: .home)
         }
+        tabSelected = index
     }
 }
 

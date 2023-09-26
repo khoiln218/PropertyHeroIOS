@@ -24,6 +24,7 @@ final class CollectionViewController: UIViewController, Bindable {
     
     var viewModel: CollectionViewModel!
     var disposeBag = DisposeBag()
+    private var tabSelected = 0
     
     // MARK: - Life Cycle
     
@@ -48,6 +49,10 @@ final class CollectionViewController: UIViewController, Bindable {
     // MARK: - Methods
     
     private func configView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(collectionChanged),
+                                               name: NSNotification.Name.collectionChanged,
+                                               object: nil)
         tabLayout.do {
             $0.tabLayoutDelegate = self
             $0.indicatorSize = 0.0
@@ -69,6 +74,19 @@ final class CollectionViewController: UIViewController, Bindable {
         let input = CollectionViewModel.Input()
         _ = viewModel.transform(input, disposeBag: disposeBag)
     }
+    
+    @objc func collectionChanged() {
+        switch(tabSelected) {
+        case 0:
+            NotificationCenter.default.post(
+                name: Notification.Name.productViewChanged,
+                object: nil)
+        default:
+            NotificationCenter.default.post(
+                name: Notification.Name.favoriteChanged,
+                object: nil)
+        }
+    }
 }
 
 extension CollectionViewController: TabLayoutDelegate {
@@ -79,6 +97,7 @@ extension CollectionViewController: TabLayoutDelegate {
         default:
             self.viewModel.navigator.toCollectionMenu(self, tab: .favorite)
         }
+        tabSelected = index
     }
 }
 

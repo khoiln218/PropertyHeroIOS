@@ -54,6 +54,11 @@ final class ProductViewViewController: UIViewController, Bindable {
                                                name: NSNotification.Name.loginSuccess,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(productViewChanged),
+                                               name: NSNotification.Name.productViewChanged,
+                                               object: nil)
+        
         tableView.do {
             $0.dataSource = self
             $0.refreshFooter = nil
